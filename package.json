@@ -6,7 +6,8 @@
   "type": "module",
   "license": "MIT",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "infra"
   ],
   "engines": {
     "node": ">=22"
@@ -23,7 +24,9 @@
     "gen:assets": "tsx scripts/gen-assets.ts",
     "format": "prettier --write .",
     "seed": "tsx scripts/seed.ts",
-    "build:ui": "npm run build -w @custodian/ui"
+    "build:ui": "npm run build -w @custodian/ui",
+    "infra:synth": "npm run synth -w @custodian/infra",
+    "infra:deploy": "npm run deploy -w @custodian/infra"
   },
   "devDependencies": {
     "@types/node": "^22.20.2",

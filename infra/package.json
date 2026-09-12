@@ -1,0 +1,19 @@
+{
+  "name": "@custodian/infra",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "synth": "cdk synth --quiet",
+    "deploy": "cdk deploy --require-approval never",
+    "destroy": "cdk destroy"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apprunner-alpha": "2.269.0-alpha.0",
+    "aws-cdk-lib": "2.269.0",
+    "constructs": "^10.4.2"
+  },
+  "devDependencies": {
+    "aws-cdk": "^2.1141.0"
+  }
+}
