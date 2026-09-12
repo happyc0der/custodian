@@ -60,9 +60,15 @@ export function scoreMatch(item: Item, recall: RecallRecord): MatchScore {
     : 0.45 * +brandHit + 0.35 * +modelHit + 0.3 * overlap;
   if (!textual && !brandHit && !modelHit && overlap < 0.6) score = Math.min(score, 0.3);
   if (!categoryOk) score *= 0.6;
+  // A recall announced more than a year before the item was bought almost never applies to a unit bought new
+  // (e.g. a 2009 Kidde alarm recall vs. a detector bought in 2025). Halve rather than drop: refurbished and
+  // second-hand goods exist.
+  const stale = !textual && item.purchased_on && recall.published_on < shiftYears(item.purchased_on, -1);
+  if (stale) score *= 0.5;
   score = Math.min(1, +score.toFixed(3));
 
   const why: string[] = [];
+  if (stale) why.push(`recall predates purchase (${recall.published_on})`);
   if (brandHit) why.push(`brand ${item.brand} matches`);
   if (modelHit) why.push(`model ${[...modelTokens].filter((t) => recallTokens.has(t)).join(' ')} matches`);
   if (overlapWords.length) why.push(`mentions ${overlapWords.slice(0, 3).join(', ')}`);
@@ -74,4 +80,9 @@ export function scoreMatch(item: Item, recall: RecallRecord): MatchScore {
 export function itemQuery(item: Item): string {
   if (item.vehicle) return `${item.vehicle.make} ${item.vehicle.model} ${item.vehicle.year}`;
   return [item.brand, item.model, item.name, ...item.aliases].filter(Boolean).join(' ');
+}
+
+function shiftYears(iso: string, years: number): string {
+  const y = Number(iso.slice(0, 4)) + years;
+  return `${String(y).padStart(4, '0')}${iso.slice(4)}`;
 }

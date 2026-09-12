@@ -21,7 +21,7 @@ export function RecallCard({ m, onDetails, onAck, compact }: { m: RecallMatchVie
     <article class="card" aria-label={m.recall.title}>
       {!compact && (
         <div class="media">
-          {m.recall.image_url ? <img src={m.recall.image_url} alt="" loading="lazy" /> : <div class="ph" aria-hidden="true">⚠️</div>}
+          {m.recall.image_url ? <img src={m.recall.image_url} alt="" /> : <div class="ph" aria-hidden="true">⚠️</div>}
         </div>
       )}
       <div class="body">

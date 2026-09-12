@@ -10,3 +10,5 @@ cdk.out/
 .DS_Store
 coverage/
 assets/generated/
+**/data/*.json
+**/data/*.json.tmp

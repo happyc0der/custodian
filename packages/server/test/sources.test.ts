@@ -30,6 +30,15 @@ describe('CPSC', () => {
     expect(rec.remedy).toMatch(/stop using/i);
   });
 
+  it('does not trust a title the record body contradicts (CPSC 26569 carries the Joolz title over a lounger recall)', () => {
+    const pair = fixture<CpscRecall[]>('cpsc-joolz-pair.json').map(normalizeCpsc);
+    const adapter = pair.find((r) => r.external_id === '26568')!;
+    const lounger = pair.find((r) => r.external_id === '26569')!;
+    expect(adapter.keywords).toEqual(expect.arrayContaining(['joolz', 'aer2', 'adapter']));
+    expect(lounger.keywords).not.toContain('joolz');
+    expect(lounger.keywords).toContain('lounger');
+  });
+
   it('grades severity from the hazard language', () => {
     const recent = fixture<CpscRecall[]>('cpsc-recent.json').map(normalizeCpsc);
     expect(recent.every((r) => RecallRecord.safeParse(r).success)).toBe(true);

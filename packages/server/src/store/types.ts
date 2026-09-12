@@ -18,6 +18,7 @@ export interface Store {
   listMatches(householdId: string): Promise<Match[]>;
   getMatch(householdId: string, matchId: string): Promise<Match | undefined>;
   putMatch(match: Match): Promise<void>;
+  deleteMatch(householdId: string, matchId: string): Promise<boolean>;
   deleteMatchesForItem(householdId: string, itemId: string): Promise<void>;
 
   listRules(householdId: string): Promise<MaintenanceRule[]>;
@@ -29,6 +30,8 @@ export interface Store {
   getRecall(id: string): Promise<RecallRecord | undefined>;
   putRecalls(records: RecallRecord[]): Promise<void>;
   listRecalls(): Promise<RecallRecord[]>;
+  /** Drops the shared recall corpus (used when the normalizer changes and records must be re-fetched). */
+  clearRecalls(): Promise<void>;
 
   /** Small key/value bag for sweep cursors and similar bookkeeping. */
   getMeta(key: string): Promise<string | undefined>;

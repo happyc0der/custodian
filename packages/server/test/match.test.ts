@@ -74,6 +74,23 @@ describe('scoreMatch', () => {
   });
 });
 
+describe('scoreMatch recency', () => {
+  it('halves the score of recalls announced well before the item was bought', () => {
+    const fresh = item('Joolz Aer2 car seat adapter', { purchased_on: '2026-03-01' });
+    const old = item('Joolz Aer2 car seat adapter', { purchased_on: '2020-01-01' });
+    // Recall published 2026-06-18: applies to both (a 2020 purchase predates it).
+    expect(scoreMatch(fresh, joolz).score).toBeGreaterThanOrEqual(LIKELY_THRESHOLD);
+    expect(scoreMatch(old, joolz).score).toBeGreaterThanOrEqual(LIKELY_THRESHOLD);
+    // A recall from 2014 vs. a 2026 purchase is halved and drops below the threshold.
+    const oldRecall = { ...joolz, id: 'cpsc:old', published_on: '2014-05-01' };
+    const s = scoreMatch(fresh, oldRecall);
+    expect(s.score).toBeLessThan(LIKELY_THRESHOLD);
+    expect(s.reason).toMatch(/predates purchase/);
+    // Without a purchase date we cannot tell, so nothing is halved.
+    expect(scoreMatch(item('Joolz Aer2 car seat adapter'), oldRecall).score).toBeGreaterThanOrEqual(LIKELY_THRESHOLD);
+  });
+});
+
 describe('RecallIndex', () => {
   it('returns the right recall among the whole corpus for an item query', () => {
     const idx = new RecallIndex();

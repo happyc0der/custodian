@@ -12,8 +12,8 @@ import { truncate, type RecallSourceClient } from './types.js';
 export interface ChildSeatRow {
   id: number;
   active: boolean;
-  make: string;
-  productModel: string;
+  make: string | null;
+  productModel: string | null;
   modelNumber: string | null;
   manufacturerDate: string | null;
   seatType: string | null;
@@ -24,12 +24,12 @@ export interface ChildSeatRow {
 
 export interface ChildSeatRecall {
   nhtsaCampaignNumber: string;
-  manufacturer: string;
-  reportReceivedDate: string; // ISO timestamp
-  subject: string;
-  summary: string;
-  consequence: string;
-  correctiveAction: string;
+  manufacturer: string | null;
+  reportReceivedDate: string | null; // ISO timestamp
+  subject: string | null;
+  summary: string | null;
+  consequence: string | null;
+  correctiveAction: string | null;
   potentialNumberOfUnitsAffected?: number;
 }
 
@@ -45,33 +45,35 @@ export function normalizeChildSeatRecalls(rows: ChildSeatRow[]): RecallRecord[] 
   const byCampaign = new Map<string, RecallRecord>();
   for (const row of rows) {
     for (const rec of row.safetyIssues?.recalls ?? []) {
-      const brand = titleCase(row.make);
-      const model = titleCase(row.productModel);
-      const product = { name: `${brand} ${model} car seat`, brand, model: row.modelNumber ?? model };
+      if (!rec?.nhtsaCampaignNumber) continue;
+      const brand = titleCase(row.make ?? rec.manufacturer ?? 'Unknown');
+      const model = titleCase(row.productModel ?? row.modelNumber ?? '');
+      const product = { name: `${brand} ${model} car seat`.replace(/\s+/g, ' ').trim(), brand, model: row.modelNumber ?? model };
       const existing = byCampaign.get(rec.nhtsaCampaignNumber);
       if (existing) {
         if (!existing.products.some((p) => p.model === product.model)) existing.products.push(product);
-        for (const k of tokenize(`${row.make} ${row.productModel} ${row.modelNumber ?? ''}`)) if (!existing.keywords.includes(k)) existing.keywords.push(k);
+        for (const k of tokenize(`${row.make ?? ''} ${row.productModel ?? ''} ${row.modelNumber ?? ''}`)) if (!existing.keywords.includes(k)) existing.keywords.push(k);
         continue;
       }
-      const published = rec.reportReceivedDate.includes('/') ? isoFromDdMmYyyy(rec.reportReceivedDate) : rec.reportReceivedDate.slice(0, 10);
+      const received = rec.reportReceivedDate ?? '';
+      const published = received.includes('/') ? isoFromDdMmYyyy(received) : received.slice(0, 10) || '1970-01-01';
       byCampaign.set(rec.nhtsaCampaignNumber, {
         id: recallId('nhtsa', rec.nhtsaCampaignNumber),
         source: 'nhtsa',
         external_id: rec.nhtsaCampaignNumber,
         title: `${brand} ${model} car seat: ${rec.subject}`,
-        summary: truncate(rec.summary),
-        hazard: truncate(rec.consequence, 400),
-        remedy: truncate(rec.correctiveAction, 500),
-        remedy_options: /replace/i.test(rec.correctiveAction) ? ['Free replacement'] : /kit|repair|remedy/i.test(rec.correctiveAction) ? ['Free repair kit'] : ['Contact manufacturer'],
-        contact: rec.manufacturer,
+        summary: truncate(rec.summary ?? ''),
+        hazard: truncate(rec.consequence ?? rec.subject ?? '', 400),
+        remedy: truncate(rec.correctiveAction ?? '', 500),
+        remedy_options: /replace/i.test(rec.correctiveAction ?? '') ? ['Free replacement'] : /kit|repair|remedy/i.test(rec.correctiveAction ?? '') ? ['Free repair kit'] : ['Contact manufacturer'],
+        contact: rec.manufacturer ?? undefined,
         url: `https://www.nhtsa.gov/recalls?nhtsaId=${encodeURIComponent(rec.nhtsaCampaignNumber)}`,
         image_url: row.picture ?? undefined,
         published_on: published,
         products: [product],
         categories: ['car_seat'],
-        severity: /death|fatal/i.test(rec.consequence) ? 'critical' : 'high',
-        keywords: [...new Set(tokenize(`${row.make} ${row.productModel} ${row.modelNumber ?? ''} ${rec.subject} car seat`))],
+        severity: /death|fatal/i.test(rec.consequence ?? '') ? 'critical' : 'high',
+        keywords: [...new Set(tokenize(`${row.make ?? ''} ${row.productModel ?? ''} ${row.modelNumber ?? ''} ${rec.subject ?? ''} car seat`))],
       });
     }
   }

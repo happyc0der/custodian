@@ -138,6 +138,13 @@ export class FileStore implements Store {
     this.matches.set(match.id, match);
     this.schedule();
   }
+  async deleteMatch(householdId: string, matchId: string) {
+    const m = await this.getMatch(householdId, matchId);
+    if (!m) return false;
+    this.matches.delete(matchId);
+    this.schedule();
+    return true;
+  }
   async deleteMatchesForItem(householdId: string, itemId: string) {
     for (const [id, m] of this.matches) {
       if (m.household_id === householdId && m.item_id === itemId) this.matches.delete(id);
@@ -181,6 +188,10 @@ export class FileStore implements Store {
   }
   async listRecalls() {
     return [...this.recalls.values()];
+  }
+  async clearRecalls() {
+    this.recalls.clear();
+    this.schedule();
   }
 
   /* auth */

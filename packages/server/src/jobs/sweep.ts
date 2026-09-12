@@ -25,6 +25,12 @@ export interface SweepOptions {
   log?: (msg: string) => void;
 }
 
+/**
+ * Bump when a source normalizer changes shape or keyword rules: the persisted
+ * corpus is dropped and re-fetched so old records cannot linger with stale keywords.
+ */
+export const NORMALIZER_VERSION = '2';
+const META_NORMALIZER = 'sweep:normalizer_version';
 const META_CPSC_CURSOR = 'sweep:cpsc_since';
 const META_CHILDSEAT_OFFSET = 'sweep:childseat_offset';
 const META_CHILDSEAT_DONE_AT = 'sweep:childseat_completed_at';
@@ -46,9 +52,18 @@ export class Sweeper {
     this.log = opts.log ?? ((m) => console.log(`[sweep] ${m}`));
   }
 
-  /** Loads the persisted recall corpus into the in-memory index. */
+  /** Loads the persisted recall corpus into the in-memory index, discarding it if it predates the current normalizer. */
   async warm(): Promise<void> {
-    this.index.add(await this.opts.store.listRecalls());
+    const store = this.opts.store;
+    const version = await store.getMeta(META_NORMALIZER);
+    if (version !== NORMALIZER_VERSION) {
+      await store.clearRecalls();
+      await store.setMeta(META_CPSC_CURSOR, '');
+      await store.setMeta(META_CHILDSEAT_OFFSET, '0');
+      await store.setMeta(META_NORMALIZER, NORMALIZER_VERSION);
+      if (version) this.log(`normalizer changed (${version} → ${NORMALIZER_VERSION}); recall corpus reset`);
+    }
+    this.index.add(await store.listRecalls());
     this.log(`index warmed with ${this.index.size} recalls`);
   }
 
@@ -94,7 +109,7 @@ export class Sweeper {
   private async pullCpsc(): Promise<void> {
     const store = this.opts.store;
     const today = todayIso(this.now());
-    const since = (await store.getMeta(META_CPSC_CURSOR)) ?? addDays(today, -(this.opts.backfillDays ?? 365));
+    const since = (await store.getMeta(META_CPSC_CURSOR)) || addDays(today, -(this.opts.backfillDays ?? 365));
     try {
       const records = await this.opts.sources.cpsc.fetchSince(since);
       await this.ingest(records);
@@ -158,15 +173,21 @@ export class Sweeper {
     const nowIso = this.now().toISOString();
     const existing = new Map((await store.listMatches(item.household_id)).filter((m) => m.item_id === item.id).map((m) => [m.recall_id, m]));
     const out: Match[] = [];
+    const kept = new Set<string>();
     for (const recall of this.index.candidates(itemQuery(item))) {
       const { score, reason } = scoreMatch(item, recall);
       if (score < MATCH_THRESHOLD) continue;
+      kept.add(recall.id);
       const prior = existing.get(recall.id);
       const match: Match = prior
         ? { ...prior, confidence: score, reason, updated_at: nowIso }
         : { id: `${item.id}:${recall.id}`, household_id: item.household_id, item_id: item.id, recall_id: recall.id, confidence: score, reason, status: 'new', created_at: nowIso, updated_at: nowIso };
       await store.putMatch(match);
       out.push(match);
+    }
+    // Scoring got stricter or the item's details changed: retire open matches that no longer qualify.
+    for (const prior of existing.values()) {
+      if (!kept.has(prior.recall_id) && (prior.status === 'new' || prior.status === 'seen')) await store.deleteMatch(item.household_id, prior.id);
     }
     return out;
   }
