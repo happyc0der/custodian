@@ -223,6 +223,8 @@ export type RemoveItemOutput = z.infer<typeof RemoveItemOutput>;
 export const CheckRecallsOutput = z.object({
   scope: z.enum(['household', 'item']),
   item: ItemSummary.optional(),
+  /** Populated when item_name was ambiguous; nothing was checked. */
+  candidates: z.array(ItemSummary).default([]),
   matches: z.array(RecallMatchView),
   checked_items: z.number().int(),
   last_sweep_at: IsoDateTime.optional(),

@@ -18,7 +18,7 @@ import { defineTool } from '../define.js';
 import type { ServerDeps } from '../deps.js';
 import { ICONS } from '../icons.js';
 import { fail, ok } from '../result.js';
-import { toMatchView } from '../views.js';
+import { toItemSummary, toMatchView } from '../views.js';
 import { findItemsByName } from './inventory.js';
 
 const OPEN: ReadonlySet<Match['status']> = new Set(['new', 'seen']);
@@ -80,6 +80,7 @@ export function registerRecallTools(server: McpServer, deps: ServerDeps): void {
         if (candidates.length > 1) {
           return ok(`I have ${candidates.length} items that could be that: ${joinNatural(candidates.map((c) => c.name))}. Which one do you mean?`, {
             scope: 'item',
+            candidates: candidates.map(toItemSummary),
             matches: [],
             checked_items: 0,
             last_sweep_at: lastSweep,
@@ -107,7 +108,8 @@ export function registerRecallTools(server: McpServer, deps: ServerDeps): void {
       }
       return ok(speech, {
         scope,
-        item: target ? { id: target.id, name: target.name, brand: target.brand, model: target.model, category: target.category, quantity: target.quantity, purchased_on: target.purchased_on, vehicle: target.vehicle } : undefined,
+        item: target ? toItemSummary(target) : undefined,
+        candidates: [],
         matches: views,
         checked_items: scopeItems.length,
         last_sweep_at: lastSweep,

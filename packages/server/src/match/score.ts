@@ -10,7 +10,8 @@ export const MATCH_THRESHOLD = 0.5;
 /** Confidence at or above which speech says "there is a recall" rather than "there may be". */
 export const LIKELY_THRESHOLD = 0.8;
 
-const GENERIC = new Set(['car', 'seat', 'baby', 'kid', 'child', 'children', 'infant', 'toddler', 'home', 'kitchen', 'portable', 'electric', 'set', 'pack']);
+/** Words too common to identify a product on their own. */
+export const GENERIC = new Set(['car', 'seat', 'baby', 'kid', 'child', 'children', 'infant', 'toddler', 'home', 'kitchen', 'portable', 'electric', 'set', 'pack']);
 
 function looksLikeModelCode(t: string): boolean {
   return /\d/.test(t) && /[a-z]/.test(t) && t.length >= 3 || /^[a-z]\d{2,}/.test(t) || /^\d[a-z]/.test(t);

@@ -53,6 +53,12 @@ describe('inventory tools', () => {
     expect(ambiguous.data.candidates.length).toBeGreaterThan(1);
     expect(ambiguous.speech).toMatch(/Which one/);
 
+    // Generic words alone must not widen the search: "car seat adapter" is one item even with other car seats around.
+    await callTool(h.client, 'add_item', { name: 'Britax Advocate ClickTight car seat' });
+    const adapterOnly = await callTool<RemoveItemOutput>(h.client, 'check_recalls', { item_name: 'car seat adapter' });
+    expect((adapterOnly.data as unknown as { scope: string; item?: { name: string } }).item?.name).toBe('Joolz Aer2 car seat adapter');
+    const seats = await callTool<RemoveItemOutput>(h.client, 'check_recalls', { item_name: 'car seat' });
+    expect((seats.data as unknown as { candidates: unknown[] }).candidates.length).toBe(3); // Graco, Britax, and the adapter
     // A brand repeated in name + brand field must not double-count toward the overlap.
     const specific = await callTool<RemoveItemOutput>(h.client, 'check_recalls', { item_name: 'joolz adapter' });
     expect(specific.isError).toBe(false);

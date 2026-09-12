@@ -16,6 +16,7 @@ import {
 } from '@custodian/shared';
 import { requireHousehold } from '../../auth/context.js';
 import { defaultAliases, inferBrand, inferCategory } from '../../enrich/categorize.js';
+import { GENERIC } from '../../match/score.js';
 import { defineTool } from '../define.js';
 import type { ServerDeps } from '../deps.js';
 import { ICONS } from '../icons.js';
@@ -55,9 +56,12 @@ export async function findItemsByName(deps: ServerDeps, householdId: string, nam
   const exact = items.filter((i) => normalizeName(i.name) === wanted || i.aliases.some((a) => normalizeName(a) === wanted));
   if (exact.length) return exact;
   const wantedTokens = new Set(wanted.split(' '));
+  // "car seat adapter" must not pull in every car seat: when the request has a distinctive word, require it.
+  const distinctive = [...wantedTokens].filter((t) => !GENERIC.has(t));
   return items.filter((i) => {
-    const tokens = new Set(normalizeName(`${i.name} ${i.brand ?? ''} ${i.model ?? ''}`).split(' '));
+    const tokens = new Set(normalizeName(`${i.name} ${i.brand ?? ''} ${i.model ?? ''} ${i.aliases.join(' ')}`).split(' '));
     const overlap = [...tokens].filter((t) => wantedTokens.has(t)).length;
+    if (distinctive.length && !distinctive.some((t) => tokens.has(t))) return false;
     return overlap > 0 && overlap >= Math.min(wantedTokens.size, tokens.size) * 0.6;
   });
 }
