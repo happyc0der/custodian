@@ -56,9 +56,9 @@ export async function findItemsByName(deps: ServerDeps, householdId: string, nam
   if (exact.length) return exact;
   const wantedTokens = new Set(wanted.split(' '));
   return items.filter((i) => {
-    const tokens = normalizeName(`${i.name} ${i.brand ?? ''} ${i.model ?? ''}`).split(' ');
-    const overlap = tokens.filter((t) => wantedTokens.has(t)).length;
-    return overlap > 0 && overlap >= Math.min(wantedTokens.size, tokens.length) * 0.6;
+    const tokens = new Set(normalizeName(`${i.name} ${i.brand ?? ''} ${i.model ?? ''}`).split(' '));
+    const overlap = [...tokens].filter((t) => wantedTokens.has(t)).length;
+    return overlap > 0 && overlap >= Math.min(wantedTokens.size, tokens.size) * 0.6;
   });
 }
 

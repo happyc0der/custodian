@@ -53,6 +53,11 @@ describe('inventory tools', () => {
     expect(ambiguous.data.candidates.length).toBeGreaterThan(1);
     expect(ambiguous.speech).toMatch(/Which one/);
 
+    // A brand repeated in name + brand field must not double-count toward the overlap.
+    const specific = await callTool<RemoveItemOutput>(h.client, 'check_recalls', { item_name: 'joolz adapter' });
+    expect(specific.isError).toBe(false);
+    expect((specific.data as unknown as { scope: string }).scope).toBe('item');
+
     const removed = await callTool<RemoveItemOutput>(h.client, 'remove_item', { name: 'Joolz Aer2 stroller' });
     expect(removed.data.removed?.name).toBe('Joolz Aer2 stroller');
     const missing = await callTool<RemoveItemOutput>(h.client, 'remove_item', { name: 'unicorn' });
