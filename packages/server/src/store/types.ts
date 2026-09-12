@@ -34,6 +34,11 @@ export interface Store {
   getMeta(key: string): Promise<string | undefined>;
   setMeta(key: string, value: string): Promise<void>;
 
+  /** Short-lived auth artefacts (codes, refresh tokens, pending requests) keyed by opaque id, with expiry. */
+  getAuth(key: string): Promise<string | undefined>;
+  putAuth(key: string, value: string, expiresAt: number): Promise<void>;
+  deleteAuth(key: string): Promise<void>;
+
   /** All household ids known to the store (used by the sweeper). */
   listHouseholdIds(): Promise<string[]>;
 

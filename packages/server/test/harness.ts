@@ -2,13 +2,14 @@ import type { AddressInfo } from 'node:net';
 import type { Server } from 'node:http';
 import { Client, StreamableHTTPClientTransport } from '@modelcontextprotocol/client';
 import { loadConfig, type Config } from '../src/config.js';
-import { devVerifier } from '../src/auth/bearer.js';
+import { createAuthRuntime, type AuthRuntime } from '../src/auth/runtime.js';
 import { createApp } from '../src/http/app.js';
 import type { Hooks, ServerDeps } from '../src/mcp/deps.js';
 import { FileStore } from '../src/store/file.js';
 
 export interface Harness {
   deps: ServerDeps;
+  auth: AuthRuntime;
   baseUrl: string;
   token: string;
   client: Client;
@@ -29,7 +30,8 @@ export async function startHarness(opts: HarnessOptions = {}): Promise<Harness> 
   const config = loadConfig({ authMode: 'dev', store: 'file', fileStorePath: ':memory:', devBearerToken: 'test-token', sweepOnBoot: false, ...opts.config });
   const store = new FileStore(':memory:');
   const deps: ServerDeps = { config, store, hooks: opts.hooks ?? {}, now: opts.now ?? (() => new Date()) };
-  const app = createApp({ deps, verifier: devVerifier(config) });
+  const auth = await createAuthRuntime(config, store, deps.now);
+  const app = createApp({ deps, auth });
   const server: Server = await new Promise((resolve) => {
     const s = app.listen(0, '127.0.0.1', () => resolve(s));
   });
@@ -47,6 +49,7 @@ export async function startHarness(opts: HarnessOptions = {}): Promise<Harness> 
 
   return {
     deps,
+    auth,
     baseUrl,
     token,
     client,

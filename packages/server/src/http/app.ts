@@ -1,16 +1,17 @@
 import express, { type Express, type NextFunction, type Request, type Response } from 'express';
 import { createMcpHandler } from '@modelcontextprotocol/server';
 import { toNodeHandler } from '@modelcontextprotocol/node';
-import type { TokenVerifier } from '../auth/bearer.js';
 import { bearerAuth } from '../auth/bearer.js';
 import { runWithCaller } from '../auth/context.js';
+import { privacyPage, termsPage } from '../auth/pages.js';
+import type { AuthRuntime } from '../auth/runtime.js';
 import type { ServerDeps } from '../mcp/deps.js';
 import { createMcpServer } from '../mcp/server.js';
 import { latencySnapshot } from '../telemetry.js';
 
 export interface AppOptions {
   deps: ServerDeps;
-  verifier: TokenVerifier;
+  auth: AuthRuntime;
 }
 
 /** Spec 2025-11-25 §transport: reject browser-originated requests from unknown origins with 403. */
@@ -34,11 +35,12 @@ function originGuard(allowedOrigins: string[]) {
   };
 }
 
-export function createApp({ deps, verifier }: AppOptions): Express {
+export function createApp({ deps, auth }: AppOptions): Express {
   const app = express();
   app.set('trust proxy', true);
   app.disable('x-powered-by');
   app.use(express.json({ limit: '1mb' }));
+  app.use(express.urlencoded({ extended: false, limit: '64kb' }));
 
   app.get('/healthz', (_req, res) => {
     res.json({ ok: true, name: 'custodian', authMode: deps.config.authMode, store: deps.config.store });
@@ -46,6 +48,9 @@ export function createApp({ deps, verifier }: AppOptions): Express {
   app.get('/metrics.json', (_req, res) => {
     res.json({ tools: latencySnapshot() });
   });
+  app.get('/privacy', (_req, res) => res.type('html').send(privacyPage(deps.config.publicUrl)));
+  app.get('/terms', (_req, res) => res.type('html').send(termsPage(deps.config.publicUrl)));
+  app.use(auth.router);
 
   // One McpServer per request (legacy 2025-era stateless serving, which is what Alexa+ speaks),
   // and the modern 2026-07-28 envelope for newer hosts — both from the same factory.
@@ -56,7 +61,7 @@ export function createApp({ deps, verifier }: AppOptions): Express {
   const node = toNodeHandler(handler, { onerror: (err) => console.error('[mcp:node]', err) });
   const publicHost = new URL(deps.config.publicUrl).hostname;
 
-  app.all('/mcp', originGuard([publicHost]), bearerAuth(verifier), (req, res) => {
+  app.all('/mcp', originGuard([publicHost]), bearerAuth(auth.verifier), (req, res) => {
     const auth = req.auth!;
     const caller = {
       clientId: auth.clientId,

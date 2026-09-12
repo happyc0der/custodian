@@ -11,6 +11,7 @@ interface Snapshot {
   rules: MaintenanceRule[];
   recalls: RecallRecord[];
   meta: Record<string, string>;
+  auth?: Record<string, { value: string; expiresAt: number }>;
 }
 
 /**
@@ -24,6 +25,7 @@ export class FileStore implements Store {
   private rules = new Map<string, MaintenanceRule>();
   private recalls = new Map<string, RecallRecord>();
   private meta = new Map<string, string>();
+  private auth = new Map<string, { value: string; expiresAt: number }>();
   private dirty = false;
   private timer: NodeJS.Timeout | undefined;
   private writing: Promise<void> = Promise.resolve();
@@ -51,6 +53,7 @@ export class FileStore implements Store {
       for (const r of snap.rules ?? []) this.rules.set(r.id, r);
       for (const r of snap.recalls ?? []) this.recalls.set(r.id, r);
       for (const [k, v] of Object.entries(snap.meta ?? {})) this.meta.set(k, v);
+      for (const [k, v] of Object.entries(snap.auth ?? {})) if (v.expiresAt > Date.now()) this.auth.set(k, v);
     } catch (err) {
       if ((err as NodeJS.ErrnoException).code !== 'ENOENT') throw err;
     }
@@ -78,6 +81,7 @@ export class FileStore implements Store {
       rules: [...this.rules.values()],
       recalls: [...this.recalls.values()],
       meta: Object.fromEntries(this.meta),
+      auth: Object.fromEntries([...this.auth].filter(([, v]) => v.expiresAt > Date.now())),
     };
     // Serialise writes so a slow disk never interleaves two snapshots.
     this.writing = this.writing.then(async () => {
@@ -177,6 +181,25 @@ export class FileStore implements Store {
   }
   async listRecalls() {
     return [...this.recalls.values()];
+  }
+
+  /* auth */
+  async getAuth(key: string) {
+    const v = this.auth.get(key);
+    if (!v) return undefined;
+    if (v.expiresAt <= Date.now()) {
+      this.auth.delete(key);
+      return undefined;
+    }
+    return v.value;
+  }
+  async putAuth(key: string, value: string, expiresAt: number) {
+    this.auth.set(key, { value, expiresAt });
+    this.schedule();
+  }
+  async deleteAuth(key: string) {
+    this.auth.delete(key);
+    this.schedule();
   }
 
   /* meta */

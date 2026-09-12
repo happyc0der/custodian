@@ -1,6 +1,6 @@
 import cron from 'node-cron';
 import { loadConfig } from './config.js';
-import { devVerifier } from './auth/bearer.js';
+import { createAuthRuntime } from './auth/runtime.js';
 import { createApp } from './http/app.js';
 import { Sweeper, defaultSources } from './jobs/sweep.js';
 import { applyDefaultRules } from './maintenance/service.js';
@@ -27,10 +27,8 @@ async function main(): Promise<void> {
     },
   };
 
-  if (config.authMode !== 'dev') {
-    throw new Error('AUTH_MODE=oauth is wired in Phase 5; use AUTH_MODE=dev for now');
-  }
-  const app = createApp({ deps, verifier: devVerifier(config) });
+  const auth = await createAuthRuntime(config, store);
+  const app = createApp({ deps, auth });
 
   const server = app.listen(config.port, () => {
     console.log(`custodian listening on http://localhost:${config.port}/mcp  (auth=${config.authMode}, store=${config.store})`);

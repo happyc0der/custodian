@@ -67,6 +67,8 @@ export const Household = z.object({
   name: z.string(),
   created_at: IsoDateTime,
   last_briefed_at: IsoDateTime.optional(),
+  /** Login credential for account linking (scrypt hash + salt, base64url). Absent for the dev household. */
+  credential: z.object({ hash: z.string(), salt: z.string() }).optional(),
 });
 export type Household = z.infer<typeof Household>;
 
