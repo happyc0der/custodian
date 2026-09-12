@@ -33,6 +33,7 @@ export interface Config {
   bedrockEnabled: boolean;
   bedrockRegion: string;
   bedrockModel: string;
+  uiDist: string;
 }
 
 export function loadConfig(overrides: Partial<Config> = {}): Config {
@@ -58,6 +59,7 @@ export function loadConfig(overrides: Partial<Config> = {}): Config {
     bedrockEnabled: bool('BEDROCK_ENABLED', false),
     bedrockRegion: env('BEDROCK_REGION', 'us-west-2'),
     bedrockModel: env('BEDROCK_MODEL', 'anthropic.claude-opus-5'),
+    uiDist: env('UI_DIST', new URL('../../ui/dist', import.meta.url).pathname),
     ...overrides,
   };
 }

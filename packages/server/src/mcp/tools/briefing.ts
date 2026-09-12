@@ -22,6 +22,7 @@ export function registerBriefingTool(server: McpServer, deps: ServerDeps): void 
     outputSchema: BriefingOutput,
     annotations: { readOnlyHint: false, idempotentHint: false, openWorldHint: false },
     icons: ICONS.home,
+    ui: 'app',
     async handler() {
       const householdId = requireHousehold();
       await ensureHousehold(deps, householdId);

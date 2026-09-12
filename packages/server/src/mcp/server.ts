@@ -1,4 +1,5 @@
 import { McpServer } from '@modelcontextprotocol/server';
+import { RESOURCE_MIME_TYPE, registerAppResource } from '@modelcontextprotocol/ext-apps/server';
 import { createRequire } from 'node:module';
 import type { ServerDeps } from './deps.js';
 import { registerBriefingTool } from './tools/briefing.js';
@@ -19,9 +20,27 @@ export const SERVER_INSTRUCTIONS =
  */
 export function createMcpServer(deps: ServerDeps): McpServer {
   const server = new McpServer({ name: 'custodian', version: pkg.version, title: 'Custodian' }, { instructions: SERVER_INSTRUCTIONS });
+  registerUiResources(server, deps);
   registerInventoryTools(server, deps);
   registerRecallTools(server, deps);
   registerMaintenanceTools(server, deps);
   registerBriefingTool(server, deps);
   return server;
+}
+
+/** Image hosts the recall feeds link to; Alexa blocks anything not declared here. */
+export const UI_RESOURCE_DOMAINS = ['https://www.cpsc.gov', 'https://static.nhtsa.gov', 'https://www.nhtsa.gov'];
+
+function registerUiResources(server: McpServer, deps: ServerDeps): void {
+  for (const { view, uri } of deps.ui?.entries() ?? []) {
+    registerAppResource(
+      server,
+      `Custodian ${view} view`,
+      uri,
+      { description: 'Custodian interactive view for Echo Show and other screens', mimeType: RESOURCE_MIME_TYPE, _meta: { ui: { csp: { resourceDomains: UI_RESOURCE_DOMAINS }, prefersBorder: false } } },
+      async () => ({
+        contents: [{ uri, mimeType: RESOURCE_MIME_TYPE, text: await deps.ui!.read(uri), _meta: { ui: { csp: { resourceDomains: UI_RESOURCE_DOMAINS }, prefersBorder: false } } }],
+      }),
+    );
+  }
 }

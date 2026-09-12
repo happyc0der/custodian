@@ -6,6 +6,7 @@ import { Sweeper, defaultSources } from './jobs/sweep.js';
 import { applyDefaultRules } from './maintenance/service.js';
 import type { ServerDeps } from './mcp/deps.js';
 import { openStore } from './store/index.js';
+import { loadUiBundle } from './ui.js';
 
 async function main(): Promise<void> {
   const config = loadConfig();
@@ -13,9 +14,12 @@ async function main(): Promise<void> {
   const sweeper = new Sweeper({ store, sources: defaultSources() });
   await sweeper.warm();
 
+  const ui = await loadUiBundle(config.uiDist);
+  console.log(ui ? `[ui] views: ${ui.entries().map((e) => e.view).join(', ')}` : '[ui] no bundle found — tools run voice-only');
   const deps: ServerDeps = {
     config,
     store,
+    ui,
     now: () => new Date(),
     hooks: {
       // Runs after add_item has already answered the customer.

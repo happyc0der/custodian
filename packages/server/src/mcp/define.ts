@@ -14,8 +14,8 @@ export interface ToolSpec<I extends z.ZodObject, O extends z.ZodObject> {
   outputSchema: O;
   annotations?: ToolAnnotations;
   icons?: Icon[];
-  /** MCP Apps view rendered for this tool's result (Alexa+ Echo Show, Claude, …). */
-  ui?: { resourceUri: string; displayModes?: Array<'inline' | 'fullscreen'>; visibility?: Array<'model' | 'app'> };
+  /** Name of the MCP Apps view (from packages/ui) that renders this tool's result, e.g. "app". */
+  ui?: string;
   handler: (input: z.infer<I>, ctx: ServerContext) => Promise<CallToolResult>;
 }
 
@@ -65,8 +65,9 @@ export function defineTool<I extends z.ZodObject, O extends z.ZodObject>(server:
   };
 
   // Only advertise a view when its bundle is actually available; otherwise hosts would fetch a missing ui:// resource.
-  if (spec.ui && deps.ui?.has(spec.ui.resourceUri)) {
-    registerAppTool(server, spec.name, { ...config, _meta: { ui: spec.ui } }, cb as never);
+  const resourceUri = spec.ui ? deps.ui?.uriFor(spec.ui) : undefined;
+  if (resourceUri) {
+    registerAppTool(server, spec.name, { ...config, _meta: { ui: { resourceUri } } }, cb as never);
   } else {
     server.registerTool(spec.name, config, cb as never);
   }

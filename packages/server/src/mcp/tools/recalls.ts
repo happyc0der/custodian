@@ -64,7 +64,7 @@ export function registerRecallTools(server: McpServer, deps: ServerDeps): void {
     outputSchema: CheckRecallsOutput,
     annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
     icons: ICONS.shield,
-    ui: { resourceUri: 'ui://custodian/recalls.html', displayModes: ['inline', 'fullscreen'] },
+    ui: 'app',
     async handler(input) {
       const householdId = requireHousehold();
       const items = new Map((await deps.store.listItems(householdId)).map((i) => [i.id, i]));
@@ -125,7 +125,7 @@ export function registerRecallTools(server: McpServer, deps: ServerDeps): void {
     outputSchema: RecallDetailsOutput,
     annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
     icons: ICONS.detail,
-    ui: { resourceUri: 'ui://custodian/recall-detail.html', displayModes: ['inline', 'fullscreen'] },
+    ui: 'app',
     async handler(input) {
       const householdId = requireHousehold();
       const recall = await deps.store.getRecall(input.recall_id);

@@ -45,7 +45,7 @@ export function registerMaintenanceTools(server: McpServer, deps: ServerDeps): v
     outputSchema: WhatsDueOutput,
     annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
     icons: ICONS.calendar,
-    ui: { resourceUri: 'ui://custodian/maintenance.html', displayModes: ['inline', 'fullscreen'] },
+    ui: 'app',
     async handler(input) {
       const householdId = requireHousehold();
       const horizon = input.horizon_days ?? DEFAULT_HORIZON;

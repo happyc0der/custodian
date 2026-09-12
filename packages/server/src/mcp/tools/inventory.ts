@@ -151,6 +151,7 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
     outputSchema: ListInventoryOutput,
     annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
     icons: ICONS.list,
+    ui: 'app',
     async handler(input) {
       const householdId = requireHousehold();
       let items = await deps.store.listItems(householdId);
@@ -164,7 +165,10 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
       }
       items.sort((a, b) => b.created_at.localeCompare(a.created_at));
       const matches = await deps.store.listMatches(householdId);
-      const openRecalls = matches.filter((m) => m.status === 'new' || m.status === 'seen').length;
+      const openMatches = matches.filter((m) => m.status === 'new' || m.status === 'seen');
+      const openRecalls = openMatches.length;
+      const openByItem: Record<string, number> = {};
+      for (const m of openMatches) openByItem[m.item_id] = (openByItem[m.item_id] ?? 0) + 1;
       const total = items.reduce((n, i) => n + i.quantity, 0);
 
       if (items.length === 0) {
@@ -173,6 +177,7 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
           items: [],
           total: 0,
           open_recalls: openRecalls,
+          open_recalls_by_item: openByItem,
         });
       }
 
@@ -188,6 +193,7 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
         items: items.map(toItemSummary),
         total,
         open_recalls: openRecalls,
+        open_recalls_by_item: openByItem,
       });
     },
   });

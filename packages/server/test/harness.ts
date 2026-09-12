@@ -6,6 +6,7 @@ import { createAuthRuntime, type AuthRuntime } from '../src/auth/runtime.js';
 import { createApp } from '../src/http/app.js';
 import type { Hooks, ServerDeps } from '../src/mcp/deps.js';
 import { FileStore } from '../src/store/file.js';
+import { staticUiBundle } from '../src/ui.js';
 
 export interface Harness {
   deps: ServerDeps;
@@ -23,13 +24,14 @@ export interface HarnessOptions {
   now?: () => Date;
   config?: Partial<Config>;
   connect?: boolean;
+  ui?: Record<string, string>;
 }
 
 /** Boots the real Express app on an ephemeral port with an in-memory store and a connected MCP client. */
 export async function startHarness(opts: HarnessOptions = {}): Promise<Harness> {
   const config = loadConfig({ authMode: 'dev', store: 'file', fileStorePath: ':memory:', devBearerToken: 'test-token', sweepOnBoot: false, ...opts.config });
   const store = new FileStore(':memory:');
-  const deps: ServerDeps = { config, store, hooks: opts.hooks ?? {}, now: opts.now ?? (() => new Date()) };
+  const deps: ServerDeps = { config, store, hooks: opts.hooks ?? {}, now: opts.now ?? (() => new Date()), ui: opts.ui ? staticUiBundle(opts.ui) : undefined };
   const auth = await createAuthRuntime(config, store, deps.now);
   const app = createApp({ deps, auth });
   const server: Server = await new Promise((resolve) => {

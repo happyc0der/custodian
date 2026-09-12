@@ -209,6 +209,8 @@ export const ListInventoryOutput = z.object({
   items: z.array(ItemSummary),
   total: z.number().int(),
   open_recalls: z.number().int(),
+  /** item id → number of open recall matches, for on-screen badges. */
+  open_recalls_by_item: z.record(z.string(), z.number().int()).default({}),
 });
 export type ListInventoryOutput = z.infer<typeof ListInventoryOutput>;
 

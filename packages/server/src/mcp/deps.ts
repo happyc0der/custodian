@@ -10,9 +10,11 @@ export interface Hooks {
 
 /** Bundled MCP App views keyed by their ui:// URI (built by packages/ui). */
 export interface UiBundle {
+  /** ui:// URI for a named view (e.g. "app"), or undefined when that view is not built. */
+  uriFor(view: string): string | undefined;
   has(uri: string): boolean;
   read(uri: string): Promise<string>;
-  uris(): string[];
+  entries(): Array<{ view: string; uri: string }>;
 }
 
 export interface ServerDeps {
