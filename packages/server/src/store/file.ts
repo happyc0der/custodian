@@ -153,6 +153,13 @@ export class FileStore implements Store {
     this.rules.set(rule.id, rule);
     this.schedule();
   }
+  async deleteRule(householdId: string, ruleId: string) {
+    const r = await this.getRule(householdId, ruleId);
+    if (!r) return false;
+    this.rules.delete(ruleId);
+    this.schedule();
+    return true;
+  }
   async deleteRulesForItem(householdId: string, itemId: string) {
     for (const [id, r] of this.rules) {
       if (r.household_id === householdId && r.item_id === itemId) this.rules.delete(id);

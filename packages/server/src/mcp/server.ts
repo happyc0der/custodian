@@ -3,6 +3,7 @@ import { createRequire } from 'node:module';
 import type { ServerDeps } from './deps.js';
 import { registerBriefingTool } from './tools/briefing.js';
 import { registerInventoryTools } from './tools/inventory.js';
+import { registerMaintenanceTools } from './tools/maintenance.js';
 import { registerRecallTools } from './tools/recalls.js';
 
 const pkg = createRequire(import.meta.url)('../../package.json') as { version: string };
@@ -20,6 +21,7 @@ export function createMcpServer(deps: ServerDeps): McpServer {
   const server = new McpServer({ name: 'custodian', version: pkg.version, title: 'Custodian' }, { instructions: SERVER_INSTRUCTIONS });
   registerInventoryTools(server, deps);
   registerRecallTools(server, deps);
+  registerMaintenanceTools(server, deps);
   registerBriefingTool(server, deps);
   return server;
 }

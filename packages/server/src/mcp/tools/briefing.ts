@@ -9,7 +9,7 @@ import { ok } from '../result.js';
 import { toMaintenanceView, toMatchView } from '../views.js';
 import { ensureHousehold } from './inventory.js';
 
-const DUE_SOON_DAYS = 14;
+const DUE_SOON_DAYS = 30;
 
 export function registerBriefingTool(server: McpServer, deps: ServerDeps): void {
   defineTool(server, deps, {

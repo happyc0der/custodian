@@ -3,6 +3,7 @@ import { loadConfig } from './config.js';
 import { devVerifier } from './auth/bearer.js';
 import { createApp } from './http/app.js';
 import { Sweeper, defaultSources } from './jobs/sweep.js';
+import { applyDefaultRules } from './maintenance/service.js';
 import type { ServerDeps } from './mcp/deps.js';
 import { openStore } from './store/index.js';
 
@@ -19,6 +20,7 @@ async function main(): Promise<void> {
     hooks: {
       // Runs after add_item has already answered the customer.
       onItemAdded: async (item) => {
+        await applyDefaultRules(store, item, new Date());
         const matches = await sweeper.sweepItem(item);
         if (matches.length) console.log(`[sweep] ${item.name}: ${matches.length} recall match(es)`);
       },

@@ -23,6 +23,7 @@ export interface Store {
   listRules(householdId: string): Promise<MaintenanceRule[]>;
   getRule(householdId: string, ruleId: string): Promise<MaintenanceRule | undefined>;
   putRule(rule: MaintenanceRule): Promise<void>;
+  deleteRule(householdId: string, ruleId: string): Promise<boolean>;
   deleteRulesForItem(householdId: string, itemId: string): Promise<void>;
 
   getRecall(id: string): Promise<RecallRecord | undefined>;

@@ -244,10 +244,18 @@ export const WhatsDueOutput = z.object({
 export type WhatsDueOutput = z.infer<typeof WhatsDueOutput>;
 
 export const LogMaintenanceOutput = z.object({
-  rule: MaintenanceView,
-  next_due: IsoDate,
+  rule: MaintenanceView.optional(),
+  next_due: IsoDate.optional(),
+  /** Populated when the item has several reminders and none was specified. */
+  candidates: z.array(MaintenanceView).default([]),
 });
 export type LogMaintenanceOutput = z.infer<typeof LogMaintenanceOutput>;
+
+export const SetReminderOutput = z.object({
+  rule: MaintenanceView,
+});
+export type SetReminderOutput = z.infer<typeof SetReminderOutput>;
+
 
 export const BriefingOutput = z.object({
   since: IsoDateTime.optional(),
