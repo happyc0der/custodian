@@ -27,6 +27,14 @@ describe('maintenance tools', () => {
   });
   afterAll(() => h.close());
 
+  it('starts interval reminders from today when the purchase date is long past', async () => {
+    await callTool(h.client, 'add_item', { name: '2019 Honda Odyssey', vehicle: { make: 'Honda', model: 'Odyssey', year: 2019 }, purchased_on: '2024-05-20' });
+    await new Promise((r) => setTimeout(r, 30));
+    const service = (await h.deps.store.listRules('dev')).find((r) => r.kind === 'service');
+    expect(service?.next_due).toBe('2027-03-12');
+    await callTool(h.client, 'remove_item', { name: '2019 Honda Odyssey' });
+  });
+
   it('adds default reminders when items are added', async () => {
     await callTool(h.client, 'add_item', { name: 'Kidde smoke detector', purchased_on: '2026-01-01' });
     await callTool(h.client, 'add_item', { name: 'Graco 4Ever car seat', manufactured_on: '2020-10-01' });
@@ -42,8 +50,8 @@ describe('maintenance tools', () => {
     expect(r.data.due[0]).toMatchObject({ overdue: true, next_due: '2026-07-02' });
     expect(r.data.upcoming.map((d) => [d.kind, d.next_due])).toEqual([['expires', '2026-09-30']]);
     expect(r.speech).toMatch(/One thing needs attention now/);
-    expect(r.speech).toMatch(/replace the batteries for your Kidde smoke detector is 71 days overdue/);
-    expect(r.speech).toMatch(/car seat expires for your Graco 4Ever car seat is due in 19 days/);
+    expect(r.speech).toMatch(/your Kidde smoke detector needs new batteries, 71 days overdue/);
+    expect(r.speech).toMatch(/your Graco 4Ever car seat expires in 19 days/);
   }, 20_000);
 
   it('log_maintenance rolls an interval reminder forward and clears one-shot ones', async () => {
@@ -75,6 +83,6 @@ describe('maintenance tools', () => {
   it('the briefing includes due maintenance', async () => {
     const r = await callTool<BriefingOutput>(h.client, 'household_briefing');
     expect(r.data.due_maintenance.map((d) => d.kind)).toEqual(['expires']);
-    expect(r.speech).toMatch(/car seat expires .* is due soon/);
+    expect(r.speech).toMatch(/your Graco 4Ever car seat expires in 19 days/);
   });
 });

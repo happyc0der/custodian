@@ -6,7 +6,7 @@ import { defineTool } from '../define.js';
 import type { ServerDeps } from '../deps.js';
 import { ICONS } from '../icons.js';
 import { ok } from '../result.js';
-import { toMaintenanceView, toMatchView } from '../views.js';
+import { speakMaintenance, toMaintenanceView, toMatchView } from '../views.js';
 import { ensureHousehold } from './inventory.js';
 
 const DUE_SOON_DAYS = 30;
@@ -102,10 +102,9 @@ function buildSpeech(b: { itemCount: number; newRecalls: RecallMatchView[]; open
   if (b.due.length) {
     const overdue = b.due.filter((d) => d.overdue);
     const soon = b.due.filter((d) => !d.overdue);
-    const bits: string[] = [];
-    if (overdue.length) bits.push(`${joinNatural(overdue.slice(0, 2).map((d) => d.label.toLowerCase()))} ${overdue.length === 1 ? 'is' : 'are'} overdue`);
-    if (soon.length) bits.push(`${joinNatural(soon.slice(0, 2).map((d) => d.label.toLowerCase()))} ${soon.length === 1 ? 'is' : 'are'} due soon`);
-    parts.push(`Also, ${bits.join(', and ')}.`);
+    const bits = [...overdue.slice(0, 2), ...soon.slice(0, 2)].map(speakMaintenance);
+    const more = b.due.length > bits.length ? `, plus ${b.due.length - bits.length} more on screen` : '';
+    parts.push(`Also, ${joinNatural(bits)}${more}.`);
   }
   return parts.join(' ');
 }

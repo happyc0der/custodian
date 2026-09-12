@@ -1,4 +1,4 @@
-import { addDays, newId, todayIso, type Item, type MaintenanceRule } from '@custodian/shared';
+import { addDays, daysBetween, newId, todayIso, type Item, type MaintenanceRule } from '@custodian/shared';
 import type { Store } from '../store/types.js';
 import { defaultRulesFor, isOneShot } from './defaults.js';
 
@@ -10,6 +10,9 @@ export async function applyDefaultRules(store: Store, item: Item, now: Date): Pr
   const created: MaintenanceRule[] = [];
   for (const t of defaultRulesFor(item, today)) {
     if (have.has(t.kind)) continue;
+    // An interval reminder computed from an old purchase date would start out absurdly overdue
+    // ("663 days"); assume it was kept up until now and start the cycle from today instead.
+    if (t.interval_days && daysBetween(t.next_due, today) > t.interval_days) t.next_due = addDays(today, t.interval_days);
     const rule: MaintenanceRule = {
       id: newId('rule'),
       household_id: item.household_id,

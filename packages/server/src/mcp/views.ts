@@ -46,3 +46,27 @@ export function toMaintenanceView(rule: MaintenanceRule, item: Item, today: stri
 export function spokenItem(item: Pick<Item, 'name' | 'quantity'>): string {
   return item.quantity > 1 ? `your ${item.name} (you have ${item.quantity})` : `your ${item.name}`;
 }
+
+/**
+ * "Your Kidde smoke detector needs new batteries, 71 days overdue." — one clause per reminder,
+ * phrased per kind so the item name carries the sentence instead of the label.
+ */
+export function speakMaintenance(v: MaintenanceView): string {
+  const item = `your ${v.item.name}`;
+  const when =
+    v.days_until_due < 0
+      ? `, ${-v.days_until_due === 1 ? 'a day' : `${-v.days_until_due} days`} overdue`
+      : v.days_until_due === 0
+        ? ' today'
+        : ` in ${v.days_until_due === 1 ? 'a day' : `${v.days_until_due} days`}`;
+  switch (v.kind) {
+    case 'replace_battery': return `${item} needs new batteries${when}`;
+    case 'replace_filter': return `${item} needs a new filter${when}`;
+    case 'replace_unit': return `${item} needs replacing${when}`;
+    case 'service': return `${item} is due for ${v.item.category === 'vehicle' ? 'an oil change and service' : 'a service'}${when}`;
+    case 'inspect': return `${item} is due for an inspection${when}`;
+    case 'expires': return `${item} expires${when}`;
+    case 'warranty_ends': return `the warranty on ${item} ends${when}`;
+    default: return `${v.label.toLowerCase().replace(/\.$/, '')} for ${item}${when}`;
+  }
+}

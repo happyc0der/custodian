@@ -191,8 +191,9 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
         .sort((a, b) => b[1] - a[1])
         .slice(0, 4)
         .map(([c, n]) => pluralize(n, CATEGORY_LABEL[c][0], CATEGORY_LABEL[c][1]));
-      const more = byCategory.size > 4 ? ' and a few other things' : '';
-      const recallNote = openRecalls > 0 ? ` ${pluralize(openRecalls, 'item has', 'items have')} an open recall.` : '';
+      const more = byCategory.size > 4 ? ', plus a few other things' : '';
+      const itemsWithRecalls = new Set(openMatches.map((m) => m.item_id)).size;
+      const recallNote = itemsWithRecalls > 0 ? ` ${itemsWithRecalls === 1 ? 'One item has' : `${itemsWithRecalls} items have`} open recalls.` : '';
       return ok(`You have ${pluralize(total, 'item')} on file: ${joinNatural(parts)}${more}.${recallNote}`, {
         items: items.map(toItemSummary),
         total,

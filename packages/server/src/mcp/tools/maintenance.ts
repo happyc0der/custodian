@@ -20,17 +20,11 @@ import { defineTool } from '../define.js';
 import type { ServerDeps } from '../deps.js';
 import { ICONS } from '../icons.js';
 import { fail, ok } from '../result.js';
-import { toMaintenanceView } from '../views.js';
+import { speakMaintenance, toMaintenanceView } from '../views.js';
 import { findItemsByName } from './inventory.js';
 
 const DEFAULT_HORIZON = 30;
 
-function speakDue(v: MaintenanceView): string {
-  const what = `${v.label.toLowerCase().replace(/\s*\(.*\)$/, '')} for your ${v.item.name}`;
-  if (v.days_until_due < 0) return `${what} is ${-v.days_until_due === 1 ? 'a day' : `${-v.days_until_due} days`} overdue`;
-  if (v.days_until_due === 0) return `${what} is due today`;
-  return `${what} is due in ${v.days_until_due === 1 ? 'a day' : `${v.days_until_due} days`}`;
-}
 
 export function registerMaintenanceTools(server: McpServer, deps: ServerDeps): void {
   defineTool(server, deps, {
@@ -70,8 +64,8 @@ export function registerMaintenanceTools(server: McpServer, deps: ServerDeps): v
           : "I'm not tracking anything yet, so there's nothing due. Tell me what you own and I'll set up reminders.";
       } else {
         const parts: string[] = [];
-        if (due.length) parts.push(`${due.length === 1 ? 'One thing needs' : `${due.length} things need`} attention now: ${joinNatural(due.slice(0, 3).map(speakDue))}${due.length > 3 ? ', and more on screen' : ''}.`);
-        if (upcoming.length) parts.push(`${due.length ? 'Coming up' : `In the next ${horizon} days`}: ${joinNatural(upcoming.slice(0, 3).map(speakDue))}${upcoming.length > 3 ? ', and more on screen' : ''}.`);
+        if (due.length) parts.push(`${due.length === 1 ? 'One thing needs' : `${due.length} things need`} attention now: ${joinNatural(due.slice(0, 3).map(speakMaintenance))}${due.length > 3 ? ', plus more on screen' : ''}.`);
+        if (upcoming.length) parts.push(`${due.length ? 'Coming up' : `In the next ${horizon} days`}: ${joinNatural(upcoming.slice(0, 3).map(speakMaintenance))}${upcoming.length > 3 ? ', plus more on screen' : ''}.`);
         speech = parts.join(' ');
       }
       return ok(speech, { horizon_days: horizon, due, upcoming });
@@ -126,7 +120,8 @@ export function registerMaintenanceTools(server: McpServer, deps: ServerDeps): v
         return ok(`Logged. That was a one-time reminder for your ${item.name}, so I've cleared it.`, { candidates: [] });
       }
       const view = toMaintenanceView(after, item, today);
-      return ok(`Logged. I'll remind you to ${rule.label.toLowerCase()} for your ${item.name} again in about ${Math.round((rule.interval_days ?? 0) / 30)} months.`, {
+      const months = Math.round((rule.interval_days ?? 0) / 30);
+      return ok(`Logged. I'll remind you about your ${item.name} again in about ${months === 1 ? 'a month' : `${months} months`}.`, {
         rule: view,
         next_due: after.next_due,
         candidates: [],
