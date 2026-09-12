@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+data/*.json
+cdk.out/
+*.log
+.DS_Store
+coverage/
+assets/generated/

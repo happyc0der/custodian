@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "rootDir": "src",
+    "outDir": "dist-types",
+    "emitDeclarationOnly": true,
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src"],
+  "references": [{ "path": "../shared" }]
+}
