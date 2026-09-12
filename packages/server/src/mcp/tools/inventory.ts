@@ -63,7 +63,7 @@ export async function findItemsByName(deps: ServerDeps, householdId: string, nam
 }
 
 export function registerInventoryTools(server: McpServer, deps: ServerDeps): void {
-  defineTool(server, {
+  defineTool(server, deps, {
     name: 'add_item',
     title: 'Add an item to the household inventory',
     description:
@@ -138,7 +138,7 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
     },
   });
 
-  defineTool(server, {
+  defineTool(server, deps, {
     name: 'list_inventory',
     title: 'List household inventory',
     description:
@@ -192,7 +192,7 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
     },
   });
 
-  defineTool(server, {
+  defineTool(server, deps, {
     name: 'remove_item',
     title: 'Remove an item from the inventory',
     description:

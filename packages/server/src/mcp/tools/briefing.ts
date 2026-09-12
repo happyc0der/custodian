@@ -12,7 +12,7 @@ import { ensureHousehold } from './inventory.js';
 const DUE_SOON_DAYS = 14;
 
 export function registerBriefingTool(server: McpServer, deps: ServerDeps): void {
-  defineTool(server, {
+  defineTool(server, deps, {
     name: 'household_briefing',
     title: 'Household safety briefing',
     description:
