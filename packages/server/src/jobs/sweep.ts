@@ -1,6 +1,7 @@
 import { addDays, todayIso, type Item, type Match, type RecallRecord } from '@custodian/shared';
+import type { Enricher } from '../enrich/types.js';
 import { RecallIndex } from '../match/index.js';
-import { MATCH_THRESHOLD, itemQuery, scoreMatch } from '../match/score.js';
+import { LIKELY_THRESHOLD, MATCH_THRESHOLD, itemQuery, scoreMatch } from '../match/score.js';
 import { CpscSource } from '../sources/cpsc.js';
 import { NhtsaChildSeatSource } from '../sources/nhtsaChildSeat.js';
 import { NhtsaVehicleSource } from '../sources/nhtsaVehicle.js';
@@ -18,6 +19,8 @@ export interface SweepOptions {
   store: Store;
   sources: SweepSources;
   now?: () => Date;
+  /** Optional LLM enrichment (Bedrock). Absent → deterministic only. */
+  enricher?: Enricher;
   /** How far back the first CPSC backfill reaches. */
   backfillDays?: number;
   /** Child-seat catalogue pages crawled per sweep (100 seats each). */
@@ -93,16 +96,36 @@ export class Sweeper {
     this.log(`full sweep done in ${this.now().getTime() - started.getTime()} ms; index=${this.index.size}`);
   }
 
-  /** Targeted sweep after add_item: search sources for this item, then match it. */
+  /** Targeted sweep after add_item: enrich, search sources for this item, then match it. */
   async sweepItem(item: Item): Promise<Match[]> {
+    let current = item;
+    let status: Item['enrichment_status'] = 'done';
+    if (this.opts.enricher) {
+      try {
+        const n = await this.opts.enricher.normalizeItem(item);
+        if (n) {
+          current = {
+            ...item,
+            brand: item.brand ?? n.brand,
+            model: item.model ?? n.model,
+            category: item.category === 'other' && n.category ? n.category : item.category,
+            aliases: [...new Set([...item.aliases, ...n.aliases, ...(n.canonical_name ? [n.canonical_name] : [])])],
+          };
+          await this.opts.store.putItem(current);
+        }
+      } catch (err) {
+        status = 'failed';
+        this.log(`enrichment failed for ${item.name}: ${(err as Error).message}`);
+      }
+    }
     try {
-      await this.refreshItemSources(item, { includeCpscSearch: true });
+      await this.refreshItemSources(current, { includeCpscSearch: true });
     } catch (err) {
       this.log(`item refresh failed for ${item.name}: ${(err as Error).message}`);
     }
-    const matches = await this.matchItem(item);
+    const matches = await this.matchItem(current);
     const fresh = await this.opts.store.getItem(item.household_id, item.id);
-    if (fresh) await this.opts.store.putItem({ ...fresh, enrichment_status: 'done', updated_at: this.now().toISOString() });
+    if (fresh) await this.opts.store.putItem({ ...fresh, enrichment_status: status, updated_at: this.now().toISOString() });
     return matches;
   }
 
@@ -175,10 +198,26 @@ export class Sweeper {
     const out: Match[] = [];
     const kept = new Set<string>();
     for (const recall of this.index.candidates(itemQuery(item))) {
-      const { score, reason } = scoreMatch(item, recall);
+      let { score, reason } = scoreMatch(item, recall);
+      if (score < MATCH_THRESHOLD) continue;
+      // Ambiguous band: let the model confirm or veto, but only once per (item, recall) — judgements are cached on the match.
+      const prior = existing.get(recall.id);
+      if (this.opts.enricher && score < LIKELY_THRESHOLD && !prior?.reason.startsWith('llm:')) {
+        try {
+          const j = await this.opts.enricher.judgeMatch(item, recall);
+          if (j?.applies === 'no') {
+            reason = `llm: ${j.reason}`;
+            score = Math.min(score, 0.2);
+          } else if (j?.applies === 'yes') {
+            reason = `llm: ${j.reason}`;
+            score = Math.max(score, Math.min(1, j.confidence));
+          }
+        } catch (err) {
+          this.log(`match judgement failed: ${(err as Error).message}`);
+        }
+      }
       if (score < MATCH_THRESHOLD) continue;
       kept.add(recall.id);
-      const prior = existing.get(recall.id);
       const match: Match = prior
         ? { ...prior, confidence: score, reason, updated_at: nowIso }
         : { id: `${item.id}:${recall.id}`, household_id: item.household_id, item_id: item.id, recall_id: recall.id, confidence: score, reason, status: 'new', created_at: nowIso, updated_at: nowIso };

@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import { loadConfig } from './config.js';
 import { createAuthRuntime } from './auth/runtime.js';
 import { createApp } from './http/app.js';
+import { createEnricher } from './enrich/bedrock.js';
 import { Sweeper, defaultSources } from './jobs/sweep.js';
 import { applyDefaultRules } from './maintenance/service.js';
 import type { ServerDeps } from './mcp/deps.js';
@@ -11,7 +12,9 @@ import { loadUiBundle } from './ui.js';
 async function main(): Promise<void> {
   const config = loadConfig();
   const store = await openStore(config);
-  const sweeper = new Sweeper({ store, sources: defaultSources() });
+  const enricher = createEnricher(config);
+  console.log(enricher ? `[enrich] Bedrock enabled (${config.bedrockModel} @ ${config.bedrockRegion})` : '[enrich] Bedrock disabled — deterministic matching only');
+  const sweeper = new Sweeper({ store, sources: defaultSources(), enricher });
   await sweeper.warm();
 
   const ui = await loadUiBundle(config.uiDist);
