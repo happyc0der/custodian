@@ -53,7 +53,13 @@ async function main() {
   await call('household_briefing');
   await call('add_item', { name: 'Joolz Aer2 car seat adapter', purchased_on: '2026-03-01' });
   await call('add_item', { name: '2019 Honda Odyssey', vehicle: { make: 'Honda', model: 'Odyssey', year: 2019 } });
+  await call('add_item', { name: 'Kidde smoke detector', quantity: 3, purchased_on: '2026-01-01' });
+  console.log('\n… waiting 6 s for the targeted recall sweeps (off the voice path) …');
+  await new Promise((r) => setTimeout(r, 6000));
   await call('list_inventory');
+  await call('check_recalls');
+  await call('check_recalls', { item_name: 'car seat adapter' });
+  await call('whats_due', { horizon_days: 365 });
   await call('household_briefing');
 
   const metrics = (await fetch(new URL('/metrics.json', url)).then((r) => r.json())) as { tools: Record<string, { p95: number }> };

@@ -2,7 +2,7 @@
   "name": "custodian",
   "private": true,
   "version": "0.1.0",
-  "description": "Custodian \u2014 a household inventory and product-safety agent for Alexa+, delivered as a self-hosted MCP server.",
+  "description": "Custodian — a household inventory and product-safety agent for Alexa+, delivered as a self-hosted MCP server.",
   "type": "module",
   "license": "MIT",
   "workspaces": [
@@ -31,6 +31,7 @@
   "devDependencies": {
     "@types/node": "^22.20.2",
     "prettier": "^3.9.6",
+    "sharp": "^0.35.4",
     "tsx": "^4.23.13",
     "typescript": "^5.9.3",
     "vitest": "^5.0.0"
