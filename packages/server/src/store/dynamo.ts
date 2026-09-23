@@ -262,11 +262,8 @@ export class DynamoStore implements Store {
   async getMeta(key: string) {
     return (await this.get<{ value: string }>('META', key))?.value;
   }
-  putMeta(key: string, value: string) {
-    return this.put('META', key, { value });
-  }
   setMeta(key: string, value: string) {
-    return this.putMeta(key, value);
+    return this.put('META', key, { value });
   }
 
   async flush() {

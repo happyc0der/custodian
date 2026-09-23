@@ -14,7 +14,6 @@
     "@aws-sdk/client-dynamodb": "^3.1131.0",
     "@aws-sdk/lib-dynamodb": "^3.1131.0",
     "@custodian/shared": "*",
-    "@modelcontextprotocol/express": "^2.0.0",
     "@modelcontextprotocol/ext-apps": "^2.0.0",
     "@modelcontextprotocol/node": "^2.0.0",
     "@modelcontextprotocol/server": "^2.0.0",

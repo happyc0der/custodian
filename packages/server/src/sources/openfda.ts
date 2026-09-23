@@ -7,7 +7,7 @@ import {
   type ItemCategory,
   type RecallRecord,
 } from '@custodian/shared';
-import { fetchJson, type FetchLike } from './http.js';
+import { HttpError, fetchJson, type FetchLike } from './http.js';
 import { truncate, type RecallSourceClient } from './types.js';
 
 /** Shape of https://api.fda.gov/{food,drug,device}/enforcement.json results[] */
@@ -120,8 +120,7 @@ export class OpenFdaSource implements RecallSourceClient {
       return (data.results ?? []).map((r) => normalizeFda(r, endpoint));
     } catch (err) {
       // openFDA answers 404 for "no matches" — that is a normal empty result, not a failure.
-      if (err instanceof Error && 'status' in err && (err as { status: number }).status === 404)
-        return [];
+      if (err instanceof HttpError && err.status === 404) return [];
       throw err;
     }
   }

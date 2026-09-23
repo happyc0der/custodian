@@ -11,7 +11,6 @@ import {
   newId,
   normalizeName,
   pluralize,
-  todayIso,
   type Item,
 } from '@custodian/shared';
 import { requireHousehold } from '../../auth/context.js';
@@ -302,4 +301,3 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
   });
 }
 
-export { todayIso };
