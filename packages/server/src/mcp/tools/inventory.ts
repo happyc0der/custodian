@@ -300,4 +300,3 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
     },
   });
 }
-
