@@ -8,7 +8,10 @@ It is delivered as a **self-hosted [MCP](https://modelcontextprotocol.io) server
 
 [![CI](https://github.com/happyc0der/custodian/actions/workflows/ci.yml/badge.svg)](https://github.com/happyc0der/custodian/actions/workflows/ci.yml)
 ![MCP 2025-11-25](https://img.shields.io/badge/MCP-2025--11--25-blue)
-![License: MIT](https://img.shields.io/badge/license-MIT-green)
+
+<p align="center">
+  <img src="docs/screenshots/recalls.png" alt="Custodian's recall view rendered as an MCP App: cards for a Class I food recall, the Joolz car-seat-adapter recall with product photo, and a Honda Odyssey campaign, each with the remedy and Details / I've handled it buttons" width="900">
+</p>
 
 ```
 "I just bought a Graco 4Ever car seat."
@@ -32,6 +35,13 @@ Recall remedy rates are poor because the notice reaches the wrong place at the w
 - **OAuth 2.1 in the shape assistants actually need.** Two tiers — `client_credentials` for discovery, `authorization_code` + PKCE bound to a household for tool calls — with rotating refresh tokens, the `resource` parameter, multiple registered redirect URIs, no dynamic registration and no `WWW-Authenticate` challenge. Generic MCP auth libraries don't emit that shape, so it is a small self-contained authorization server, plus a conformance script that checks every property.
 - **Explainable matching over messy public data.** Deterministic scoring (brand, model, descriptive-word overlap, category gate, vehicle exactness, purchase-date recency) with a written `reason` on every match. A Claude-on-Bedrock adjudicator is optional and only consulted in the ambiguous band; its verdict is cached. The feeds are imperfect — a CPSC record that carries another recall's title, null-y NHTSA rows — and the normalizers are hardened accordingly ([docs/platform-notes.md](docs/platform-notes.md)).
 - **One MCP App, five views.** A single content-hashed Preact bundle (~70 KB gzipped) renders recall cards, a detail page, inventory, a maintenance timeline and a briefing, picking the view from the calling tool. Host theme and style variables, safe-area insets, inline/fullscreen modes, and a CSP limited to the recall feeds' image hosts. On-screen actions call tools and push what the user did into the model's context.
+
+<p align="center">
+  <img src="docs/screenshots/briefing.png" alt="Household briefing view: items tracked, open recalls and due-soon counters above a grid of new recall cards" width="440">
+  <img src="docs/screenshots/maintenance.png" alt="Maintenance view: an overdue smoke-detector battery change under Needs attention, and upcoming filter and warranty reminders under Coming up, each with a Done button" width="440">
+</p>
+
+_Rendered with the reference [MCP Apps basic-host](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/basic-host) against live recall data._
 
 ## Tools
 
@@ -112,7 +122,3 @@ The second deploy pins `PUBLIC_URL` (OAuth issuer and JWT audience) once the App
 ## Data sources
 
 Public, keyless, and attributed on every match: [CPSC recalls](https://www.saferproducts.gov/RestWebServices/Recall?format=json), [NHTSA recalls](https://api.nhtsa.gov/) (vehicle campaigns and the child-seat catalogue), and [openFDA enforcement reports](https://open.fda.gov/apis/) for food, drugs and devices. Recall information can be delayed or incomplete; always confirm with the manufacturer or the issuing agency before acting.
-
-## License
-
-MIT

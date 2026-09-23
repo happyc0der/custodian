@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "description": "Custodian \u2014 a household inventory that watches for product recalls and maintenance. Self-hosted MCP server with OAuth 2.1 and MCP Apps, built for Alexa+ and any MCP host.",
   "type": "module",
-  "license": "MIT",
   "workspaces": [
     "packages/*",
     "infra"
