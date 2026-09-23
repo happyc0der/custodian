@@ -20,22 +20,73 @@ export function defaultRulesFor(item: Item, today: string): RuleTemplate[] {
   switch (item.category) {
     case 'smoke_detector':
       return [
-        { kind: 'replace_battery', label: 'Replace the batteries', interval_days: 182, next_due: addDays(bought, 182) },
-        { kind: 'replace_unit', label: 'Replace the unit (10-year life)', next_due: addDays(made, 10 * YEAR) },
+        {
+          kind: 'replace_battery',
+          label: 'Replace the batteries',
+          interval_days: 182,
+          next_due: addDays(bought, 182),
+        },
+        {
+          kind: 'replace_unit',
+          label: 'Replace the unit (10-year life)',
+          next_due: addDays(made, 10 * YEAR),
+        },
       ];
     case 'water_filter':
-      return [{ kind: 'replace_filter', label: 'Replace the filter', interval_days: 182, next_due: addDays(bought, 182) }];
+      return [
+        {
+          kind: 'replace_filter',
+          label: 'Replace the filter',
+          interval_days: 182,
+          next_due: addDays(bought, 182),
+        },
+      ];
     case 'hvac_filter':
-      return [{ kind: 'replace_filter', label: 'Replace the filter', interval_days: 90, next_due: addDays(bought, 90) }];
+      return [
+        {
+          kind: 'replace_filter',
+          label: 'Replace the filter',
+          interval_days: 90,
+          next_due: addDays(bought, 90),
+        },
+      ];
     case 'car_seat':
-      return [{ kind: 'expires', label: 'Car seat expires (6 years from manufacture)', next_due: addDays(made, 6 * YEAR) }];
+      return [
+        {
+          kind: 'expires',
+          label: 'Car seat expires (6 years from manufacture)',
+          next_due: addDays(made, 6 * YEAR),
+        },
+      ];
     case 'vehicle':
-      return [{ kind: 'service', label: 'Oil change and service', interval_days: 182, next_due: addDays(bought, 182) }];
+      return [
+        {
+          kind: 'service',
+          label: 'Oil change and service',
+          interval_days: 182,
+          next_due: addDays(bought, 182),
+        },
+      ];
     case 'heater':
-      return [{ kind: 'inspect', label: 'Inspect before the heating season', interval_days: YEAR, next_due: addDays(bought, YEAR) }];
+      return [
+        {
+          kind: 'inspect',
+          label: 'Inspect before the heating season',
+          interval_days: YEAR,
+          next_due: addDays(bought, YEAR),
+        },
+      ];
     case 'appliance':
     case 'electronics':
-      return item.purchased_on ? [{ kind: 'warranty_ends', label: 'Warranty ends (1 year)', next_due: addDays(item.purchased_on, YEAR) }] : [];
+      return item.purchased_on
+        ? [
+            {
+              kind: 'warranty_ends',
+              label: 'Warranty ends (1 year)',
+              next_due: addDays(item.purchased_on, YEAR),
+            },
+          ]
+        : [];
     default:
       return [];
   }

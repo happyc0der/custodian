@@ -5,14 +5,24 @@ import { startHarness, type Harness } from './harness.js';
 describe('MCP Apps wiring', () => {
   let h: Harness;
   beforeAll(async () => {
-    h = await startHarness({ ui: { app: '<!doctype html><title>Custodian</title><div id="root"></div>' } });
+    h = await startHarness({
+      ui: { app: '<!doctype html><title>Custodian</title><div id="root"></div>' },
+    });
   });
   afterAll(() => h.close());
 
   it('advertises the app view on screen-worthy tools only, with a content-addressed ui:// URI', async () => {
     const { tools } = await h.client.listTools();
-    const withUi = tools.filter((t) => (t._meta as { ui?: { resourceUri?: string } } | undefined)?.ui?.resourceUri);
-    expect(withUi.map((t) => t.name).sort()).toEqual(['check_recalls', 'get_recall_details', 'household_briefing', 'list_inventory', 'whats_due']);
+    const withUi = tools.filter(
+      (t) => (t._meta as { ui?: { resourceUri?: string } } | undefined)?.ui?.resourceUri,
+    );
+    expect(withUi.map((t) => t.name).sort()).toEqual([
+      'check_recalls',
+      'get_recall_details',
+      'household_briefing',
+      'list_inventory',
+      'whats_due',
+    ]);
     const uri = (withUi[0]!._meta as { ui: { resourceUri: string } }).ui.resourceUri;
     expect(uri).toMatch(/^ui:\/\/custodian\/app-[a-z0-9]+\.html$/);
     // Legacy key kept for older hosts by registerAppTool.
@@ -23,7 +33,9 @@ describe('MCP Apps wiring', () => {
     const { resources } = await h.client.listResources();
     const view = resources.find((r) => r.uri.startsWith('ui://custodian/app-'))!;
     expect(view.mimeType).toBe(RESOURCE_MIME_TYPE);
-    expect((view._meta as { ui: { csp: { resourceDomains: string[] } } }).ui.csp.resourceDomains).toContain('https://www.cpsc.gov');
+    expect(
+      (view._meta as { ui: { csp: { resourceDomains: string[] } } }).ui.csp.resourceDomains,
+    ).toContain('https://www.cpsc.gov');
     const read = await h.client.readResource({ uri: view.uri });
     const content = read.contents[0]! as { mimeType?: string; text?: string };
     expect(content.mimeType).toBe(RESOURCE_MIME_TYPE);

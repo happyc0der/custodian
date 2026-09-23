@@ -30,7 +30,10 @@ export class FileStore implements Store {
   private timer: NodeJS.Timeout | undefined;
   private writing: Promise<void> = Promise.resolve();
 
-  constructor(private readonly filePath: string, private readonly debounceMs = 250) {}
+  constructor(
+    private readonly filePath: string,
+    private readonly debounceMs = 250,
+  ) {}
 
   static async open(filePath: string): Promise<FileStore> {
     const store = new FileStore(filePath);
@@ -53,7 +56,8 @@ export class FileStore implements Store {
       for (const r of snap.rules ?? []) this.rules.set(r.id, r);
       for (const r of snap.recalls ?? []) this.recalls.set(r.id, r);
       for (const [k, v] of Object.entries(snap.meta ?? {})) this.meta.set(k, v);
-      for (const [k, v] of Object.entries(snap.auth ?? {})) if (v.expiresAt > Date.now()) this.auth.set(k, v);
+      for (const [k, v] of Object.entries(snap.auth ?? {}))
+        if (v.expiresAt > Date.now()) this.auth.set(k, v);
     } catch (err) {
       if ((err as NodeJS.ErrnoException).code !== 'ENOENT') throw err;
     }

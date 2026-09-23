@@ -7,7 +7,10 @@ import { forSpeech } from '@custodian/shared';
  * the MCP App renders). Keep speech to one or two sentences and never put URLs
  * or identifiers in it.
  */
-export function ok<T extends Record<string, unknown>>(speech: string, structured: T): CallToolResult {
+export function ok<T extends Record<string, unknown>>(
+  speech: string,
+  structured: T,
+): CallToolResult {
   return {
     content: [{ type: 'text', text: forSpeech(speech) }],
     structuredContent: structured,

@@ -3,7 +3,17 @@ import type { RecallDetailsOutput } from '@custodian/shared';
 import { Badge, Button, Header, SEVERITY_LABEL, formatDate } from '../components/ui.js';
 import type { AckAction } from './RecallCard.js';
 
-export function RecallDetailView({ data, onAck, onOpen, onBack }: { data: RecallDetailsOutput; onAck: (recallId: string, a: AckAction) => Promise<void>; onOpen: (url: string) => void; onBack?: () => void }) {
+export function RecallDetailView({
+  data,
+  onAck,
+  onOpen,
+  onBack,
+}: {
+  data: RecallDetailsOutput;
+  onAck: (recallId: string, a: AckAction) => Promise<void>;
+  onOpen: (url: string) => void;
+  onBack?: () => void;
+}) {
   const r = data.recall;
   const m = data.match;
   const [busy, setBusy] = useState(false);
@@ -21,9 +31,27 @@ export function RecallDetailView({ data, onAck, onOpen, onBack }: { data: Recall
   const source = { cpsc: 'CPSC', nhtsa: 'NHTSA', fda: 'FDA' }[r.source];
   return (
     <div class="frame detail">
-      <Header title="Recall details" sub={`${source} · ${formatDate(r.published_on)}`} right={onBack ? <Button small ghost onClick={onBack}>← Back</Button> : undefined} />
+      <Header
+        title="Recall details"
+        sub={`${source} · ${formatDate(r.published_on)}`}
+        right={
+          onBack ? (
+            <Button small ghost onClick={onBack}>
+              ← Back
+            </Button>
+          ) : undefined
+        }
+      />
       <div class="hero">
-        <div class="media">{r.image_url ? <img src={r.image_url} alt="" /> : <div class="ph" aria-hidden="true" style="font-size:3em;opacity:.5">⚠️</div>}</div>
+        <div class="media">
+          {r.image_url ? (
+            <img src={r.image_url} alt="" />
+          ) : (
+            <div class="ph" aria-hidden="true" style="font-size:3em;opacity:.5">
+              ⚠️
+            </div>
+          )}
+        </div>
         <div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
             <Badge kind={r.severity}>{SEVERITY_LABEL[r.severity]}</Badge>
@@ -31,12 +59,23 @@ export function RecallDetailView({ data, onAck, onOpen, onBack }: { data: Recall
             {closed && <Badge kind="ok">Handled</Badge>}
           </div>
           <h2>{r.title}</h2>
-          {m && <div class="owned">Matched to your {m.item.name}{m.item.model ? ` · ${m.item.model}` : ''}</div>}
+          {m && (
+            <div class="owned">
+              Matched to your {m.item.name}
+              {m.item.model ? ` · ${m.item.model}` : ''}
+            </div>
+          )}
           <dl class="kv">
             {r.products.length > 0 && (
               <>
                 <dt>Affected</dt>
-                <dd>{r.products.slice(0, 6).map((p) => [p.brand, p.name, p.model].filter(Boolean).join(' ')).join('; ')}{r.products.length > 6 ? ' …' : ''}</dd>
+                <dd>
+                  {r.products
+                    .slice(0, 6)
+                    .map((p) => [p.brand, p.name, p.model].filter(Boolean).join(' '))
+                    .join('; ')}
+                  {r.products.length > 6 ? ' …' : ''}
+                </dd>
               </>
             )}
             {r.contact && (
@@ -63,14 +102,26 @@ export function RecallDetailView({ data, onAck, onOpen, onBack }: { data: Recall
         </div>
       )}
       <div class="actions" style="padding:14px 0 0">
-        {r.url && <Button primary onClick={() => onOpen(r.url!)}>Open recall notice</Button>}
+        {r.url && (
+          <Button primary onClick={() => onOpen(r.url!)}>
+            Open recall notice
+          </Button>
+        )}
         {m && !closed && !menu && <Button onClick={() => setMenu(true)}>Mark as handled</Button>}
         {m && !closed && menu && (
           <>
-            <Button small disabled={busy} onClick={() => ack('remedy_requested')}>Requested remedy</Button>
-            <Button small disabled={busy} onClick={() => ack('disposed')}>Threw it out</Button>
-            <Button small disabled={busy} onClick={() => ack('not_affected')}>Not my model</Button>
-            <Button small ghost onClick={() => setMenu(false)}>Cancel</Button>
+            <Button small disabled={busy} onClick={() => ack('remedy_requested')}>
+              Requested remedy
+            </Button>
+            <Button small disabled={busy} onClick={() => ack('disposed')}>
+              Threw it out
+            </Button>
+            <Button small disabled={busy} onClick={() => ack('not_affected')}>
+              Not my model
+            </Button>
+            <Button small ghost onClick={() => setMenu(false)}>
+              Cancel
+            </Button>
           </>
         )}
       </div>

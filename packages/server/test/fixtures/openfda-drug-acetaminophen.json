@@ -1,277 +1,178 @@
 {
- "meta": {
-  "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
-  "terms": "https://open.fda.gov/terms/",
-  "license": "https://open.fda.gov/license/",
-  "last_updated": "2026-09-02",
-  "results": {
-   "skip": 0,
-   "limit": 3,
-   "total": 240
-  }
- },
- "results": [
-  {
-   "status": "Ongoing",
-   "city": "Webster Groves",
-   "state": "MO",
-   "country": "United States",
-   "classification": "Class II",
-   "openfda": {
-    "application_number": [
-     "ANDA087463"
-    ],
-    "brand_name": [
-     "OXYCODONE AND ACETAMINOPHEN"
-    ],
-    "generic_name": [
-     "OXYCODONE HYDROCHLORIDE AND ACETAMINOPHEN"
-    ],
-    "manufacturer_name": [
-     "SpecGx LLC"
-    ],
-    "product_ndc": [
-     "0406-0512",
-     "0406-0522",
-     "0406-0523"
-    ],
-    "product_type": [
-     "HUMAN PRESCRIPTION DRUG"
-    ],
-    "route": [
-     "ORAL"
-    ],
-    "substance_name": [
-     "OXYCODONE HYDROCHLORIDE",
-     "ACETAMINOPHEN"
-    ],
-    "rxcui": [
-     "1049214",
-     "1049221",
-     "1049225"
-    ],
-    "spl_id": [
-     "5237fd51-c605-4a02-a1ee-c79ddddcb5de"
-    ],
-    "spl_set_id": [
-     "f2137f1a-b49a-40bd-97ac-cd6b36e295f4"
-    ],
-    "package_ndc": [
-     "0406-0512-01",
-     "0406-0512-05",
-     "0406-0512-62",
-     "0406-0512-23",
-     "0406-0512-91",
-     "0406-0522-01",
-     "0406-0522-62",
-     "0406-0522-05",
-     "0406-0522-23",
-     "0406-0523-01",
-     "0406-0523-62",
-     "0406-0523-05",
-     "0406-0523-23"
-    ],
-    "is_original_packager": [
-     true
-    ],
-    "upc": [
-     "0304060522053",
-     "0304060523050",
-     "0304060512054"
-    ],
-    "unii": [
-     "C1ENJ2TE6C",
-     "362O9ITL9D"
-    ]
-   },
-   "product_type": "Drugs",
-   "event_id": "98136",
-   "recalling_firm": "SpecGx, LLC",
-   "address_1": "385 Marshall Ave",
-   "address_2": "",
-   "postal_code": "63119-1831",
-   "voluntary_mandated": "Voluntary: Firm initiated",
-   "initial_firm_notification": "E-Mail",
-   "distribution_pattern": "Nationwide",
-   "recall_number": "D-0254-2026",
-   "product_description": "Oxycodone and Acetaminophen CII Tablets USP, 10mg/325 mg, 100 tablets, Rx only, SpecGx LLC, Webster Groves, MO 63119, NDC 0406-0523-01.",
-   "product_quantity": "287,988 Bottles.",
-   "reason_for_recall": "Failed Tablet/Capsule Specification: There is a potential for the imprint to be missing on tablets.",
-   "recall_initiation_date": "20251216",
-   "center_classification_date": "20260107",
-   "report_date": "20260114",
-   "code_info": "Lot: 0523J23904, expires: 05/2027; 0523J24426, 0523J24427, expires: 06/2027.",
-   "more_code_info": ""
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-09-02",
+    "results": {
+      "skip": 0,
+      "limit": 3,
+      "total": 240
+    }
   },
-  {
-   "status": "Ongoing",
-   "city": "Webster Groves",
-   "state": "MO",
-   "country": "United States",
-   "classification": "Class II",
-   "openfda": {
-    "application_number": [
-     "ANDA087463"
-    ],
-    "brand_name": [
-     "OXYCODONE AND ACETAMINOPHEN"
-    ],
-    "generic_name": [
-     "OXYCODONE HYDROCHLORIDE AND ACETAMINOPHEN"
-    ],
-    "manufacturer_name": [
-     "SpecGx LLC"
-    ],
-    "product_ndc": [
-     "0406-0512",
-     "0406-0522",
-     "0406-0523"
-    ],
-    "product_type": [
-     "HUMAN PRESCRIPTION DRUG"
-    ],
-    "route": [
-     "ORAL"
-    ],
-    "substance_name": [
-     "OXYCODONE HYDROCHLORIDE",
-     "ACETAMINOPHEN"
-    ],
-    "rxcui": [
-     "1049214",
-     "1049221",
-     "1049225"
-    ],
-    "spl_id": [
-     "5237fd51-c605-4a02-a1ee-c79ddddcb5de"
-    ],
-    "spl_set_id": [
-     "f2137f1a-b49a-40bd-97ac-cd6b36e295f4"
-    ],
-    "package_ndc": [
-     "0406-0512-01",
-     "0406-0512-05",
-     "0406-0512-62",
-     "0406-0512-23",
-     "0406-0512-91",
-     "0406-0522-01",
-     "0406-0522-62",
-     "0406-0522-05",
-     "0406-0522-23",
-     "0406-0523-01",
-     "0406-0523-62",
-     "0406-0523-05",
-     "0406-0523-23",
-     "0406052201"
-    ],
-    "is_original_packager": [
-     true
-    ],
-    "upc": [
-     "0304060522053",
-     "0304060523050",
-     "0304060512054"
-    ],
-    "unii": [
-     "C1ENJ2TE6C",
-     "362O9ITL9D"
-    ]
-   },
-   "product_type": "Drugs",
-   "event_id": "98136",
-   "recalling_firm": "SpecGx, LLC",
-   "address_1": "385 Marshall Ave",
-   "address_2": "",
-   "postal_code": "63119-1831",
-   "voluntary_mandated": "Voluntary: Firm initiated",
-   "initial_firm_notification": "E-Mail",
-   "distribution_pattern": "Nationwide",
-   "recall_number": "D-0255-2026",
-   "product_description": "Oxycodone and Acetaminophen CII Tablets USP, 7.5 mg/325 mg, 100 tablets, Rx only, SpecGx LLC, Webster Groves, MO 63119, NDC 0406-0522-01.  Case label: SpecGx LLC, NDC 0406052201, Exp. 2027/03, Lot: 0522J23493",
-   "product_quantity": "74,544 bottles",
-   "reason_for_recall": "Failed Tablet/Capsule Specification: There is a potential for the imprint to be missing on tablets.",
-   "recall_initiation_date": "20251216",
-   "center_classification_date": "20260107",
-   "report_date": "20260114",
-   "code_info": "Lot: 0522J23493, expires: 03/2027.",
-   "more_code_info": ""
-  },
-  {
-   "status": "Ongoing",
-   "city": "Summitt",
-   "state": "NJ",
-   "country": "United States",
-   "classification": "Class II",
-   "openfda": {
-    "application_number": [
-     "M013"
-    ],
-    "brand_name": [
-     "TYLENOL EXTRA STRENGTH"
-    ],
-    "generic_name": [
-     "ACETAMINOPHEN"
-    ],
-    "manufacturer_name": [
-     "Kenvue Brands LLC"
-    ],
-    "product_ndc": [
-     "50580-378"
-    ],
-    "product_type": [
-     "HUMAN OTC DRUG"
-    ],
-    "route": [
-     "ORAL"
-    ],
-    "substance_name": [
-     "ACETAMINOPHEN"
-    ],
-    "rxcui": [
-     "198440",
-     "209459"
-    ],
-    "spl_id": [
-     "48dff3c9-329f-1300-e063-6294a90a47ef"
-    ],
-    "spl_set_id": [
-     "17cfa99d-abb2-4d77-9e0e-e77109fbb61a"
-    ],
-    "package_ndc": [
-     "50580-378-01",
-     "50580-378-02",
-     "50580-378-03",
-     "50580-378-04",
-     "50580-378-05",
-     "50580-378-06",
-     "50580-378-07",
-     "50580-378-08",
-     "50580-378-37"
-    ],
-    "is_original_packager": [
-     true
-    ],
-    "unii": [
-     "362O9ITL9D"
-    ]
-   },
-   "product_type": "Drugs",
-   "event_id": "97850",
-   "recalling_firm": "Kenvue Brands LLC",
-   "address_1": "1 Kenvue Way",
-   "address_2": "N/A",
-   "postal_code": "07901",
-   "voluntary_mandated": "Voluntary: Firm initiated",
-   "initial_firm_notification": "Letter",
-   "distribution_pattern": "U.S. Nationwide - CO, IL, OH and IN.",
-   "recall_number": "D-0121-2026",
-   "product_description": "TYLENOL, Acetaminophen, Extra Strength, 24 Caplets, 500mg each, distributed by: Johnson & Johnson Consumer Inc., McNeil Consumer Healthcare Division, Fort Washington, PA 19034, NDC: 50580-378-04.",
-   "product_quantity": "3,816 bottles",
-   "reason_for_recall": "Defective Container",
-   "recall_initiation_date": "20251021",
-   "center_classification_date": "20251028",
-   "report_date": "20251105",
-   "code_info": "Lot: EJA022, expiry: 04/30/2028"
-  }
- ]
+  "results": [
+    {
+      "status": "Ongoing",
+      "city": "Webster Groves",
+      "state": "MO",
+      "country": "United States",
+      "classification": "Class II",
+      "openfda": {
+        "application_number": ["ANDA087463"],
+        "brand_name": ["OXYCODONE AND ACETAMINOPHEN"],
+        "generic_name": ["OXYCODONE HYDROCHLORIDE AND ACETAMINOPHEN"],
+        "manufacturer_name": ["SpecGx LLC"],
+        "product_ndc": ["0406-0512", "0406-0522", "0406-0523"],
+        "product_type": ["HUMAN PRESCRIPTION DRUG"],
+        "route": ["ORAL"],
+        "substance_name": ["OXYCODONE HYDROCHLORIDE", "ACETAMINOPHEN"],
+        "rxcui": ["1049214", "1049221", "1049225"],
+        "spl_id": ["5237fd51-c605-4a02-a1ee-c79ddddcb5de"],
+        "spl_set_id": ["f2137f1a-b49a-40bd-97ac-cd6b36e295f4"],
+        "package_ndc": [
+          "0406-0512-01",
+          "0406-0512-05",
+          "0406-0512-62",
+          "0406-0512-23",
+          "0406-0512-91",
+          "0406-0522-01",
+          "0406-0522-62",
+          "0406-0522-05",
+          "0406-0522-23",
+          "0406-0523-01",
+          "0406-0523-62",
+          "0406-0523-05",
+          "0406-0523-23"
+        ],
+        "is_original_packager": [true],
+        "upc": ["0304060522053", "0304060523050", "0304060512054"],
+        "unii": ["C1ENJ2TE6C", "362O9ITL9D"]
+      },
+      "product_type": "Drugs",
+      "event_id": "98136",
+      "recalling_firm": "SpecGx, LLC",
+      "address_1": "385 Marshall Ave",
+      "address_2": "",
+      "postal_code": "63119-1831",
+      "voluntary_mandated": "Voluntary: Firm initiated",
+      "initial_firm_notification": "E-Mail",
+      "distribution_pattern": "Nationwide",
+      "recall_number": "D-0254-2026",
+      "product_description": "Oxycodone and Acetaminophen CII Tablets USP, 10mg/325 mg, 100 tablets, Rx only, SpecGx LLC, Webster Groves, MO 63119, NDC 0406-0523-01.",
+      "product_quantity": "287,988 Bottles.",
+      "reason_for_recall": "Failed Tablet/Capsule Specification: There is a potential for the imprint to be missing on tablets.",
+      "recall_initiation_date": "20251216",
+      "center_classification_date": "20260107",
+      "report_date": "20260114",
+      "code_info": "Lot: 0523J23904, expires: 05/2027; 0523J24426, 0523J24427, expires: 06/2027.",
+      "more_code_info": ""
+    },
+    {
+      "status": "Ongoing",
+      "city": "Webster Groves",
+      "state": "MO",
+      "country": "United States",
+      "classification": "Class II",
+      "openfda": {
+        "application_number": ["ANDA087463"],
+        "brand_name": ["OXYCODONE AND ACETAMINOPHEN"],
+        "generic_name": ["OXYCODONE HYDROCHLORIDE AND ACETAMINOPHEN"],
+        "manufacturer_name": ["SpecGx LLC"],
+        "product_ndc": ["0406-0512", "0406-0522", "0406-0523"],
+        "product_type": ["HUMAN PRESCRIPTION DRUG"],
+        "route": ["ORAL"],
+        "substance_name": ["OXYCODONE HYDROCHLORIDE", "ACETAMINOPHEN"],
+        "rxcui": ["1049214", "1049221", "1049225"],
+        "spl_id": ["5237fd51-c605-4a02-a1ee-c79ddddcb5de"],
+        "spl_set_id": ["f2137f1a-b49a-40bd-97ac-cd6b36e295f4"],
+        "package_ndc": [
+          "0406-0512-01",
+          "0406-0512-05",
+          "0406-0512-62",
+          "0406-0512-23",
+          "0406-0512-91",
+          "0406-0522-01",
+          "0406-0522-62",
+          "0406-0522-05",
+          "0406-0522-23",
+          "0406-0523-01",
+          "0406-0523-62",
+          "0406-0523-05",
+          "0406-0523-23",
+          "0406052201"
+        ],
+        "is_original_packager": [true],
+        "upc": ["0304060522053", "0304060523050", "0304060512054"],
+        "unii": ["C1ENJ2TE6C", "362O9ITL9D"]
+      },
+      "product_type": "Drugs",
+      "event_id": "98136",
+      "recalling_firm": "SpecGx, LLC",
+      "address_1": "385 Marshall Ave",
+      "address_2": "",
+      "postal_code": "63119-1831",
+      "voluntary_mandated": "Voluntary: Firm initiated",
+      "initial_firm_notification": "E-Mail",
+      "distribution_pattern": "Nationwide",
+      "recall_number": "D-0255-2026",
+      "product_description": "Oxycodone and Acetaminophen CII Tablets USP, 7.5 mg/325 mg, 100 tablets, Rx only, SpecGx LLC, Webster Groves, MO 63119, NDC 0406-0522-01.  Case label: SpecGx LLC, NDC 0406052201, Exp. 2027/03, Lot: 0522J23493",
+      "product_quantity": "74,544 bottles",
+      "reason_for_recall": "Failed Tablet/Capsule Specification: There is a potential for the imprint to be missing on tablets.",
+      "recall_initiation_date": "20251216",
+      "center_classification_date": "20260107",
+      "report_date": "20260114",
+      "code_info": "Lot: 0522J23493, expires: 03/2027.",
+      "more_code_info": ""
+    },
+    {
+      "status": "Ongoing",
+      "city": "Summitt",
+      "state": "NJ",
+      "country": "United States",
+      "classification": "Class II",
+      "openfda": {
+        "application_number": ["M013"],
+        "brand_name": ["TYLENOL EXTRA STRENGTH"],
+        "generic_name": ["ACETAMINOPHEN"],
+        "manufacturer_name": ["Kenvue Brands LLC"],
+        "product_ndc": ["50580-378"],
+        "product_type": ["HUMAN OTC DRUG"],
+        "route": ["ORAL"],
+        "substance_name": ["ACETAMINOPHEN"],
+        "rxcui": ["198440", "209459"],
+        "spl_id": ["48dff3c9-329f-1300-e063-6294a90a47ef"],
+        "spl_set_id": ["17cfa99d-abb2-4d77-9e0e-e77109fbb61a"],
+        "package_ndc": [
+          "50580-378-01",
+          "50580-378-02",
+          "50580-378-03",
+          "50580-378-04",
+          "50580-378-05",
+          "50580-378-06",
+          "50580-378-07",
+          "50580-378-08",
+          "50580-378-37"
+        ],
+        "is_original_packager": [true],
+        "unii": ["362O9ITL9D"]
+      },
+      "product_type": "Drugs",
+      "event_id": "97850",
+      "recalling_firm": "Kenvue Brands LLC",
+      "address_1": "1 Kenvue Way",
+      "address_2": "N/A",
+      "postal_code": "07901",
+      "voluntary_mandated": "Voluntary: Firm initiated",
+      "initial_firm_notification": "Letter",
+      "distribution_pattern": "U.S. Nationwide - CO, IL, OH and IN.",
+      "recall_number": "D-0121-2026",
+      "product_description": "TYLENOL, Acetaminophen, Extra Strength, 24 Caplets, 500mg each, distributed by: Johnson & Johnson Consumer Inc., McNeil Consumer Healthcare Division, Fort Washington, PA 19034, NDC: 50580-378-04.",
+      "product_quantity": "3,816 bottles",
+      "reason_for_recall": "Defective Container",
+      "recall_initiation_date": "20251021",
+      "center_classification_date": "20251028",
+      "report_date": "20251105",
+      "code_info": "Lot: EJA022, expiry: 04/30/2028"
+    }
+  ]
 }

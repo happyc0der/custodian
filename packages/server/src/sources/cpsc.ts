@@ -30,7 +30,10 @@ const BASE = 'https://www.saferproducts.gov/RestWebServices/Recall';
 /** "Joolz USA Inc., of New York, New York" → "Joolz USA" */
 function companyName(raw: string | undefined): string | undefined {
   if (!raw) return undefined;
-  const name = raw.split(/,| of /)[0]?.replace(/\b(inc|llc|ltd|corp|co)\b\.?/gi, '').trim();
+  const name = raw
+    .split(/,| of /)[0]
+    ?.replace(/\b(inc|llc|ltd|corp|co)\b\.?/gi, '')
+    .trim();
   return name || undefined;
 }
 
@@ -38,7 +41,9 @@ export function normalizeCpsc(r: CpscRecall): RecallRecord {
   const products = (r.Products ?? []).map((p) => ({ name: p.Name, model: p.Model || undefined }));
   const brand = companyName(r.Manufacturers?.[0]?.Name) ?? companyName(r.Importers?.[0]?.Name);
   const hazard = r.Hazards?.map((h) => h.Name).join(' ') || r.Title;
-  const categories = [...new Set([inferCategory(r.Title), ...products.map((p) => inferCategory(p.name))])].filter((c) => c !== 'other');
+  const categories = [
+    ...new Set([inferCategory(r.Title), ...products.map((p) => inferCategory(p.name))]),
+  ].filter((c) => c !== 'other');
   // Keywords come from the record body (products, description, companies). Title words count only when the
   // body corroborates them: CPSC has published records whose title belongs to a different recall
   // (e.g. 26569 carries the Joolz adapter title over a baby-lounger record), and matching on the title
@@ -50,7 +55,9 @@ export function normalizeCpsc(r: CpscRecall): RecallRecord {
     ...(r.ProductUPCs ?? []).map((u) => u.UPC).filter(Boolean),
   ]);
   const titleTokens = tokenize(r.Title);
-  const keywords = body.size ? new Set<string>([...body, ...titleTokens.filter((t) => body.has(t))]) : new Set<string>(titleTokens);
+  const keywords = body.size
+    ? new Set<string>([...body, ...titleTokens.filter((t) => body.has(t))])
+    : new Set<string>(titleTokens);
   return {
     id: recallId('cpsc', r.RecallNumber || String(r.RecallID)),
     source: 'cpsc',
@@ -83,13 +90,19 @@ export class CpscSource implements RecallSourceClient {
   }
 
   async fetchSince(sinceIso: string): Promise<RecallRecord[]> {
-    const rows = await fetchJson<CpscRecall[]>(this.url({ RecallDateStart: sinceIso }), { fetch: this.opts.fetch, timeoutMs: 30_000 });
+    const rows = await fetchJson<CpscRecall[]>(this.url({ RecallDateStart: sinceIso }), {
+      fetch: this.opts.fetch,
+      timeoutMs: 30_000,
+    });
     return rows.map(normalizeCpsc);
   }
 
   /** Free-text product search; used when an item is added so an old recall is found without a full backfill. */
   async searchProduct(name: string): Promise<RecallRecord[]> {
-    const rows = await fetchJson<CpscRecall[]>(this.url({ ProductName: name }), { fetch: this.opts.fetch, timeoutMs: 30_000 });
+    const rows = await fetchJson<CpscRecall[]>(this.url({ ProductName: name }), {
+      fetch: this.opts.fetch,
+      timeoutMs: 30_000,
+    });
     return rows.map(normalizeCpsc);
   }
 }

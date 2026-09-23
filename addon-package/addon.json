@@ -5,16 +5,30 @@
     "locales": {
       "en-US": {
         "default": "DEFAULT",
-        "name": { "value": "Custodian", "spokenForm": { "format": "ipa", "value": "kʌˈstoʊdiən" } },
+        "name": {
+          "value": "Custodian",
+          "spokenForm": {
+            "format": "ipa",
+            "value": "k\u028c\u02c8sto\u028adi\u0259n"
+          }
+        },
         "shortDescription": "Watches everything you own for safety recalls and reminds you about batteries, filters and expiring car seats.",
-        "fullDescription": "Custodian is a household inventory that keeps watch. Tell Alexa what you own — \"I just bought a Graco 4Ever car seat\", \"we have a 2019 Honda Odyssey\", \"add the Kidde smoke detectors\" — and Custodian continuously cross-references the CPSC, NHTSA and FDA recall feeds, then tells you when something you own is affected and exactly what the manufacturer will do about it (refund, free repair, replacement). It also tracks the small things that keep a home safe: smoke-detector batteries, water and air filters, car-seat expiry dates, vehicle service and warranties. Ask \"Alexa, is anything in my house recalled?\" or \"Alexa, anything I should know about?\" for a briefing, and see the recall notice, the affected models and the remedy on your Echo Show. Everything runs hands-free and is shared by the whole household. Data comes from public U.S. government recall feeds; Custodian never sells or shares your inventory.",
+        "fullDescription": "Custodian is a household inventory that keeps watch. Tell Alexa what you own \u2014 \"I just bought a Graco 4Ever car seat\", \"we have a 2019 Honda Odyssey\", \"add the Kidde smoke detectors\" \u2014 and Custodian continuously cross-references the CPSC, NHTSA and FDA recall feeds, then tells you when something you own is affected and exactly what the manufacturer will do about it (refund, free repair, replacement). It also tracks the small things that keep a home safe: smoke-detector batteries, water and air filters, car-seat expiry dates, vehicle service and warranties. Ask \"Alexa, is anything in my house recalled?\" or \"Alexa, anything I should know about?\" for a briefing, and see the recall notice, the affected models and the remedy on your Echo Show. Everything runs hands-free and is shared by the whole household. Data comes from public U.S. government recall feeds; Custodian never sells or shares your inventory.",
         "examplePhrases": [
           "Alexa, is anything in my house recalled?",
           "Alexa, I just bought a Graco 4Ever car seat",
           "Alexa, what maintenance is due at home?",
           "Alexa, anything I should know about?"
         ],
-        "keywords": ["recall", "safety", "home", "maintenance", "car seat", "smoke detector", "inventory"],
+        "keywords": [
+          "recall",
+          "safety",
+          "home",
+          "maintenance",
+          "car seat",
+          "smoke detector",
+          "inventory"
+        ],
         "privacyAndCompliance": {
           "privacyPolicyUrl": "https://REPLACE-WITH-SERVICE-URL/privacy",
           "termsOfUseUrl": "https://REPLACE-WITH-SERVICE-URL/terms"
@@ -40,7 +54,9 @@
       "type": "MCP",
       "config": {
         "endpoints": {
-          "default": { "uri": "https://REPLACE-WITH-SERVICE-URL/mcp" }
+          "default": {
+            "uri": "https://REPLACE-WITH-SERVICE-URL/mcp"
+          }
         }
       }
     }

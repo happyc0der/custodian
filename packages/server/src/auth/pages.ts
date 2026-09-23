@@ -17,7 +17,10 @@ function page(title: string, body: string): string {
 }
 
 export function escapeHtml(s: string): string {
-  return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  return s.replace(
+    /[&<>"']/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!,
+  );
 }
 
 const SCOPE_TEXT: Record<string, string> = {
@@ -26,7 +29,13 @@ const SCOPE_TEXT: Record<string, string> = {
   'mcp:service': 'Discover available features',
 };
 
-export function loginPage(opts: { requestId: string; clientName: string; scopes: string[]; error?: string; household?: string }): string {
+export function loginPage(opts: {
+  requestId: string;
+  clientName: string;
+  scopes: string[];
+  error?: string;
+  household?: string;
+}): string {
   const scopeItems = opts.scopes.map((s) => `<li>${escapeHtml(SCOPE_TEXT[s] ?? s)}</li>`).join('');
   return page(
     'Link Custodian',
@@ -50,7 +59,10 @@ export function loginPage(opts: { requestId: string; clientName: string; scopes:
 }
 
 export function messagePage(title: string, text: string): string {
-  return page(title, `<div class="card"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(text)}</p></div>`);
+  return page(
+    title,
+    `<div class="card"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(text)}</p></div>`,
+  );
 }
 
 export function privacyPage(publicUrl: string): string {

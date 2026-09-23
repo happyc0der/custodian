@@ -1,4 +1,12 @@
-import { addDays, recallId, todayIso, tokenize, type Item, type ItemCategory, type RecallRecord } from '@custodian/shared';
+import {
+  addDays,
+  recallId,
+  todayIso,
+  tokenize,
+  type Item,
+  type ItemCategory,
+  type RecallRecord,
+} from '@custodian/shared';
 import { fetchJson, type FetchLike } from './http.js';
 import { truncate, type RecallSourceClient } from './types.js';
 
@@ -22,8 +30,16 @@ export interface FdaEnforcement {
 }
 
 type Endpoint = 'food' | 'drug' | 'device';
-const ENDPOINT_FOR_CATEGORY: Partial<Record<ItemCategory, Endpoint>> = { food: 'food', medication: 'drug', medical_device: 'device' };
-const CATEGORY_FOR_ENDPOINT: Record<Endpoint, ItemCategory> = { food: 'food', drug: 'medication', device: 'medical_device' };
+const ENDPOINT_FOR_CATEGORY: Partial<Record<ItemCategory, Endpoint>> = {
+  food: 'food',
+  medication: 'drug',
+  medical_device: 'device',
+};
+const CATEGORY_FOR_ENDPOINT: Record<Endpoint, ItemCategory> = {
+  food: 'food',
+  drug: 'medication',
+  device: 'medical_device',
+};
 const BASE = 'https://api.fda.gov';
 /** Enforcement reports stay "Ongoing" for a long time; older than this is noise for a household. */
 const LOOKBACK_DAYS = 730;
@@ -66,7 +82,14 @@ export function fdaQueryTerms(item: Item): string[] {
 
 export class OpenFdaSource implements RecallSourceClient {
   readonly source = 'fda' as const;
-  constructor(private readonly opts: { fetch?: FetchLike; baseUrl?: string; apiKey?: string; now?: () => Date } = {}) {}
+  constructor(
+    private readonly opts: {
+      fetch?: FetchLike;
+      baseUrl?: string;
+      apiKey?: string;
+      now?: () => Date;
+    } = {},
+  ) {}
 
   async fetchForItem(item: Item): Promise<RecallRecord[]> {
     const endpoint = ENDPOINT_FOR_CATEGORY[item.category];
@@ -81,13 +104,24 @@ export class OpenFdaSource implements RecallSourceClient {
     ].join('+AND+');
     const u = new URL(`/${endpoint}/enforcement.json`, this.opts.baseUrl ?? BASE);
     // openFDA's `search` grammar uses `+` for spaces; build the query string by hand to keep it un-encoded.
-    const qs = [`search=${search}`, 'sort=recall_initiation_date:desc', 'limit=25', this.opts.apiKey ? `api_key=${this.opts.apiKey}` : ''].filter(Boolean).join('&');
+    const qs = [
+      `search=${search}`,
+      'sort=recall_initiation_date:desc',
+      'limit=25',
+      this.opts.apiKey ? `api_key=${this.opts.apiKey}` : '',
+    ]
+      .filter(Boolean)
+      .join('&');
     try {
-      const data = await fetchJson<{ results: FdaEnforcement[] }>(`${u.toString()}?${qs}`, { fetch: this.opts.fetch, timeoutMs: 15_000 });
+      const data = await fetchJson<{ results: FdaEnforcement[] }>(`${u.toString()}?${qs}`, {
+        fetch: this.opts.fetch,
+        timeoutMs: 15_000,
+      });
       return (data.results ?? []).map((r) => normalizeFda(r, endpoint));
     } catch (err) {
       // openFDA answers 404 for "no matches" — that is a normal empty result, not a failure.
-      if (err instanceof Error && 'status' in err && (err as { status: number }).status === 404) return [];
+      if (err instanceof Error && 'status' in err && (err as { status: number }).status === 404)
+        return [];
       throw err;
     }
   }

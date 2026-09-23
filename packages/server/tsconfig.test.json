@@ -1,12 +1,11 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": ".",
     "noEmit": true,
     "emitDeclarationOnly": false,
     "declaration": false,
     "composite": false,
     "types": ["node"]
   },
-  "include": ["bin", "lib"]
+  "include": ["src", "test"]
 }

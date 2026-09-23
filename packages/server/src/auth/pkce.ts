@@ -18,5 +18,7 @@ export function sha256b64url(input: string): string {
 }
 
 export function hashPassphrase(passphrase: string, salt: string): string {
-  return scryptSync(passphrase.normalize('NFKC'), salt, 32, { N: 16384, r: 8, p: 1 }).toString('base64url');
+  return scryptSync(passphrase.normalize('NFKC'), salt, 32, { N: 16384, r: 8, p: 1 }).toString(
+    'base64url',
+  );
 }

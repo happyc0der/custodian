@@ -15,7 +15,10 @@ export interface Harness {
   token: string;
   client: Client;
   /** Raw JSON-RPC POST helper for protocol-level assertions. */
-  rpc(body: unknown, headers?: Record<string, string>): Promise<{ status: number; json: unknown; headers: Headers }>;
+  rpc(
+    body: unknown,
+    headers?: Record<string, string>,
+  ): Promise<{ status: number; json: unknown; headers: Headers }>;
   close(): Promise<void>;
 }
 
@@ -29,9 +32,22 @@ export interface HarnessOptions {
 
 /** Boots the real Express app on an ephemeral port with an in-memory store and a connected MCP client. */
 export async function startHarness(opts: HarnessOptions = {}): Promise<Harness> {
-  const config = loadConfig({ authMode: 'dev', store: 'file', fileStorePath: ':memory:', devBearerToken: 'test-token', sweepOnBoot: false, ...opts.config });
+  const config = loadConfig({
+    authMode: 'dev',
+    store: 'file',
+    fileStorePath: ':memory:',
+    devBearerToken: 'test-token',
+    sweepOnBoot: false,
+    ...opts.config,
+  });
   const store = new FileStore(':memory:');
-  const deps: ServerDeps = { config, store, hooks: opts.hooks ?? {}, now: opts.now ?? (() => new Date()), ui: opts.ui ? staticUiBundle(opts.ui) : undefined };
+  const deps: ServerDeps = {
+    config,
+    store,
+    hooks: opts.hooks ?? {},
+    now: opts.now ?? (() => new Date()),
+    ui: opts.ui ? staticUiBundle(opts.ui) : undefined,
+  };
   const auth = await createAuthRuntime(config, store, deps.now);
   const app = createApp({ deps, auth });
   const server: Server = await new Promise((resolve) => {
@@ -69,7 +85,8 @@ export async function startHarness(opts: HarnessOptions = {}): Promise<Harness> 
       const text = await res.text();
       let json: unknown = text;
       try {
-        json = text.startsWith('event:') || text.startsWith('data:') ? parseSse(text) : JSON.parse(text);
+        json =
+          text.startsWith('event:') || text.startsWith('data:') ? parseSse(text) : JSON.parse(text);
       } catch {
         /* keep raw text */
       }
@@ -95,7 +112,12 @@ export async function callTool<T = Record<string, unknown>>(
   client: Client,
   name: string,
   args: Record<string, unknown> = {},
-): Promise<{ speech: string; data: T; isError: boolean; raw: Awaited<ReturnType<Client['callTool']>> }> {
+): Promise<{
+  speech: string;
+  data: T;
+  isError: boolean;
+  raw: Awaited<ReturnType<Client['callTool']>>;
+}> {
   const raw = await client.callTool({ name, arguments: args });
   const first = raw.content?.[0];
   const speech = first && first.type === 'text' ? first.text : '';

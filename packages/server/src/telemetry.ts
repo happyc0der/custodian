@@ -28,8 +28,14 @@ function percentile(sorted: number[], p: number): number {
   return sorted[Math.max(0, idx)] ?? 0;
 }
 
-export function latencySnapshot(): Record<string, { count: number; p50: number; p95: number; max: number; errors: number }> {
-  const out: Record<string, { count: number; p50: number; p95: number; max: number; errors: number }> = {};
+export function latencySnapshot(): Record<
+  string,
+  { count: number; p50: number; p95: number; max: number; errors: number }
+> {
+  const out: Record<
+    string,
+    { count: number; p50: number; p95: number; max: number; errors: number }
+  > = {};
   for (const [tool, s] of series) {
     const sorted = [...s.samples].sort((a, b) => a - b);
     out[tool] = {
@@ -43,7 +49,11 @@ export function latencySnapshot(): Record<string, { count: number; p50: number; 
   return out;
 }
 
-export async function timed<T>(tool: string, fn: () => Promise<T>, isError: (r: T) => boolean): Promise<T> {
+export async function timed<T>(
+  tool: string,
+  fn: () => Promise<T>,
+  isError: (r: T) => boolean,
+): Promise<T> {
   const start = performance.now();
   try {
     const result = await fn();

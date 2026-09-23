@@ -10,10 +10,52 @@ import type { Store } from '../src/store/types.js';
 
 const t = '2026-09-11T00:00:00.000Z';
 const household: Household = { id: 'h1', name: 'Home', created_at: t };
-const item = (id: string, name: string): Item => ({ id, household_id: 'h1', name, category: 'other', quantity: 1, aliases: [], enrichment_status: 'pending', created_at: t, updated_at: t });
-const match = (id: string, itemId: string): Match => ({ id, household_id: 'h1', item_id: itemId, recall_id: 'cpsc:1', confidence: 1, reason: 'r', status: 'new', created_at: t, updated_at: t });
-const rule = (id: string, itemId: string): MaintenanceRule => ({ id, household_id: 'h1', item_id: itemId, kind: 'custom', label: 'x', next_due: '2026-10-01', created_at: t });
-const recall = (id: string): RecallRecord => ({ id, source: 'cpsc', external_id: id, title: 't', summary: 's', hazard: 'h', remedy: 'r', remedy_options: [], published_on: '2026-01-01', products: [], categories: [], severity: 'low', keywords: [] });
+const item = (id: string, name: string): Item => ({
+  id,
+  household_id: 'h1',
+  name,
+  category: 'other',
+  quantity: 1,
+  aliases: [],
+  enrichment_status: 'pending',
+  created_at: t,
+  updated_at: t,
+});
+const match = (id: string, itemId: string): Match => ({
+  id,
+  household_id: 'h1',
+  item_id: itemId,
+  recall_id: 'cpsc:1',
+  confidence: 1,
+  reason: 'r',
+  status: 'new',
+  created_at: t,
+  updated_at: t,
+});
+const rule = (id: string, itemId: string): MaintenanceRule => ({
+  id,
+  household_id: 'h1',
+  item_id: itemId,
+  kind: 'custom',
+  label: 'x',
+  next_due: '2026-10-01',
+  created_at: t,
+});
+const recall = (id: string): RecallRecord => ({
+  id,
+  source: 'cpsc',
+  external_id: id,
+  title: 't',
+  summary: 's',
+  hazard: 'h',
+  remedy: 'r',
+  remedy_options: [],
+  published_on: '2026-01-01',
+  products: [],
+  categories: [],
+  severity: 'low',
+  keywords: [],
+});
 
 /** The Store contract every backend must satisfy. */
 function contract(name: string, open: () => Promise<Store>) {
@@ -87,10 +129,16 @@ describe('DynamoStore (dynalite)', () => {
   beforeAll(async () => {
     await new Promise<void>((resolve) => server.listen(0, () => resolve()));
     const port = (server.address() as AddressInfo).port;
-    client = new DynamoDBClient({ region: 'local', endpoint: `http://127.0.0.1:${port}`, credentials: { accessKeyId: 'x', secretAccessKey: 'y' } });
+    client = new DynamoDBClient({
+      region: 'local',
+      endpoint: `http://127.0.0.1:${port}`,
+      credentials: { accessKeyId: 'x', secretAccessKey: 'y' },
+    });
     await DynamoStore.ensureTable(client, 'custodian-test');
   });
   afterAll(() => new Promise<void>((resolve) => server.close(() => resolve())));
 
-  contract('DynamoStore', async () => DynamoStore.open(loadConfig({ dynamoTable: 'custodian-test' }), client));
+  contract('DynamoStore', async () =>
+    DynamoStore.open(loadConfig({ dynamoTable: 'custodian-test' }), client),
+  );
 });

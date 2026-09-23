@@ -20,7 +20,7 @@ export interface CustodianStackProps extends StackProps {
  * Custodian on AWS: one App Runner service (Fargate-backed, HTTPS out of the
  * box) running the MCP server + OAuth AS + sweeper, a single DynamoDB table,
  * a generated OAuth client secret in Secrets Manager, and Bedrock access for
- * enrichment. Deliberately small: a hackathon judge should be able to read it.
+ * enrichment. Deliberately small enough to read in one sitting.
  */
 export class CustodianStack extends Stack {
   constructor(scope: Construct, id: string, props: CustodianStackProps) {
@@ -45,16 +45,31 @@ export class CustodianStack extends Stack {
     const image = new ecrAssets.DockerImageAsset(this, 'Image', {
       directory: repoRoot,
       platform: ecrAssets.Platform.LINUX_AMD64,
-      exclude: ['node_modules', '**/node_modules', '**/dist', '**/cdk.out', '.git', 'data', '**/data', '*.log', '.env'],
+      exclude: [
+        'node_modules',
+        '**/node_modules',
+        '**/dist',
+        '**/cdk.out',
+        '.git',
+        'data',
+        '**/data',
+        '*.log',
+        '.env',
+      ],
     });
 
-    const instanceRole = new iam.Role(this, 'InstanceRole', { assumedBy: new iam.ServicePrincipal('tasks.apprunner.amazonaws.com') });
+    const instanceRole = new iam.Role(this, 'InstanceRole', {
+      assumedBy: new iam.ServicePrincipal('tasks.apprunner.amazonaws.com'),
+    });
     table.grantReadWriteData(instanceRole);
     oauthSecret.grantRead(instanceRole);
     instanceRole.addToPolicy(
       new iam.PolicyStatement({
         actions: ['bedrock:InvokeModel', 'bedrock:InvokeModelWithResponseStream'],
-        resources: [`arn:aws:bedrock:*::foundation-model/*`, `arn:aws:bedrock:${this.region}:${this.account}:inference-profile/*`],
+        resources: [
+          `arn:aws:bedrock:*::foundation-model/*`,
+          `arn:aws:bedrock:${this.region}:${this.account}:inference-profile/*`,
+        ],
       }),
     );
 
@@ -89,14 +104,32 @@ export class CustodianStack extends Stack {
       instanceRole,
       cpu: apprunner.Cpu.HALF_VCPU,
       memory: apprunner.Memory.ONE_GB,
-      healthCheck: apprunner.HealthCheck.http({ path: '/healthz', interval: Duration.seconds(10), timeout: Duration.seconds(5), healthyThreshold: 1, unhealthyThreshold: 5 }),
+      healthCheck: apprunner.HealthCheck.http({
+        path: '/healthz',
+        interval: Duration.seconds(10),
+        timeout: Duration.seconds(5),
+        healthyThreshold: 1,
+        unhealthyThreshold: 5,
+      }),
       // One always-on instance keeps the hourly sweep running; App Runner scales up under load.
-      autoScalingConfiguration: new apprunner.AutoScalingConfiguration(this, 'Scaling', { minSize: 1, maxSize: 3, maxConcurrency: 100 }),
+      autoScalingConfiguration: new apprunner.AutoScalingConfiguration(this, 'Scaling', {
+        minSize: 1,
+        maxSize: 3,
+        maxConcurrency: 100,
+      }),
     });
 
-    new CfnOutput(this, 'ServiceUrl', { value: `https://${service.serviceUrl}`, description: 'Set as PUBLIC_URL (cdk deploy -c publicUrl=…) and as the add-on MCP endpoint (+/mcp)' });
+    new CfnOutput(this, 'ServiceUrl', {
+      value: `https://${service.serviceUrl}`,
+      description:
+        'Set as PUBLIC_URL (cdk deploy -c publicUrl=…) and as the add-on MCP endpoint (+/mcp)',
+    });
     new CfnOutput(this, 'McpEndpoint', { value: `https://${service.serviceUrl}/mcp` });
     new CfnOutput(this, 'TableName', { value: table.tableName });
-    new CfnOutput(this, 'OAuthClientSecretArn', { value: oauthSecret.secretArn, description: 'aws secretsmanager get-secret-value --secret-id <arn> for alexa-ai configure-account-linking' });
+    new CfnOutput(this, 'OAuthClientSecretArn', {
+      value: oauthSecret.secretArn,
+      description:
+        'aws secretsmanager get-secret-value --secret-id <arn> for alexa-ai configure-account-linking',
+    });
   }
 }

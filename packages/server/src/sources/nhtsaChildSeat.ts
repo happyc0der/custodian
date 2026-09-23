@@ -34,7 +34,15 @@ export interface ChildSeatRecall {
 }
 
 export interface ChildSeatPage {
-  meta: { pagination: { count: number; max: number; offset: number; total: number; nextUrl: string | null } };
+  meta: {
+    pagination: {
+      count: number;
+      max: number;
+      offset: number;
+      total: number;
+      nextUrl: string | null;
+    };
+  };
   results: ChildSeatRow[];
 }
 
@@ -48,15 +56,25 @@ export function normalizeChildSeatRecalls(rows: ChildSeatRow[]): RecallRecord[] 
       if (!rec?.nhtsaCampaignNumber) continue;
       const brand = titleCase(row.make ?? rec.manufacturer ?? 'Unknown');
       const model = titleCase(row.productModel ?? row.modelNumber ?? '');
-      const product = { name: `${brand} ${model} car seat`.replace(/\s+/g, ' ').trim(), brand, model: row.modelNumber ?? model };
+      const product = {
+        name: `${brand} ${model} car seat`.replace(/\s+/g, ' ').trim(),
+        brand,
+        model: row.modelNumber ?? model,
+      };
       const existing = byCampaign.get(rec.nhtsaCampaignNumber);
       if (existing) {
-        if (!existing.products.some((p) => p.model === product.model)) existing.products.push(product);
-        for (const k of tokenize(`${row.make ?? ''} ${row.productModel ?? ''} ${row.modelNumber ?? ''}`)) if (!existing.keywords.includes(k)) existing.keywords.push(k);
+        if (!existing.products.some((p) => p.model === product.model))
+          existing.products.push(product);
+        for (const k of tokenize(
+          `${row.make ?? ''} ${row.productModel ?? ''} ${row.modelNumber ?? ''}`,
+        ))
+          if (!existing.keywords.includes(k)) existing.keywords.push(k);
         continue;
       }
       const received = rec.reportReceivedDate ?? '';
-      const published = received.includes('/') ? isoFromDdMmYyyy(received) : received.slice(0, 10) || '1970-01-01';
+      const published = received.includes('/')
+        ? isoFromDdMmYyyy(received)
+        : received.slice(0, 10) || '1970-01-01';
       byCampaign.set(rec.nhtsaCampaignNumber, {
         id: recallId('nhtsa', rec.nhtsaCampaignNumber),
         source: 'nhtsa',
@@ -65,7 +83,11 @@ export function normalizeChildSeatRecalls(rows: ChildSeatRow[]): RecallRecord[] 
         summary: truncate(rec.summary ?? ''),
         hazard: truncate(rec.consequence ?? rec.subject ?? '', 400),
         remedy: truncate(rec.correctiveAction ?? '', 500),
-        remedy_options: /replace/i.test(rec.correctiveAction ?? '') ? ['Free replacement'] : /kit|repair|remedy/i.test(rec.correctiveAction ?? '') ? ['Free repair kit'] : ['Contact manufacturer'],
+        remedy_options: /replace/i.test(rec.correctiveAction ?? '')
+          ? ['Free replacement']
+          : /kit|repair|remedy/i.test(rec.correctiveAction ?? '')
+            ? ['Free repair kit']
+            : ['Contact manufacturer'],
         contact: rec.manufacturer ?? undefined,
         url: `https://www.nhtsa.gov/recalls?nhtsaId=${encodeURIComponent(rec.nhtsaCampaignNumber)}`,
         image_url: row.picture ?? undefined,
@@ -73,7 +95,13 @@ export function normalizeChildSeatRecalls(rows: ChildSeatRow[]): RecallRecord[] 
         products: [product],
         categories: ['car_seat'],
         severity: /death|fatal/i.test(rec.consequence ?? '') ? 'critical' : 'high',
-        keywords: [...new Set(tokenize(`${row.make ?? ''} ${row.productModel ?? ''} ${row.modelNumber ?? ''} ${rec.subject ?? ''} car seat`))],
+        keywords: [
+          ...new Set(
+            tokenize(
+              `${row.make ?? ''} ${row.productModel ?? ''} ${row.modelNumber ?? ''} ${rec.subject ?? ''} car seat`,
+            ),
+          ),
+        ],
       });
     }
   }
@@ -85,12 +113,17 @@ export class NhtsaChildSeatSource implements RecallSourceClient {
   constructor(private readonly opts: { fetch?: FetchLike; baseUrl?: string } = {}) {}
 
   /** Fetches one catalogue page; returns the normalized recalls and where the next slice starts. */
-  async fetchPage(offset: number): Promise<{ records: RecallRecord[]; nextOffset: number | null; total: number }> {
+  async fetchPage(
+    offset: number,
+  ): Promise<{ records: RecallRecord[]; nextOffset: number | null; total: number }> {
     const u = new URL(this.opts.baseUrl ?? BASE);
     u.searchParams.set('issueType', 'r');
     u.searchParams.set('max', String(PAGE_SIZE));
     u.searchParams.set('offset', String(offset));
-    const page = await fetchJson<ChildSeatPage>(u.toString(), { fetch: this.opts.fetch, timeoutMs: 40_000 });
+    const page = await fetchJson<ChildSeatPage>(u.toString(), {
+      fetch: this.opts.fetch,
+      timeoutMs: 40_000,
+    });
     const rows = (page.results ?? []).filter((r) => (r.recallsCount ?? 0) > 0);
     const { count, total } = page.meta.pagination;
     const nextOffset = offset + count < total && count > 0 ? offset + count : null;

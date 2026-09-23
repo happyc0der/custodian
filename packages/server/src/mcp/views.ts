@@ -1,4 +1,12 @@
-import type { Item, ItemSummary, MaintenanceRule, MaintenanceView, Match, RecallMatchView, RecallRecord } from '@custodian/shared';
+import type {
+  Item,
+  ItemSummary,
+  MaintenanceRule,
+  MaintenanceView,
+  Match,
+  RecallMatchView,
+  RecallRecord,
+} from '@custodian/shared';
 import { daysBetween } from '@custodian/shared';
 
 export function toItemSummary(item: Item): ItemSummary {
@@ -29,7 +37,11 @@ export function toMatchView(match: Match, item: Item, recall: RecallRecord): Rec
   };
 }
 
-export function toMaintenanceView(rule: MaintenanceRule, item: Item, today: string): MaintenanceView {
+export function toMaintenanceView(
+  rule: MaintenanceRule,
+  item: Item,
+  today: string,
+): MaintenanceView {
   const days = daysBetween(today, rule.next_due);
   return {
     rule_id: rule.id,
@@ -60,13 +72,21 @@ export function speakMaintenance(v: MaintenanceView): string {
         ? ' today'
         : ` in ${v.days_until_due === 1 ? 'a day' : `${v.days_until_due} days`}`;
   switch (v.kind) {
-    case 'replace_battery': return `${item} needs new batteries${when}`;
-    case 'replace_filter': return `${item} needs a new filter${when}`;
-    case 'replace_unit': return `${item} needs replacing${when}`;
-    case 'service': return `${item} is due for ${v.item.category === 'vehicle' ? 'an oil change and service' : 'a service'}${when}`;
-    case 'inspect': return `${item} is due for an inspection${when}`;
-    case 'expires': return `${item} expires${when}`;
-    case 'warranty_ends': return `the warranty on ${item} ends${when}`;
-    default: return `${v.label.toLowerCase().replace(/\.$/, '')} for ${item}${when}`;
+    case 'replace_battery':
+      return `${item} needs new batteries${when}`;
+    case 'replace_filter':
+      return `${item} needs a new filter${when}`;
+    case 'replace_unit':
+      return `${item} needs replacing${when}`;
+    case 'service':
+      return `${item} is due for ${v.item.category === 'vehicle' ? 'an oil change and service' : 'a service'}${when}`;
+    case 'inspect':
+      return `${item} is due for an inspection${when}`;
+    case 'expires':
+      return `${item} expires${when}`;
+    case 'warranty_ends':
+      return `the warranty on ${item} ends${when}`;
+    default:
+      return `${v.label.toLowerCase().replace(/\.$/, '')} for ${item}${when}`;
   }
 }

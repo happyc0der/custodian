@@ -26,7 +26,11 @@ function originGuard(allowedOrigins: string[]) {
       res.status(403).json({ error: 'invalid_origin' });
       return;
     }
-    const ok = allowedOrigins.some((o) => o === host) || host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+    const ok =
+      allowedOrigins.some((o) => o === host) ||
+      host === 'localhost' ||
+      host === '127.0.0.1' ||
+      host === '[::1]';
     if (!ok) {
       res.status(403).json({ error: 'invalid_origin' });
       return;
@@ -43,7 +47,12 @@ export function createApp({ deps, auth }: AppOptions): Express {
   app.use(express.urlencoded({ extended: false, limit: '64kb' }));
 
   app.get('/healthz', (_req, res) => {
-    res.json({ ok: true, name: 'custodian', authMode: deps.config.authMode, store: deps.config.store });
+    res.json({
+      ok: true,
+      name: 'custodian',
+      authMode: deps.config.authMode,
+      store: deps.config.store,
+    });
   });
   app.get('/metrics.json', (_req, res) => {
     res.json({ tools: latencySnapshot() });

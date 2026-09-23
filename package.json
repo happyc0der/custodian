@@ -2,7 +2,7 @@
   "name": "custodian",
   "private": true,
   "version": "0.1.0",
-  "description": "Custodian — a household inventory and product-safety agent for Alexa+, delivered as a self-hosted MCP server.",
+  "description": "Custodian \u2014 a household inventory that watches for product recalls and maintenance. Self-hosted MCP server with OAuth 2.1 and MCP Apps, built for Alexa+ and any MCP host.",
   "type": "module",
   "license": "MIT",
   "workspaces": [
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "npm run build --workspaces --if-present",
-    "typecheck": "tsc -b",
+    "typecheck": "tsc -b && tsc -p packages/server/tsconfig.test.json && tsc -p infra/tsconfig.json",
     "test": "vitest run",
     "test:watch": "vitest",
     "dev": "npm run dev -w @custodian/server",
@@ -26,14 +26,26 @@
     "seed": "tsx scripts/seed.ts",
     "build:ui": "npm run build -w @custodian/ui",
     "infra:synth": "npm run synth -w @custodian/infra",
-    "infra:deploy": "npm run deploy -w @custodian/infra"
+    "infra:deploy": "npm run deploy -w @custodian/infra",
+    "lint": "eslint . --max-warnings 0",
+    "format:check": "prettier --check .",
+    "check": "npm run typecheck && npm run lint && npm run format:check && npm test && npm run build:ui"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^22.20.2",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
     "prettier": "^3.9.6",
     "sharp": "^0.35.4",
     "tsx": "^4.23.13",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.70.1",
     "vitest": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/happyc0der/custodian.git"
   }
 }

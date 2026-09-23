@@ -30,14 +30,19 @@ http
     headers.authorization = `Bearer ${token}`;
     headers.host = target.host;
     delete headers.origin;
-    const upstream = http.request({ hostname: target.hostname, port: target.port, path: req.url, method: req.method, headers }, (up) => {
-      res.writeHead(up.statusCode ?? 502, { ...up.headers, ...CORS });
-      up.pipe(res);
-    });
+    const upstream = http.request(
+      { hostname: target.hostname, port: target.port, path: req.url, method: req.method, headers },
+      (up) => {
+        res.writeHead(up.statusCode ?? 502, { ...up.headers, ...CORS });
+        up.pipe(res);
+      },
+    );
     upstream.on('error', (err) => {
       if (!res.headersSent) res.writeHead(502, CORS);
       res.end(String(err));
     });
     req.pipe(upstream);
   })
-  .listen(port, () => console.log(`dev-proxy http://localhost:${port} → ${target.origin} (adds bearer)`));
+  .listen(port, () =>
+    console.log(`dev-proxy http://localhost:${port} → ${target.origin} (adds bearer)`),
+  );

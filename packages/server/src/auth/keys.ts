@@ -1,4 +1,15 @@
-import { SignJWT, calculateJwkThumbprint, exportJWK, exportPKCS8, generateKeyPair, importJWK, importPKCS8, jwtVerify, type CryptoKey, type JWK } from 'jose';
+import {
+  SignJWT,
+  calculateJwkThumbprint,
+  exportJWK,
+  exportPKCS8,
+  generateKeyPair,
+  importJWK,
+  importPKCS8,
+  jwtVerify,
+  type CryptoKey,
+  type JWK,
+} from 'jose';
 import type { Config } from '../config.js';
 import type { Store } from '../store/types.js';
 
@@ -40,8 +51,17 @@ export interface AccessTokenClaims {
   household_id?: string;
 }
 
-export async function signAccessToken(keys: SigningKeys, config: Config, claims: AccessTokenClaims, ttlSeconds: number): Promise<string> {
-  return new SignJWT({ client_id: claims.client_id, scope: claims.scope, household_id: claims.household_id })
+export async function signAccessToken(
+  keys: SigningKeys,
+  config: Config,
+  claims: AccessTokenClaims,
+  ttlSeconds: number,
+): Promise<string> {
+  return new SignJWT({
+    client_id: claims.client_id,
+    scope: claims.scope,
+    household_id: claims.household_id,
+  })
     .setProtectedHeader({ alg: ALG, kid: keys.kid, typ: 'at+jwt' })
     .setIssuer(config.publicUrl)
     .setAudience(resourceUrl(config))
@@ -53,7 +73,11 @@ export async function signAccessToken(keys: SigningKeys, config: Config, claims:
 }
 
 export async function verifyAccessToken(keys: SigningKeys, config: Config, token: string) {
-  const { payload } = await jwtVerify(token, keys.publicKey, { issuer: config.publicUrl, audience: resourceUrl(config), algorithms: [ALG] });
+  const { payload } = await jwtVerify(token, keys.publicKey, {
+    issuer: config.publicUrl,
+    audience: resourceUrl(config),
+    algorithms: [ALG],
+  });
   return payload as typeof payload & Partial<AccessTokenClaims>;
 }
 

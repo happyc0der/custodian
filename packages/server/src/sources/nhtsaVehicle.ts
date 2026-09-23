@@ -58,7 +58,12 @@ export function normalizeNhtsaVehicle(r: NhtsaVehicleRecall): RecallRecord {
     published_on: isoFromDdMmYyyy(r.ReportReceivedDate),
     products: [{ name: vehicleLabel, brand: make, model }],
     categories: ['vehicle'],
-    severity: r.parkIt || r.parkOutSide ? 'critical' : /crash|fire|injur|death/i.test(r.Consequence) ? 'high' : 'moderate',
+    severity:
+      r.parkIt || r.parkOutSide
+        ? 'critical'
+        : /crash|fire|injur|death/i.test(r.Consequence)
+          ? 'high'
+          : 'moderate',
     keywords: [...new Set(tokenize(`${r.Make} ${r.Model} ${r.ModelYear} ${r.Component}`))],
     vehicle: Number.isFinite(year) ? { make, model, year } : undefined,
   };
@@ -75,7 +80,10 @@ export class NhtsaVehicleSource implements RecallSourceClient {
     u.searchParams.set('make', item.vehicle.make);
     u.searchParams.set('model', item.vehicle.model);
     u.searchParams.set('modelYear', String(item.vehicle.year));
-    const data = await fetchJson<{ Count: number; results: NhtsaVehicleRecall[] }>(u.toString(), { fetch: this.opts.fetch, timeoutMs: 20_000 });
+    const data = await fetchJson<{ Count: number; results: NhtsaVehicleRecall[] }>(u.toString(), {
+      fetch: this.opts.fetch,
+      timeoutMs: 20_000,
+    });
     return (data.results ?? []).map(normalizeNhtsaVehicle);
   }
 }

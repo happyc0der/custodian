@@ -1,6 +1,14 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/server';
-import { BriefingOutput, addDays, joinNatural, pluralize, todayIso, type MaintenanceView, type RecallMatchView } from '@custodian/shared';
+import {
+  BriefingOutput,
+  addDays,
+  joinNatural,
+  pluralize,
+  todayIso,
+  type MaintenanceView,
+  type RecallMatchView,
+} from '@custodian/shared';
 import { requireHousehold } from '../../auth/context.js';
 import { defineTool } from '../define.js';
 import type { ServerDeps } from '../deps.js';
@@ -16,7 +24,7 @@ export function registerBriefingTool(server: McpServer, deps: ServerDeps): void 
     name: 'household_briefing',
     title: 'Household safety briefing',
     description:
-      'Summarise what needs the household\'s attention: new product recalls matching things they own, and maintenance that is due or overdue (smoke-detector batteries, filters, expiring car seats, warranties). ' +
+      "Summarise what needs the household's attention: new product recalls matching things they own, and maintenance that is due or overdue (smoke-detector batteries, filters, expiring car seats, warranties). " +
       'Call when the customer asks "anything I should know?", "any recalls?", "what needs doing?", or asks for a home safety check. Marks the reported recalls as seen.',
     inputSchema: z.object({}),
     outputSchema: BriefingOutput,
@@ -63,7 +71,8 @@ export function registerBriefingTool(server: McpServer, deps: ServerDeps): void 
       // Reporting marks recalls as seen, so the next briefing only surfaces what is new.
       const nowIso = deps.now().toISOString();
       for (const m of matches) {
-        if (m.status === 'new') await deps.store.putMatch({ ...m, status: 'seen', updated_at: nowIso });
+        if (m.status === 'new')
+          await deps.store.putMatch({ ...m, status: 'seen', updated_at: nowIso });
       }
       await deps.store.putHousehold({ ...household, last_briefed_at: nowIso });
 
@@ -84,26 +93,39 @@ function severityRank(s: RecallMatchView['recall']['severity']): number {
   return { critical: 0, high: 1, moderate: 2, low: 3 }[s];
 }
 
-function buildSpeech(b: { itemCount: number; newRecalls: RecallMatchView[]; openRecalls: number; due: MaintenanceView[] }): string {
+function buildSpeech(b: {
+  itemCount: number;
+  newRecalls: RecallMatchView[];
+  openRecalls: number;
+  due: MaintenanceView[];
+}): string {
   const parts: string[] = [];
   if (b.newRecalls.length) {
     const first = b.newRecalls[0]!;
-    const lead = b.newRecalls.length === 1
-      ? `Heads up: there's a new recall on your ${first.item.name}.`
-      : `Heads up: ${b.newRecalls.length} things you own have new recalls, including your ${first.item.name}.`;
-    parts.push(`${lead} ${first.recall.hazard.split(/(?<=\.)\s/)[0] ?? ''} ${shortRemedy(first.recall.remedy_options)}`.trim());
+    const lead =
+      b.newRecalls.length === 1
+        ? `Heads up: there's a new recall on your ${first.item.name}.`
+        : `Heads up: ${b.newRecalls.length} things you own have new recalls, including your ${first.item.name}.`;
+    parts.push(
+      `${lead} ${first.recall.hazard.split(/(?<=\.)\s/)[0] ?? ''} ${shortRemedy(first.recall.remedy_options)}`.trim(),
+    );
   } else if (b.openRecalls) {
-    parts.push(`No new recalls, but ${pluralize(b.openRecalls, 'recall is', 'recalls are')} still open from before.`);
+    parts.push(
+      `No new recalls, but ${pluralize(b.openRecalls, 'recall is', 'recalls are')} still open from before.`,
+    );
   } else if (b.itemCount) {
     parts.push(`Good news: no recalls on any of your ${b.itemCount} tracked items.`);
   } else {
-    parts.push("I'm not tracking anything for you yet. Tell me what you own and I'll start watching for recalls.");
+    parts.push(
+      "I'm not tracking anything for you yet. Tell me what you own and I'll start watching for recalls.",
+    );
   }
   if (b.due.length) {
     const overdue = b.due.filter((d) => d.overdue);
     const soon = b.due.filter((d) => !d.overdue);
     const bits = [...overdue.slice(0, 2), ...soon.slice(0, 2)].map(speakMaintenance);
-    const more = b.due.length > bits.length ? `, plus ${b.due.length - bits.length} more on screen` : '';
+    const more =
+      b.due.length > bits.length ? `, plus ${b.due.length - bits.length} more on screen` : '';
     parts.push(`Also, ${joinNatural(bits)}${more}.`);
   }
   return parts.join(' ');
@@ -112,8 +134,10 @@ function buildSpeech(b: { itemCount: number; newRecalls: RecallMatchView[]; open
 function shortRemedy(options: string[]): string {
   if (!options.length) return 'Want the details?';
   const o = options.map((x) => x.toLowerCase());
-  if (o.some((x) => x.includes('refund'))) return 'The maker is offering a refund. Want the details?';
+  if (o.some((x) => x.includes('refund')))
+    return 'The maker is offering a refund. Want the details?';
   if (o.some((x) => x.includes('repair'))) return 'There is a free repair. Want the details?';
-  if (o.some((x) => x.includes('replace'))) return 'They will replace it for free. Want the details?';
+  if (o.some((x) => x.includes('replace')))
+    return 'They will replace it for free. Want the details?';
   return 'Want the details?';
 }

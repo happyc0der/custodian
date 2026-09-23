@@ -17,7 +17,11 @@ export interface AuthRuntime {
  * page work in every mode). `AUTH_MODE=dev` additionally accepts the static
  * DEV_BEARER_TOKEN for local tooling; `oauth` accepts only our JWTs.
  */
-export async function createAuthRuntime(config: Config, store: Store, now?: () => Date): Promise<AuthRuntime> {
+export async function createAuthRuntime(
+  config: Config,
+  store: Store,
+  now?: () => Date,
+): Promise<AuthRuntime> {
   const keys = await loadSigningKeys(config, store);
   const jwt = jwtVerifier(config, keys);
   const verifier: TokenVerifier =

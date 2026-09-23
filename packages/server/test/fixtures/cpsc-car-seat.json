@@ -1,497 +1,497 @@
 [
- {
-  "RecallID": 10829,
-  "RecallNumber": "26568",
-  "RecallDate": "2026-06-18T00:00:00",
-  "Description": "This recall involves the Aer2 Car Seat Adapters for Joolz Aer2 Strollers. The adapters are designed to transfer the car seat from a car to the stroller. The black adapters are sold in a set of two and are made of plastic. They are sold as accessories. Only the car seat adapters are involved in the recall; the stroller is not involved in the recall. A product identifier starting with NL311 can be found on the inside of the adapter.",
-  "URL": "https://www.cpsc.gov/Recalls/2026/Joolz-Recalls-Aer2-Car-Seat-Adapters-for-Strollers-Due-to-Risk-of-Serious-Injury-from-Fall-Hazard",
-  "Title": "Joolz Recalls Aer2 Car Seat Adapters for Strollers Due to Risk of Serious Injury from Fall Hazard",
-  "ConsumerContact": "Joolz Customer Service Team toll-free at 888-943-4889 from 8 a.m. to 5 p.m. ET Monday through Friday or online at http://joolzcarseatadapter.expertinquiry.com or www.joolz.com and click \"Product Recalls\" at the bottom of the page for more information.",
-  "LastPublishDate": "2026-06-18T00:00:00",
-  "Products": [
-   {
-    "Name": "Joolz Aer2 Car Seat Adapters for Joolz Aer 2 Stroller",
-    "Description": "",
-    "Model": "",
-    "Type": "",
-    "CategoryID": "",
-    "NumberOfUnits": "About 3,840 (In addition, about 148 were sold in Canada)"
-   }
-  ],
-  "Inconjunctions": [
-   {
-    "URL": "https://recalls-rappels.canada.ca/en/alert-recall/joolz-aer2-car-seat-adapter-set-recalled-due-fall-hazard"
-   }
-  ],
-  "Images": [
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/joolz-1.png",
-    "Caption": "Recalled Aer2 Car Seat Adapter for Joolz Aer2 Strollers"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/joolz-2.png",
-    "Caption": "Recalled Aer2 Car Seat Adapter (Set of two)"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/joolznl311.png",
-    "Caption": "Product identifier starting with NL311 affixed on inside of the recalled Aer2 Car Seat Adapter"
-   }
-  ],
-  "Injuries": [
-   {
-    "Name": "The firm has received one report of the car seat adapters detaching from the strollers. No injuries have been reported."
-   }
-  ],
-  "Manufacturers": [],
-  "Retailers": [
-   {
-    "Name": "Bloomingdale's, Nordstrom, and specialty stores nationwide, and online at www.joolz.com, www.bloomingdales.com, www.nordstrom.com, and www.amazon.com from June 2025 to May 2026 for about $50.",
-    "CompanyID": ""
-   }
-  ],
-  "Importers": [
-   {
-    "Name": "Joolz USA Inc., of New York, New York",
-    "CompanyID": ""
-   }
-  ],
-  "Distributors": [],
-  "SoldAtLabel": null,
-  "ManufacturerCountries": [
-   {
-    "Country": "China"
-   }
-  ],
-  "ProductUPCs": [],
-  "Hazards": [
-   {
-    "Name": "The recalled car seat adapters can fail to properly attach to the stroller, which may allow the car seat to fall, posing a risk of serious injury from a fall hazard.",
-    "HazardType": "",
-    "HazardTypeID": ""
-   }
-  ],
-  "Remedies": [
-   {
-    "Name": "Consumers should stop using the Joolz Aer2 Car Seat Adapters immediately, detach them from the stroller and go to http://joolzcarseatadapter.expertinquiry.com to register for a full refund. The firm will provide a video on how to remove the Joolz Aer2 Car Seat Adapters from the stroller. Consumers must return the recalled adapter sets using the prepaid shipping label to receive a refund. Full refunds will be reimbursed via an electronic payment method or a virtual prepaid gift card to use anywhere."
-   }
-  ],
-  "RemedyOptions": [
-   {
-    "Option": "Refund"
-   }
-  ]
- },
- {
-  "RecallID": 10412,
-  "RecallNumber": "25476",
-  "RecallDate": "2025-09-25T00:00:00",
-  "Description": "This recall involves black Cooling Gel Insert Pads for strollers or car seats and contain an inner cooling layer that is activated by a child's weight. The Hoovy logo appears in white on the bottom right corner of the product. The recalled cooling pads are approximately 16.5 inches long by 14.25 inches wide.",
-  "URL": "https://www.cpsc.gov/Recalls/2025/AMTRADING-Recalls-Hoovy-Cooling-Gel-Insert-Pads-for-Car-Seats-and-Strollers-Due-to-Burn-Hazard",
-  "Title": "AMTRADING Recalls Hoovy Cooling Gel Insert Pads for Car Seats and Strollers Due to Burn Hazard",
-  "ConsumerContact": "AMTRADING toll-free at 888-259-1411 from 9 a.m. to 5 p.m. ET Monday through Friday, email at info@hoovyproducts.com, or online at https://hoovyproducts.com and click on \"Recall\" at the bottom of the page or go directly to https://hoovyproducts.com/pages/product-recall.",
-  "LastPublishDate": "2025-09-25T00:00:00",
-  "Products": [
-   {
-    "Name": "Hoovy Cooling Gel Insert Pads for Car Seats and Strollers",
-    "Description": "",
-    "Model": "",
-    "Type": "",
-    "CategoryID": "",
-    "NumberOfUnits": "About 20,000"
-   }
-  ],
-  "Inconjunctions": [],
-  "Images": [
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Picture1-1_9.png",
-    "Caption": "Recalled Hoovy Cooling Gel Insert Pads shown in stroller"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Picture2-2_5.png",
-    "Caption": "Recalled Hoovy Cooling Gel Insert Pads"
-   }
-  ],
-  "Injuries": [
-   {
-    "Name": "The firm has received one consumer report where the child experienced second degree burns to his back, requiring medical attention."
-   }
-  ],
-  "Manufacturers": [],
-  "Retailers": [
-   {
-    "Name": "Target stores nationwide and online at Target.com and Walmart.com from March 2025 through July 2025 for between $20 and $25.",
-    "CompanyID": ""
-   }
-  ],
-  "Importers": [
-   {
-    "Name": "AMTRADING LLC, of Brielle, NJ",
-    "CompanyID": ""
-   }
-  ],
-  "Distributors": [],
-  "SoldAtLabel": null,
-  "ManufacturerCountries": [
-   {
-    "Country": "China"
-   }
-  ],
-  "ProductUPCs": [],
-  "Hazards": [
-   {
-    "Name": "The cooling gel pads can become hot if left in the sun or a hot car, posing a burn hazard to young children.",
-    "HazardType": "",
-    "HazardTypeID": ""
-   }
-  ],
-  "Remedies": [
-   {
-    "Name": "Consumers should immediately stop using the recalled Cooling Gel Insert Pad and contact AMTRADING for instructions on receiving a full refund. Consumers can go to https://hoovyproducts.com/pages/product-recall for instructions on how to register for the recall and to dispose of the recalled pad."
-   }
-  ],
-  "RemedyOptions": [
-   {
-    "Option": "Refund"
-   }
-  ]
- },
- {
-  "RecallID": 8775,
-  "RecallNumber": "20096",
-  "RecallDate": "2020-03-19T00:00:00",
-  "Description": "This recall involves the Thule Sleek Car Seat Adapter used to place a Chicco car seat on the Thule Sleek Stroller. The adapter is metal with two black plastic brackets and clips onto the stroller. Only the car seat adapter is included in this recall. Product number 11000301 is printed on a sticker located on the adapter's plastic bracket. The UPC code is 091021188099.",
-  "URL": "https://www.cpsc.gov/Recalls/2020/Thule-Recalls-Thule-Sleek-Car-Seat-Adapters-Due-to-Fall-Hazard",
-  "Title": "Thule Recalls Thule Sleek Car Seat Adapters Due to Fall Hazard",
-  "ConsumerContact": "Thule Group toll-free at 855-652-2688 from 8 a.m. to 5 p.m. ET Monday through Friday, email at carseatadapter@thule.com, or online at www.thule.com/carseatadapter or www.thule.com and click on Support/Safety Notice for more information.",
-  "LastPublishDate": "2020-03-19T00:00:00",
-  "Products": [
-   {
-    "Name": "Thule Sleek Car Seat Adapters",
-    "Description": "",
-    "Model": "",
-    "Type": "",
-    "CategoryID": "",
-    "NumberOfUnits": "About 1,430 (In addition, about 116 in Canada)"
-   }
-  ],
-  "Inconjunctions": [
-   {
-    "URL": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2020/72607r-eng.php"
-   }
-  ],
-  "Images": [
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/1781_1.jpeg",
-    "Caption": "Recalled Thule Sleek Car Seat Adapter for use with a Thule Sleek stroller and a Chicco car seat."
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/1781_2.jpeg",
-    "Caption": "Product number on plastic bracket of the recalled Thule Sleek Car Seat Adapter."
-   }
-  ],
-  "Injuries": [
-   {
-    "Name": "Thule has received three reports of the plastic brackets on the car seat adapters cracking or breaking while in use. No injuries have been reported."
-   }
-  ],
-  "Manufacturers": [],
-  "Retailers": [
-   {
-    "Name": "REI, Buy Buy Baby, and other stores nationwide and online at Thule.com, and Amazon.com from December 2018 through February 2020 for about $60.",
-    "CompanyID": ""
-   }
-  ],
-  "Importers": [
-   {
-    "Name": "Thule Group, of Sweden",
-    "CompanyID": ""
-   }
-  ],
-  "Distributors": [],
-  "SoldAtLabel": null,
-  "ManufacturerCountries": [
-   {
-    "Country": "China"
-   }
-  ],
-  "ProductUPCs": [
-   {
-    "UPC": "091021188099"
-   }
-  ],
-  "Hazards": [
-   {
-    "Name": "The plastic brackets on the car seat adapter can break, posing a fall hazard to infants.",
-    "HazardType": "",
-    "HazardTypeID": ""
-   }
-  ],
-  "Remedies": [
-   {
-    "Name": "Consumers should immediately stop using the recalled Sleek Car Seat Adapter and contact Thule Group to arrange for the return of the product for a full refund or to receive a free replacement product of a Thule Sleek Bassinet which works on the Thule Sleek Stroller."
-   }
-  ],
-  "RemedyOptions": [
-   {
-    "Option": "Refund"
-   },
-   {
-    "Option": "Replace"
-   }
-  ]
- },
- {
-  "RecallID": 8041,
-  "RecallNumber": "17146",
-  "RecallDate": "2017-05-04T00:00:00",
-  "Description": "This recall involves Combi Shuttle model strollers and car seats, which when used together are called a travel system. The strollers and car seats have model number 6100027 or 6100100 printed on a label on the base of the car seat and stroller's leg. The car seat and stroller were sold in titanium (silver) and red chili (red) colors. Combi is printed on the front of the stroller and the car seat. Shuttle is printed above the model number.",
-  "URL": "https://www.cpsc.gov/Recalls/2017/Combi-USA-Recalls-Stroller-and-Car-Seat-Combos",
-  "Title": "Combi USA Recalls Stroller and Car Seat Combos Due to Fall Hazard",
-  "ConsumerContact": "Combi USA toll-free at 844-332-6730 from 8:30 a.m. to 4:30 p.m. ET Monday through Friday or online at www.combiusa.com and click on \"Safety Notifications\" at the bottom of the page for more information. Combi USA will contact consumers who registered their products.",
-  "LastPublishDate": "2017-05-04T00:00:00",
-  "Products": [
-   {
-    "Name": "Combi Shuttle Travel System (stroller and car seat combos)",
-    "Description": "",
-    "Model": "",
-    "Type": "",
-    "CategoryID": "",
-    "NumberOfUnits": "About 1,000"
-   }
-  ],
-  "Inconjunctions": [],
-  "Images": [
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller pic.jpg",
-    "Caption": "Titanium Shuttle Travel System"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller pic2.jpg",
-    "Caption": "Red Chili Shuttle Travel System"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller pic 3.jpg",
-    "Caption": "Model number location on stroller leg"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller 4.jpg",
-    "Caption": "Model number under car seat"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller pic 4.jpg",
-    "Caption": "Model number on car seat base"
-   }
-  ],
-  "Injuries": [
-   {
-    "Name": "None reported"
-   }
-  ],
-  "Manufacturers": [],
-  "Retailers": [
-   {
-    "Name": "Online at Amazon.com, BabiesRUs.com, Target.com and other online retailers from June 2015 through September 2016 for between $350 and $400 for the stroller and the car seat when sold together.",
-    "CompanyID": ""
-   }
-  ],
-  "Importers": [
-   {
-    "Name": "Combi USA, Charlotte, N.C.",
-    "CompanyID": ""
-   }
-  ],
-  "Distributors": [],
-  "SoldAtLabel": null,
-  "ManufacturerCountries": [
-   {
-    "Country": "China"
-   }
-  ],
-  "ProductUPCs": [],
-  "Hazards": [
-   {
-    "Name": "The car seat can disengage from the stroller's frame, posing a fall hazard to infants.",
-    "HazardType": "",
-    "HazardTypeID": ""
-   }
-  ],
-  "Remedies": [
-   {
-    "Name": "Consumers should stop using the recalled strollers with the car seats attached and contact Combi for a free repair, which consists of straps to secure the car seat to the stroller. Consumers can continue to use the strollers and car seats separately."
-   }
-  ],
-  "RemedyOptions": [
-   {
-    "Option": "Repair"
-   }
-  ]
- },
- {
-  "RecallID": 7888,
-  "RecallNumber": "17705",
-  "RecallDate": "2016-10-25T00:00:00",
-  "Description": "This recall involves Fiddle Diddles LullaBelay adjustable car seat strap system with model number LB1001. The strap system includes two fabric straps, carabiner hardware, a mesh car seat cover and a tote bag. The carabiners are used to hang a car seat from a shopping cart. The model number is printed on the gray straps. \"Fiddle Diddles\" is printed on a fabric label attached to the mesh car seat cover, tote bag and fabric straps.",
-  "URL": "https://www.cpsc.gov/Recalls/2017/Fiddle-Diddles-Recalls-Car-Seat-Strap-Systems-0",
-  "Title": "Fiddle Diddles Recalls Car Seat Strap Systems Due to Choking Hazard (Recall Alert)",
-  "ConsumerContact": "Fiddle Diddles toll-free at 888-741-2957 from 9 a.m. to 5 p.m. CT Monday through Friday, email at info@fiddlediddles.com or online at www.fiddlediddles.com and click on \"Product Recall\" at the bottom of the page for more information.",
-  "LastPublishDate": "2016-10-27T00:00:00",
-  "Products": [
-   {
-    "Name": "LullaBelay car seat strap systems",
-    "Description": "",
-    "Model": "",
-    "Type": "",
-    "CategoryID": "",
-    "NumberOfUnits": "About 250"
-   }
-  ],
-  "Inconjunctions": [],
-  "Images": [
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/fiddlediddles1.png",
-    "Caption": "Fiddle Diddles LullaBelay"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/fiddlediddles2.png",
-    "Caption": "Fiddle Diddles strap system"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/fiddlediddles3.png",
-    "Caption": "Fiddle Diddles carabiners"
-   }
-  ],
-  "Injuries": [
-   {
-    "Name": "None reported"
-   }
-  ],
-  "Manufacturers": [],
-  "Retailers": [
-   {
-    "Name": "Online at Amazon.com from November 2015 through June 2016 and Fiddlediddles.com from May 2015 through June 2015 and at Zoolikins stores in Arizona from November 2015 through June 2016 for about $40.",
-    "CompanyID": ""
-   }
-  ],
-  "Importers": [
-   {
-    "Name": "Fiddle Diddles Inc., of Maple Grove, Minn.",
-    "CompanyID": ""
-   }
-  ],
-  "Distributors": [
-   {
-    "Name": "Fiddle Diddles Inc., of Maple Grove, Minn.",
-    "CompanyID": ""
-   }
-  ],
-  "SoldAtLabel": null,
-  "ManufacturerCountries": [
-   {
-    "Country": "China"
-   }
-  ],
-  "ProductUPCs": [],
-  "Hazards": [
-   {
-    "Name": "The carabiners attached to the strap system contain small internal parts that can become dislodged, posing a choking hazard to young children.",
-    "HazardType": "",
-    "HazardTypeID": ""
-   }
-  ],
-  "Remedies": [
-   {
-    "Name": "Consumers should immediately stop using the LullaBelay strap system and contact Fiddle Diddles for a free repair kit with three new carabiners. The firm is contacting all known purchasers directly."
-   }
-  ],
-  "RemedyOptions": [
-   {
-    "Option": "Repair"
-   }
-  ]
- },
- {
-  "RecallID": 6631,
-  "RecallNumber": "16081",
-  "RecallDate": "2016-01-21T00:00:00",
-  "Description": "This recall involves Britax B-Safe 35 and B-Safe 35 Elite infant car seat and travel systems manufactured between October 1, 2014 and July 1, 2015. The product can be used as a rear-facing only car seat and as an infant carrier. The car seat/carriers have a canopy, black shell and base, and were sold in a variety of colors. The Britax logo is printed on both sides of the seat shell and on the carry handle grip. Model numbers and the date of manufacture (DOM) are printed on a label located at the back of the infant car seat/carrier shell. Models included in the recall are: Britax Infant Car Seats and Travel Systems Model Numbers Dates of Manufacture (YYYY/MM/DD) B-Safe 35 E9LU65M, E9LU65P, E9LU63F, E9LU66R, E9LS63F, EXLU65M October 1, 2014 (2014/10/01) through July 1, 2015 (2015/07/01) B-Safe 35 Elite E9LS55T, E9LS56P, E9LS55U, E9LS66C, E9LS65U B-Safe 35 Travel System S914900, S915400, S915200, S921900, S01635200",
-  "URL": "https://www.cpsc.gov/Recalls/2016/CPSC-NHTSA-and-Britax-Announce-Recall-of-Infant-Car-Seats",
-  "Title": "CPSC, NHTSA and Britax Announce Recall of Infant Car Seats Due to Fall Hazard",
-  "ConsumerContact": "Britax at 800-683-2045 from 8:30 a.m. and 5:45 p.m. ET Monday through Thursday, 8:30 a.m. to 4:45 p.m. ET on Friday, or by email at Britax.Recall@britax.com. Consumers can also visit the firm's website at www.us.Britax.com and click on \"Safety Notice\" at the top right of the page.",
-  "LastPublishDate": "2016-01-21T00:00:00",
-  "Products": [
-   {
-    "Name": "Britax B-Safe 35 and B-Safe 35 Elite infant car seats and travel systems",
-    "Description": "",
-    "Model": "",
-    "Type": "Strollers and Car Seats",
-    "CategoryID": "67582",
-    "NumberOfUnits": "About 71,000 units (in addition 3,900 units were sold in Canada and 990 units in Mexico)"
-   }
-  ],
-  "Inconjunctions": [
-   {
-    "URL": "http://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2016/56686r-eng.php"
-   },
-   {
-    "URL": "http://profeco.gob.mx/verificacion/alertas_nvo.asp"
-   }
-  ],
-  "Images": [
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Recall.2016.16081.BSafe35DOMLabelLocation.jpg",
-    "Caption": "Location of model number on Britax B-Safe 35 and B-Safe 35 Elite Car Seat/Carriers"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Recall.2016.16081.BSafe35BlackR300RGB.jpg",
-    "Caption": "Britax B-Safe 35 and B-Safe 35 Elite Car Seat/Carriers"
-   },
-   {
-    "URL": "https://www.cpsc.gov/s3fs-public/Recall.2016.16081.TravelSystemsGroupPhoto.jpg",
-    "Caption": "Britax B-Agile/B-Safe 35 and B-Safe 35 Elite Travel Systems"
-   }
-  ],
-  "Injuries": [
-   {
-    "Name": "Britax has received 74 reports of handles developing fractures, cracks and/or breaking while in use, including one report of an infant who received a bump on the head when the carrier fell to the ground."
-   }
-  ],
-  "Manufacturers": [],
-  "Retailers": [
-   {
-    "Name": "Babies R Us, buybuy BABY, Target and other stores nationwide and online at Amazon.com, Diapers.com and other online retailers from November 2014 to January 2016 for between $210 and $250.",
-    "CompanyID": ""
-   }
-  ],
-  "Importers": [],
-  "Distributors": [
-   {
-    "Name": "Britax Child Safety Inc., of Fort Mill, S.C.",
-    "CompanyID": ""
-   }
-  ],
-  "SoldAtLabel": null,
-  "ManufacturerCountries": [
-   {
-    "Country": "United States"
-   }
-  ],
-  "ProductUPCs": [],
-  "Hazards": [
-   {
-    "Name": "The car seat carry handle can crack and break allowing the seat to fall unexpectedly, posing a risk of injury to the infant.",
-    "HazardType": "",
-    "HazardTypeID": ""
-   }
-  ],
-  "Remedies": [
-   {
-    "Name": "Consumers should immediately stop carrying the car seat by the handle until the repair is installed. All consumers who have previously registered their product with Britax will automatically receive a free repair kit. To register to receive a repair kit or verify registration, visit www.bsafe35recall.com. Consumers can continue to use the car seat when secured in a vehicle or on a stroller."
-   }
-  ],
-  "RemedyOptions": [
-   {
-    "Option": "Repair"
-   }
-  ]
- }
+  {
+    "RecallID": 10829,
+    "RecallNumber": "26568",
+    "RecallDate": "2026-06-18T00:00:00",
+    "Description": "This recall involves the Aer2 Car Seat Adapters for Joolz Aer2 Strollers. The adapters are designed to transfer the car seat from a car to the stroller. The black adapters are sold in a set of two and are made of plastic. They are sold as accessories. Only the car seat adapters are involved in the recall; the stroller is not involved in the recall. A product identifier starting with NL311 can be found on the inside of the adapter.",
+    "URL": "https://www.cpsc.gov/Recalls/2026/Joolz-Recalls-Aer2-Car-Seat-Adapters-for-Strollers-Due-to-Risk-of-Serious-Injury-from-Fall-Hazard",
+    "Title": "Joolz Recalls Aer2 Car Seat Adapters for Strollers Due to Risk of Serious Injury from Fall Hazard",
+    "ConsumerContact": "Joolz Customer Service Team toll-free at 888-943-4889 from 8 a.m. to 5 p.m. ET Monday through Friday or online at http://joolzcarseatadapter.expertinquiry.com or www.joolz.com and click \"Product Recalls\" at the bottom of the page for more information.",
+    "LastPublishDate": "2026-06-18T00:00:00",
+    "Products": [
+      {
+        "Name": "Joolz Aer2 Car Seat Adapters for Joolz Aer 2 Stroller",
+        "Description": "",
+        "Model": "",
+        "Type": "",
+        "CategoryID": "",
+        "NumberOfUnits": "About 3,840 (In addition, about 148 were sold in Canada)"
+      }
+    ],
+    "Inconjunctions": [
+      {
+        "URL": "https://recalls-rappels.canada.ca/en/alert-recall/joolz-aer2-car-seat-adapter-set-recalled-due-fall-hazard"
+      }
+    ],
+    "Images": [
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/joolz-1.png",
+        "Caption": "Recalled Aer2 Car Seat Adapter for Joolz Aer2 Strollers"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/joolz-2.png",
+        "Caption": "Recalled Aer2 Car Seat Adapter (Set of two)"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/joolznl311.png",
+        "Caption": "Product identifier starting with NL311 affixed on inside of the recalled Aer2 Car Seat Adapter"
+      }
+    ],
+    "Injuries": [
+      {
+        "Name": "The firm has received one report of the car seat adapters detaching from the strollers. No injuries have been reported."
+      }
+    ],
+    "Manufacturers": [],
+    "Retailers": [
+      {
+        "Name": "Bloomingdale's, Nordstrom, and specialty stores nationwide, and online at www.joolz.com, www.bloomingdales.com, www.nordstrom.com, and www.amazon.com from June 2025 to May 2026 for about $50.",
+        "CompanyID": ""
+      }
+    ],
+    "Importers": [
+      {
+        "Name": "Joolz USA Inc., of New York, New York",
+        "CompanyID": ""
+      }
+    ],
+    "Distributors": [],
+    "SoldAtLabel": null,
+    "ManufacturerCountries": [
+      {
+        "Country": "China"
+      }
+    ],
+    "ProductUPCs": [],
+    "Hazards": [
+      {
+        "Name": "The recalled car seat adapters can fail to properly attach to the stroller, which may allow the car seat to fall, posing a risk of serious injury from a fall hazard.",
+        "HazardType": "",
+        "HazardTypeID": ""
+      }
+    ],
+    "Remedies": [
+      {
+        "Name": "Consumers should stop using the Joolz Aer2 Car Seat Adapters immediately, detach them from the stroller and go to http://joolzcarseatadapter.expertinquiry.com to register for a full refund. The firm will provide a video on how to remove the Joolz Aer2 Car Seat Adapters from the stroller. Consumers must return the recalled adapter sets using the prepaid shipping label to receive a refund. Full refunds will be reimbursed via an electronic payment method or a virtual prepaid gift card to use anywhere."
+      }
+    ],
+    "RemedyOptions": [
+      {
+        "Option": "Refund"
+      }
+    ]
+  },
+  {
+    "RecallID": 10412,
+    "RecallNumber": "25476",
+    "RecallDate": "2025-09-25T00:00:00",
+    "Description": "This recall involves black Cooling Gel Insert Pads for strollers or car seats and contain an inner cooling layer that is activated by a child's weight. The Hoovy logo appears in white on the bottom right corner of the product. The recalled cooling pads are approximately 16.5 inches long by 14.25 inches wide.",
+    "URL": "https://www.cpsc.gov/Recalls/2025/AMTRADING-Recalls-Hoovy-Cooling-Gel-Insert-Pads-for-Car-Seats-and-Strollers-Due-to-Burn-Hazard",
+    "Title": "AMTRADING Recalls Hoovy Cooling Gel Insert Pads for Car Seats and Strollers Due to Burn Hazard",
+    "ConsumerContact": "AMTRADING toll-free at 888-259-1411 from 9 a.m. to 5 p.m. ET Monday through Friday, email at info@hoovyproducts.com, or online at https://hoovyproducts.com and click on \"Recall\" at the bottom of the page or go directly to https://hoovyproducts.com/pages/product-recall.",
+    "LastPublishDate": "2025-09-25T00:00:00",
+    "Products": [
+      {
+        "Name": "Hoovy Cooling Gel Insert Pads for Car Seats and Strollers",
+        "Description": "",
+        "Model": "",
+        "Type": "",
+        "CategoryID": "",
+        "NumberOfUnits": "About 20,000"
+      }
+    ],
+    "Inconjunctions": [],
+    "Images": [
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Picture1-1_9.png",
+        "Caption": "Recalled Hoovy Cooling Gel Insert Pads shown in stroller"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Picture2-2_5.png",
+        "Caption": "Recalled Hoovy Cooling Gel Insert Pads"
+      }
+    ],
+    "Injuries": [
+      {
+        "Name": "The firm has received one consumer report where the child experienced second degree burns to his back, requiring medical attention."
+      }
+    ],
+    "Manufacturers": [],
+    "Retailers": [
+      {
+        "Name": "Target stores nationwide and online at Target.com and Walmart.com from March 2025 through July 2025 for between $20 and $25.",
+        "CompanyID": ""
+      }
+    ],
+    "Importers": [
+      {
+        "Name": "AMTRADING LLC, of Brielle, NJ",
+        "CompanyID": ""
+      }
+    ],
+    "Distributors": [],
+    "SoldAtLabel": null,
+    "ManufacturerCountries": [
+      {
+        "Country": "China"
+      }
+    ],
+    "ProductUPCs": [],
+    "Hazards": [
+      {
+        "Name": "The cooling gel pads can become hot if left in the sun or a hot car, posing a burn hazard to young children.",
+        "HazardType": "",
+        "HazardTypeID": ""
+      }
+    ],
+    "Remedies": [
+      {
+        "Name": "Consumers should immediately stop using the recalled Cooling Gel Insert Pad and contact AMTRADING for instructions on receiving a full refund. Consumers can go to https://hoovyproducts.com/pages/product-recall for instructions on how to register for the recall and to dispose of the recalled pad."
+      }
+    ],
+    "RemedyOptions": [
+      {
+        "Option": "Refund"
+      }
+    ]
+  },
+  {
+    "RecallID": 8775,
+    "RecallNumber": "20096",
+    "RecallDate": "2020-03-19T00:00:00",
+    "Description": "This recall involves the Thule Sleek Car Seat Adapter used to place a Chicco car seat on the Thule Sleek Stroller. The adapter is metal with two black plastic brackets and clips onto the stroller. Only the car seat adapter is included in this recall. Product number 11000301 is printed on a sticker located on the adapter's plastic bracket. The UPC code is 091021188099.",
+    "URL": "https://www.cpsc.gov/Recalls/2020/Thule-Recalls-Thule-Sleek-Car-Seat-Adapters-Due-to-Fall-Hazard",
+    "Title": "Thule Recalls Thule Sleek Car Seat Adapters Due to Fall Hazard",
+    "ConsumerContact": "Thule Group toll-free at 855-652-2688 from 8 a.m. to 5 p.m. ET Monday through Friday, email at carseatadapter@thule.com, or online at www.thule.com/carseatadapter or www.thule.com and click on Support/Safety Notice for more information.",
+    "LastPublishDate": "2020-03-19T00:00:00",
+    "Products": [
+      {
+        "Name": "Thule Sleek Car Seat Adapters",
+        "Description": "",
+        "Model": "",
+        "Type": "",
+        "CategoryID": "",
+        "NumberOfUnits": "About 1,430 (In addition, about 116 in Canada)"
+      }
+    ],
+    "Inconjunctions": [
+      {
+        "URL": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2020/72607r-eng.php"
+      }
+    ],
+    "Images": [
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/1781_1.jpeg",
+        "Caption": "Recalled Thule Sleek Car Seat Adapter for use with a Thule Sleek stroller and a Chicco car seat."
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/1781_2.jpeg",
+        "Caption": "Product number on plastic bracket of the recalled Thule Sleek Car Seat Adapter."
+      }
+    ],
+    "Injuries": [
+      {
+        "Name": "Thule has received three reports of the plastic brackets on the car seat adapters cracking or breaking while in use. No injuries have been reported."
+      }
+    ],
+    "Manufacturers": [],
+    "Retailers": [
+      {
+        "Name": "REI, Buy Buy Baby, and other stores nationwide and online at Thule.com, and Amazon.com from December 2018 through February 2020 for about $60.",
+        "CompanyID": ""
+      }
+    ],
+    "Importers": [
+      {
+        "Name": "Thule Group, of Sweden",
+        "CompanyID": ""
+      }
+    ],
+    "Distributors": [],
+    "SoldAtLabel": null,
+    "ManufacturerCountries": [
+      {
+        "Country": "China"
+      }
+    ],
+    "ProductUPCs": [
+      {
+        "UPC": "091021188099"
+      }
+    ],
+    "Hazards": [
+      {
+        "Name": "The plastic brackets on the car seat adapter can break, posing a fall hazard to infants.",
+        "HazardType": "",
+        "HazardTypeID": ""
+      }
+    ],
+    "Remedies": [
+      {
+        "Name": "Consumers should immediately stop using the recalled Sleek Car Seat Adapter and contact Thule Group to arrange for the return of the product for a full refund or to receive a free replacement product of a Thule Sleek Bassinet which works on the Thule Sleek Stroller."
+      }
+    ],
+    "RemedyOptions": [
+      {
+        "Option": "Refund"
+      },
+      {
+        "Option": "Replace"
+      }
+    ]
+  },
+  {
+    "RecallID": 8041,
+    "RecallNumber": "17146",
+    "RecallDate": "2017-05-04T00:00:00",
+    "Description": "This recall involves Combi Shuttle model strollers and car seats, which when used together are called a travel system. The strollers and car seats have model number 6100027 or 6100100 printed on a label on the base of the car seat and stroller's leg. The car seat and stroller were sold in titanium (silver) and red chili (red) colors. Combi is printed on the front of the stroller and the car seat. Shuttle is printed above the model number.",
+    "URL": "https://www.cpsc.gov/Recalls/2017/Combi-USA-Recalls-Stroller-and-Car-Seat-Combos",
+    "Title": "Combi USA Recalls Stroller and Car Seat Combos Due to Fall Hazard",
+    "ConsumerContact": "Combi USA toll-free at 844-332-6730 from 8:30 a.m. to 4:30 p.m. ET Monday through Friday or online at www.combiusa.com and click on \"Safety Notifications\" at the bottom of the page for more information. Combi USA will contact consumers who registered their products.",
+    "LastPublishDate": "2017-05-04T00:00:00",
+    "Products": [
+      {
+        "Name": "Combi Shuttle Travel System (stroller and car seat combos)",
+        "Description": "",
+        "Model": "",
+        "Type": "",
+        "CategoryID": "",
+        "NumberOfUnits": "About 1,000"
+      }
+    ],
+    "Inconjunctions": [],
+    "Images": [
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller pic.jpg",
+        "Caption": "Titanium Shuttle Travel System"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller pic2.jpg",
+        "Caption": "Red Chili Shuttle Travel System"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller pic 3.jpg",
+        "Caption": "Model number location on stroller leg"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller 4.jpg",
+        "Caption": "Model number under car seat"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Combi Stroller pic 4.jpg",
+        "Caption": "Model number on car seat base"
+      }
+    ],
+    "Injuries": [
+      {
+        "Name": "None reported"
+      }
+    ],
+    "Manufacturers": [],
+    "Retailers": [
+      {
+        "Name": "Online at Amazon.com, BabiesRUs.com, Target.com and other online retailers from June 2015 through September 2016 for between $350 and $400 for the stroller and the car seat when sold together.",
+        "CompanyID": ""
+      }
+    ],
+    "Importers": [
+      {
+        "Name": "Combi USA, Charlotte, N.C.",
+        "CompanyID": ""
+      }
+    ],
+    "Distributors": [],
+    "SoldAtLabel": null,
+    "ManufacturerCountries": [
+      {
+        "Country": "China"
+      }
+    ],
+    "ProductUPCs": [],
+    "Hazards": [
+      {
+        "Name": "The car seat can disengage from the stroller's frame, posing a fall hazard to infants.",
+        "HazardType": "",
+        "HazardTypeID": ""
+      }
+    ],
+    "Remedies": [
+      {
+        "Name": "Consumers should stop using the recalled strollers with the car seats attached and contact Combi for a free repair, which consists of straps to secure the car seat to the stroller. Consumers can continue to use the strollers and car seats separately."
+      }
+    ],
+    "RemedyOptions": [
+      {
+        "Option": "Repair"
+      }
+    ]
+  },
+  {
+    "RecallID": 7888,
+    "RecallNumber": "17705",
+    "RecallDate": "2016-10-25T00:00:00",
+    "Description": "This recall involves Fiddle Diddles LullaBelay adjustable car seat strap system with model number LB1001. The strap system includes two fabric straps, carabiner hardware, a mesh car seat cover and a tote bag. The carabiners are used to hang a car seat from a shopping cart. The model number is printed on the gray straps. \"Fiddle Diddles\" is printed on a fabric label attached to the mesh car seat cover, tote bag and fabric straps.",
+    "URL": "https://www.cpsc.gov/Recalls/2017/Fiddle-Diddles-Recalls-Car-Seat-Strap-Systems-0",
+    "Title": "Fiddle Diddles Recalls Car Seat Strap Systems Due to Choking Hazard (Recall Alert)",
+    "ConsumerContact": "Fiddle Diddles toll-free at 888-741-2957 from 9 a.m. to 5 p.m. CT Monday through Friday, email at info@fiddlediddles.com or online at www.fiddlediddles.com and click on \"Product Recall\" at the bottom of the page for more information.",
+    "LastPublishDate": "2016-10-27T00:00:00",
+    "Products": [
+      {
+        "Name": "LullaBelay car seat strap systems",
+        "Description": "",
+        "Model": "",
+        "Type": "",
+        "CategoryID": "",
+        "NumberOfUnits": "About 250"
+      }
+    ],
+    "Inconjunctions": [],
+    "Images": [
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/fiddlediddles1.png",
+        "Caption": "Fiddle Diddles LullaBelay"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/fiddlediddles2.png",
+        "Caption": "Fiddle Diddles strap system"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/fiddlediddles3.png",
+        "Caption": "Fiddle Diddles carabiners"
+      }
+    ],
+    "Injuries": [
+      {
+        "Name": "None reported"
+      }
+    ],
+    "Manufacturers": [],
+    "Retailers": [
+      {
+        "Name": "Online at Amazon.com from November 2015 through June 2016 and Fiddlediddles.com from May 2015 through June 2015 and at Zoolikins stores in Arizona from November 2015 through June 2016 for about $40.",
+        "CompanyID": ""
+      }
+    ],
+    "Importers": [
+      {
+        "Name": "Fiddle Diddles Inc., of Maple Grove, Minn.",
+        "CompanyID": ""
+      }
+    ],
+    "Distributors": [
+      {
+        "Name": "Fiddle Diddles Inc., of Maple Grove, Minn.",
+        "CompanyID": ""
+      }
+    ],
+    "SoldAtLabel": null,
+    "ManufacturerCountries": [
+      {
+        "Country": "China"
+      }
+    ],
+    "ProductUPCs": [],
+    "Hazards": [
+      {
+        "Name": "The carabiners attached to the strap system contain small internal parts that can become dislodged, posing a choking hazard to young children.",
+        "HazardType": "",
+        "HazardTypeID": ""
+      }
+    ],
+    "Remedies": [
+      {
+        "Name": "Consumers should immediately stop using the LullaBelay strap system and contact Fiddle Diddles for a free repair kit with three new carabiners. The firm is contacting all known purchasers directly."
+      }
+    ],
+    "RemedyOptions": [
+      {
+        "Option": "Repair"
+      }
+    ]
+  },
+  {
+    "RecallID": 6631,
+    "RecallNumber": "16081",
+    "RecallDate": "2016-01-21T00:00:00",
+    "Description": "This recall involves Britax B-Safe 35 and B-Safe 35 Elite infant car seat and travel systems manufactured between October 1, 2014 and July 1, 2015. The product can be used as a rear-facing only car seat and as an infant carrier. The car seat/carriers have a canopy, black shell and base, and were sold in a variety of colors. The Britax logo is printed on both sides of the seat shell and on the carry handle grip. Model numbers and the date of manufacture (DOM) are printed on a label located at the back of the infant car seat/carrier shell. Models included in the recall are: Britax Infant Car Seats and Travel Systems Model Numbers Dates of Manufacture (YYYY/MM/DD) B-Safe 35 E9LU65M, E9LU65P, E9LU63F, E9LU66R, E9LS63F, EXLU65M October 1, 2014 (2014/10/01) through July 1, 2015 (2015/07/01) B-Safe 35 Elite E9LS55T, E9LS56P, E9LS55U, E9LS66C, E9LS65U B-Safe 35 Travel System S914900, S915400, S915200, S921900, S01635200",
+    "URL": "https://www.cpsc.gov/Recalls/2016/CPSC-NHTSA-and-Britax-Announce-Recall-of-Infant-Car-Seats",
+    "Title": "CPSC, NHTSA and Britax Announce Recall of Infant Car Seats Due to Fall Hazard",
+    "ConsumerContact": "Britax at 800-683-2045 from 8:30 a.m. and 5:45 p.m. ET Monday through Thursday, 8:30 a.m. to 4:45 p.m. ET on Friday, or by email at Britax.Recall@britax.com. Consumers can also visit the firm's website at www.us.Britax.com and click on \"Safety Notice\" at the top right of the page.",
+    "LastPublishDate": "2016-01-21T00:00:00",
+    "Products": [
+      {
+        "Name": "Britax B-Safe 35 and B-Safe 35 Elite infant car seats and travel systems",
+        "Description": "",
+        "Model": "",
+        "Type": "Strollers and Car Seats",
+        "CategoryID": "67582",
+        "NumberOfUnits": "About 71,000 units (in addition 3,900 units were sold in Canada and 990 units in Mexico)"
+      }
+    ],
+    "Inconjunctions": [
+      {
+        "URL": "http://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2016/56686r-eng.php"
+      },
+      {
+        "URL": "http://profeco.gob.mx/verificacion/alertas_nvo.asp"
+      }
+    ],
+    "Images": [
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Recall.2016.16081.BSafe35DOMLabelLocation.jpg",
+        "Caption": "Location of model number on Britax B-Safe 35 and B-Safe 35 Elite Car Seat/Carriers"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Recall.2016.16081.BSafe35BlackR300RGB.jpg",
+        "Caption": "Britax B-Safe 35 and B-Safe 35 Elite Car Seat/Carriers"
+      },
+      {
+        "URL": "https://www.cpsc.gov/s3fs-public/Recall.2016.16081.TravelSystemsGroupPhoto.jpg",
+        "Caption": "Britax B-Agile/B-Safe 35 and B-Safe 35 Elite Travel Systems"
+      }
+    ],
+    "Injuries": [
+      {
+        "Name": "Britax has received 74 reports of handles developing fractures, cracks and/or breaking while in use, including one report of an infant who received a bump on the head when the carrier fell to the ground."
+      }
+    ],
+    "Manufacturers": [],
+    "Retailers": [
+      {
+        "Name": "Babies R Us, buybuy BABY, Target and other stores nationwide and online at Amazon.com, Diapers.com and other online retailers from November 2014 to January 2016 for between $210 and $250.",
+        "CompanyID": ""
+      }
+    ],
+    "Importers": [],
+    "Distributors": [
+      {
+        "Name": "Britax Child Safety Inc., of Fort Mill, S.C.",
+        "CompanyID": ""
+      }
+    ],
+    "SoldAtLabel": null,
+    "ManufacturerCountries": [
+      {
+        "Country": "United States"
+      }
+    ],
+    "ProductUPCs": [],
+    "Hazards": [
+      {
+        "Name": "The car seat carry handle can crack and break allowing the seat to fall unexpectedly, posing a risk of injury to the infant.",
+        "HazardType": "",
+        "HazardTypeID": ""
+      }
+    ],
+    "Remedies": [
+      {
+        "Name": "Consumers should immediately stop carrying the car seat by the handle until the repair is installed. All consumers who have previously registered their product with Britax will automatically receive a free repair kit. To register to receive a repair kit or verify registration, visit www.bsafe35recall.com. Consumers can continue to use the car seat when secured in a vehicle or on a stroller."
+      }
+    ],
+    "RemedyOptions": [
+      {
+        "Option": "Repair"
+      }
+    ]
+  }
 ]

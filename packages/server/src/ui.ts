@@ -40,7 +40,12 @@ export async function loadUiBundle(distDir: string): Promise<UiBundle | undefine
 
 /** Test double: a bundle with fixed HTML per view. */
 export function staticUiBundle(views: Record<string, string>): UiBundle {
-  const byView = new Map(Object.entries(views).map(([view, html]) => [view, { uri: `ui://custodian/${view}-test.html`, html }]));
+  const byView = new Map(
+    Object.entries(views).map(([view, html]) => [
+      view,
+      { uri: `ui://custodian/${view}-test.html`, html },
+    ]),
+  );
   return {
     uriFor: (view) => byView.get(view)?.uri,
     has: (uri) => [...byView.values()].some((v) => v.uri === uri),

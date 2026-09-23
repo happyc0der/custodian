@@ -262,7 +262,6 @@ export const SetReminderOutput = z.object({
 });
 export type SetReminderOutput = z.infer<typeof SetReminderOutput>;
 
-
 export const BriefingOutput = z.object({
   since: IsoDateTime.optional(),
   new_recalls: z.array(RecallMatchView),

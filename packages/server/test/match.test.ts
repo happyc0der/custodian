@@ -9,22 +9,38 @@ import { RecallIndex } from '../src/match/index.js';
 import { LIKELY_THRESHOLD, MATCH_THRESHOLD, itemQuery, scoreMatch } from '../src/match/score.js';
 import { defaultAliases, inferBrand, inferCategory } from '../src/enrich/categorize.js';
 
-const fixture = <T>(name: string): T => JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8')) as T;
+const fixture = <T>(name: string): T =>
+  JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8')) as T;
 
 function item(name: string, extra: Partial<Item> = {}): Item {
   const brand = inferBrand(name, extra.brand);
   return {
-    id: `itm_${name.replace(/\W+/g, '_')}`, household_id: 'h', name, brand, category: inferCategory(name, extra.category), quantity: 1,
-    aliases: defaultAliases(name, brand), enrichment_status: 'pending', created_at: '2026-09-11T00:00:00Z', updated_at: '2026-09-11T00:00:00Z', ...extra,
+    id: `itm_${name.replace(/\W+/g, '_')}`,
+    household_id: 'h',
+    name,
+    brand,
+    category: inferCategory(name, extra.category),
+    quantity: 1,
+    aliases: defaultAliases(name, brand),
+    enrichment_status: 'pending',
+    created_at: '2026-09-11T00:00:00Z',
+    updated_at: '2026-09-11T00:00:00Z',
+    ...extra,
   };
 }
 
 const cpsc = fixture<CpscRecall[]>('cpsc-car-seat.json').map(normalizeCpsc);
 const cpscRecent = fixture<CpscRecall[]>('cpsc-recent.json').map(normalizeCpsc);
 const joolz = cpsc.find((r) => r.id === 'cpsc:26568')!;
-const odyssey = fixture<{ results: NhtsaVehicleRecall[] }>('nhtsa-odyssey-2019.json').results.map(normalizeNhtsaVehicle);
-const seats = normalizeChildSeatRecalls(fixture<ChildSeatPage>('nhtsa-childseats-page.json').results);
-const romaine = fixture<{ results: FdaEnforcement[] }>('openfda-food-romaine.json').results.map((r) => normalizeFda(r, 'food'));
+const odyssey = fixture<{ results: NhtsaVehicleRecall[] }>('nhtsa-odyssey-2019.json').results.map(
+  normalizeNhtsaVehicle,
+);
+const seats = normalizeChildSeatRecalls(
+  fixture<ChildSeatPage>('nhtsa-childseats-page.json').results,
+);
+const romaine = fixture<{ results: FdaEnforcement[] }>('openfda-food-romaine.json').results.map(
+  (r) => normalizeFda(r, 'food'),
+);
 
 describe('scoreMatch', () => {
   it('is confident when brand and model line up (Joolz Aer2 adapter)', () => {
@@ -35,7 +51,9 @@ describe('scoreMatch', () => {
 
   it('does not match a different brand of the same product type', () => {
     expect(scoreMatch(item('Graco 4Ever car seat'), joolz).score).toBeLessThan(MATCH_THRESHOLD);
-    expect(scoreMatch(item('Chicco KeyFit 30 infant car seat'), joolz).score).toBeLessThan(MATCH_THRESHOLD);
+    expect(scoreMatch(item('Chicco KeyFit 30 infant car seat'), joolz).score).toBeLessThan(
+      MATCH_THRESHOLD,
+    );
   });
 
   it('flags the stroller the adapter attaches to as a possible (not likely) match', () => {
@@ -45,31 +63,50 @@ describe('scoreMatch', () => {
   });
 
   it('matches vehicles only on exact make/model/year', () => {
-    const van = item('2019 Honda Odyssey', { category: 'vehicle', vehicle: { make: 'Honda', model: 'Odyssey', year: 2019 } });
+    const van = item('2019 Honda Odyssey', {
+      category: 'vehicle',
+      vehicle: { make: 'Honda', model: 'Odyssey', year: 2019 },
+    });
     expect(scoreMatch(van, odyssey[0]!).score).toBe(1);
-    const other = item('2018 Honda Odyssey', { category: 'vehicle', vehicle: { make: 'Honda', model: 'Odyssey', year: 2018 } });
+    const other = item('2018 Honda Odyssey', {
+      category: 'vehicle',
+      vehicle: { make: 'Honda', model: 'Odyssey', year: 2018 },
+    });
     expect(scoreMatch(other, odyssey[0]!).score).toBe(0);
     expect(scoreMatch(item('Honda lawn mower'), odyssey[0]!).score).toBe(0);
   });
 
   it('matches child seats by brand + model name', () => {
     const advocate = seats.find((r) => r.external_id === '15C003000')!;
-    expect(scoreMatch(item('Britax Advocate ClickTight car seat'), advocate).score).toBeGreaterThanOrEqual(LIKELY_THRESHOLD);
-    expect(scoreMatch(item('Britax B-Safe infant seat'), advocate).score).toBeLessThan(LIKELY_THRESHOLD);
+    expect(
+      scoreMatch(item('Britax Advocate ClickTight car seat'), advocate).score,
+    ).toBeGreaterThanOrEqual(LIKELY_THRESHOLD);
+    expect(scoreMatch(item('Britax B-Safe infant seat'), advocate).score).toBeLessThan(
+      LIKELY_THRESHOLD,
+    );
     expect(scoreMatch(item('Graco 4Ever car seat'), advocate).score).toBeLessThan(MATCH_THRESHOLD);
   });
 
   it('matches food on descriptive words rather than brand', () => {
     const s = scoreMatch(item('romaine lettuce', { category: 'food' }), romaine[0]!);
     expect(s.score).toBeGreaterThanOrEqual(MATCH_THRESHOLD);
-    expect(scoreMatch(item('peanut butter', { category: 'food' }), romaine[0]!).score).toBeLessThan(MATCH_THRESHOLD);
+    expect(scoreMatch(item('peanut butter', { category: 'food' }), romaine[0]!).score).toBeLessThan(
+      MATCH_THRESHOLD,
+    );
   });
 
   it('keeps generic nouns from producing false positives across the recent CPSC feed', () => {
-    const noisy = [item('Graco 4Ever car seat'), item('IKEA Malm dresser', { category: 'furniture' }), item('Dyson V8 vacuum'), item('Kidde smoke detector')];
+    const noisy = [
+      item('Graco 4Ever car seat'),
+      item('IKEA Malm dresser', { category: 'furniture' }),
+      item('Dyson V8 vacuum'),
+      item('Kidde smoke detector'),
+    ];
     for (const it of noisy) {
       const likely = cpscRecent.filter((r) => scoreMatch(it, r).score >= LIKELY_THRESHOLD);
-      expect(likely, `${it.name} likely-matched ${likely.map((r) => r.title).join(' | ')}`).toEqual([]);
+      expect(likely, `${it.name} likely-matched ${likely.map((r) => r.title).join(' | ')}`).toEqual(
+        [],
+      );
     }
   });
 });
@@ -87,7 +124,9 @@ describe('scoreMatch recency', () => {
     expect(s.score).toBeLessThan(LIKELY_THRESHOLD);
     expect(s.reason).toMatch(/predates purchase/);
     // Without a purchase date we cannot tell, so nothing is halved.
-    expect(scoreMatch(item('Joolz Aer2 car seat adapter'), oldRecall).score).toBeGreaterThanOrEqual(LIKELY_THRESHOLD);
+    expect(scoreMatch(item('Joolz Aer2 car seat adapter'), oldRecall).score).toBeGreaterThanOrEqual(
+      LIKELY_THRESHOLD,
+    );
   });
 });
 

@@ -19,7 +19,10 @@ export const SERVER_INSTRUCTIONS =
  * request (stateless serving), so registration must stay cheap.
  */
 export function createMcpServer(deps: ServerDeps): McpServer {
-  const server = new McpServer({ name: 'custodian', version: pkg.version, title: 'Custodian' }, { instructions: SERVER_INSTRUCTIONS });
+  const server = new McpServer(
+    { name: 'custodian', version: pkg.version, title: 'Custodian' },
+    { instructions: SERVER_INSTRUCTIONS },
+  );
   registerUiResources(server, deps);
   registerInventoryTools(server, deps);
   registerRecallTools(server, deps);
@@ -29,7 +32,11 @@ export function createMcpServer(deps: ServerDeps): McpServer {
 }
 
 /** Image hosts the recall feeds link to; Alexa blocks anything not declared here. */
-export const UI_RESOURCE_DOMAINS = ['https://www.cpsc.gov', 'https://static.nhtsa.gov', 'https://www.nhtsa.gov'];
+export const UI_RESOURCE_DOMAINS = [
+  'https://www.cpsc.gov',
+  'https://static.nhtsa.gov',
+  'https://www.nhtsa.gov',
+];
 
 function registerUiResources(server: McpServer, deps: ServerDeps): void {
   for (const { view, uri } of deps.ui?.entries() ?? []) {
@@ -37,9 +44,20 @@ function registerUiResources(server: McpServer, deps: ServerDeps): void {
       server,
       `Custodian ${view} view`,
       uri,
-      { description: 'Custodian interactive view for Echo Show and other screens', mimeType: RESOURCE_MIME_TYPE, _meta: { ui: { csp: { resourceDomains: UI_RESOURCE_DOMAINS }, prefersBorder: false } } },
+      {
+        description: 'Custodian interactive view for Echo Show and other screens',
+        mimeType: RESOURCE_MIME_TYPE,
+        _meta: { ui: { csp: { resourceDomains: UI_RESOURCE_DOMAINS }, prefersBorder: false } },
+      },
       async () => ({
-        contents: [{ uri, mimeType: RESOURCE_MIME_TYPE, text: await deps.ui!.read(uri), _meta: { ui: { csp: { resourceDomains: UI_RESOURCE_DOMAINS }, prefersBorder: false } } }],
+        contents: [
+          {
+            uri,
+            mimeType: RESOURCE_MIME_TYPE,
+            text: await deps.ui!.read(uri),
+            _meta: { ui: { csp: { resourceDomains: UI_RESOURCE_DOMAINS }, prefersBorder: false } },
+          },
+        ],
       }),
     );
   }

@@ -36,7 +36,11 @@ function requiredScope(method: string): string | undefined {
 function methodsIn(body: unknown): string[] {
   const msgs = Array.isArray(body) ? body : [body];
   return msgs
-    .map((m) => (m && typeof m === 'object' && typeof (m as { method?: unknown }).method === 'string' ? (m as { method: string }).method : undefined))
+    .map((m) =>
+      m && typeof m === 'object' && typeof (m as { method?: unknown }).method === 'string'
+        ? (m as { method: string }).method
+        : undefined,
+    )
     .filter((m): m is string => Boolean(m));
 }
 
@@ -61,7 +65,12 @@ export function bearerAuth(verifier: TokenVerifier): RequestHandler {
     try {
       auth = await verifier.verify(token);
     } catch (err) {
-      return unauthorized(res, 401, 'invalid_token', err instanceof Error ? err.message : 'Token rejected');
+      return unauthorized(
+        res,
+        401,
+        'invalid_token',
+        err instanceof Error ? err.message : 'Token rejected',
+      );
     }
     if (auth.expiresAt && auth.expiresAt * 1000 < Date.now()) {
       return unauthorized(res, 401, 'invalid_token', 'Token expired');

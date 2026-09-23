@@ -64,7 +64,8 @@ export class Sweeper {
       await store.setMeta(META_CPSC_CURSOR, '');
       await store.setMeta(META_CHILDSEAT_OFFSET, '0');
       await store.setMeta(META_NORMALIZER, NORMALIZER_VERSION);
-      if (version) this.log(`normalizer changed (${version} → ${NORMALIZER_VERSION}); recall corpus reset`);
+      if (version)
+        this.log(`normalizer changed (${version} → ${NORMALIZER_VERSION}); recall corpus reset`);
     }
     this.index.add(await store.listRecalls());
     this.log(`index warmed with ${this.index.size} recalls`);
@@ -93,7 +94,9 @@ export class Sweeper {
     }
     await this.opts.store.setMeta(META_LAST_COMPLETED, started.toISOString());
     await this.opts.store.flush();
-    this.log(`full sweep done in ${this.now().getTime() - started.getTime()} ms; index=${this.index.size}`);
+    this.log(
+      `full sweep done in ${this.now().getTime() - started.getTime()} ms; index=${this.index.size}`,
+    );
   }
 
   /** Targeted sweep after add_item: enrich, search sources for this item, then match it. */
@@ -109,7 +112,13 @@ export class Sweeper {
             brand: item.brand ?? n.brand,
             model: item.model ?? n.model,
             category: item.category === 'other' && n.category ? n.category : item.category,
-            aliases: [...new Set([...item.aliases, ...n.aliases, ...(n.canonical_name ? [n.canonical_name] : [])])],
+            aliases: [
+              ...new Set([
+                ...item.aliases,
+                ...n.aliases,
+                ...(n.canonical_name ? [n.canonical_name] : []),
+              ]),
+            ],
           };
           await this.opts.store.putItem(current);
         }
@@ -125,14 +134,20 @@ export class Sweeper {
     }
     const matches = await this.matchItem(current);
     const fresh = await this.opts.store.getItem(item.household_id, item.id);
-    if (fresh) await this.opts.store.putItem({ ...fresh, enrichment_status: status, updated_at: this.now().toISOString() });
+    if (fresh)
+      await this.opts.store.putItem({
+        ...fresh,
+        enrichment_status: status,
+        updated_at: this.now().toISOString(),
+      });
     return matches;
   }
 
   private async pullCpsc(): Promise<void> {
     const store = this.opts.store;
     const today = todayIso(this.now());
-    const since = (await store.getMeta(META_CPSC_CURSOR)) || addDays(today, -(this.opts.backfillDays ?? 365));
+    const since =
+      (await store.getMeta(META_CPSC_CURSOR)) || addDays(today, -(this.opts.backfillDays ?? 365));
     try {
       const records = await this.opts.sources.cpsc.fetchSince(since);
       await this.ingest(records);
@@ -150,7 +165,11 @@ export class Sweeper {
     let offset = Number((await store.getMeta(META_CHILDSEAT_OFFSET)) ?? 0);
     const doneAt = await store.getMeta(META_CHILDSEAT_DONE_AT);
     // Re-crawl weekly once complete.
-    if (Number.isNaN(offset) || (offset < 0 && doneAt && Date.parse(doneAt) > this.now().getTime() - 7 * 86_400_000)) return;
+    if (
+      Number.isNaN(offset) ||
+      (offset < 0 && doneAt && Date.parse(doneAt) > this.now().getTime() - 7 * 86_400_000)
+    )
+      return;
     if (offset < 0) offset = 0;
     try {
       for (let i = 0; i < pages; i++) {
@@ -171,10 +190,17 @@ export class Sweeper {
     }
   }
 
-  private async refreshItemSources(item: Item, opts: { includeCpscSearch?: boolean } = {}): Promise<void> {
+  private async refreshItemSources(
+    item: Item,
+    opts: { includeCpscSearch?: boolean } = {},
+  ): Promise<void> {
     const found: RecallRecord[] = [];
     if (item.vehicle) found.push(...(await this.opts.sources.nhtsaVehicle.fetchForItem(item)));
-    if (item.category === 'food' || item.category === 'medication' || item.category === 'medical_device') {
+    if (
+      item.category === 'food' ||
+      item.category === 'medication' ||
+      item.category === 'medical_device'
+    ) {
       found.push(...(await this.opts.sources.openFda.fetchForItem(item)));
     }
     if (opts.includeCpscSearch && !item.vehicle) {
@@ -194,7 +220,11 @@ export class Sweeper {
   async matchItem(item: Item): Promise<Match[]> {
     const store = this.opts.store;
     const nowIso = this.now().toISOString();
-    const existing = new Map((await store.listMatches(item.household_id)).filter((m) => m.item_id === item.id).map((m) => [m.recall_id, m]));
+    const existing = new Map(
+      (await store.listMatches(item.household_id))
+        .filter((m) => m.item_id === item.id)
+        .map((m) => [m.recall_id, m]),
+    );
     const out: Match[] = [];
     const kept = new Set<string>();
     for (const recall of this.index.candidates(itemQuery(item))) {
@@ -220,13 +250,24 @@ export class Sweeper {
       kept.add(recall.id);
       const match: Match = prior
         ? { ...prior, confidence: score, reason, updated_at: nowIso }
-        : { id: `${item.id}:${recall.id}`, household_id: item.household_id, item_id: item.id, recall_id: recall.id, confidence: score, reason, status: 'new', created_at: nowIso, updated_at: nowIso };
+        : {
+            id: `${item.id}:${recall.id}`,
+            household_id: item.household_id,
+            item_id: item.id,
+            recall_id: recall.id,
+            confidence: score,
+            reason,
+            status: 'new',
+            created_at: nowIso,
+            updated_at: nowIso,
+          };
       await store.putMatch(match);
       out.push(match);
     }
     // Scoring got stricter or the item's details changed: retire open matches that no longer qualify.
     for (const prior of existing.values()) {
-      if (!kept.has(prior.recall_id) && (prior.status === 'new' || prior.status === 'seen')) await store.deleteMatch(item.household_id, prior.id);
+      if (!kept.has(prior.recall_id) && (prior.status === 'new' || prior.status === 'seen'))
+        await store.deleteMatch(item.household_id, prior.id);
     }
     return out;
   }

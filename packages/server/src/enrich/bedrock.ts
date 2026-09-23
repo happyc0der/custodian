@@ -50,7 +50,9 @@ export class BedrockEnricher implements Enricher {
   private readonly model: string;
 
   constructor(config: Pick<Config, 'bedrockRegion' | 'bedrockModel'>, client?: ParseClient) {
-    this.client = client ?? (new AnthropicBedrockMantle({ awsRegion: config.bedrockRegion }) as unknown as ParseClient);
+    this.client =
+      client ??
+      (new AnthropicBedrockMantle({ awsRegion: config.bedrockRegion }) as unknown as ParseClient);
     this.model = config.bedrockModel;
   }
 
@@ -73,14 +75,28 @@ export class BedrockEnricher implements Enricher {
     const parsed = Normalization.safeParse(res.parsed_output);
     if (!parsed.success) return undefined;
     const p = parsed.data;
-    return { brand: p.brand ?? undefined, model: p.model ?? undefined, category: p.category, aliases: p.aliases, canonical_name: p.canonical_name };
+    return {
+      brand: p.brand ?? undefined,
+      model: p.model ?? undefined,
+      category: p.category,
+      aliases: p.aliases,
+      canonical_name: p.canonical_name,
+    };
   }
 
   async judgeMatch(item: Item, recall: RecallRecord): Promise<MatchJudgement | undefined> {
-    const owned = [item.name, item.brand && `brand ${item.brand}`, item.model && `model ${item.model}`, `category ${item.category}`, item.purchased_on && `bought ${item.purchased_on}`]
+    const owned = [
+      item.name,
+      item.brand && `brand ${item.brand}`,
+      item.model && `model ${item.model}`,
+      `category ${item.category}`,
+      item.purchased_on && `bought ${item.purchased_on}`,
+    ]
       .filter(Boolean)
       .join(', ');
-    const products = recall.products.map((p) => [p.brand, p.name, p.model].filter(Boolean).join(' ')).join('; ');
+    const products = recall.products
+      .map((p) => [p.brand, p.name, p.model].filter(Boolean).join(' '))
+      .join('; ');
     const content = `Household item: ${owned}\n\nRecall (${recall.source.toUpperCase()}, ${recall.published_on}): ${recall.title}\nProducts: ${products || 'n/a'}\nDetails: ${recall.summary}`;
     const res = await this.client.messages.parse({
       model: this.model,

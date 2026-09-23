@@ -13,12 +13,23 @@ async function main(): Promise<void> {
   const config = loadConfig();
   const store = await openStore(config);
   const enricher = createEnricher(config);
-  console.log(enricher ? `[enrich] Bedrock enabled (${config.bedrockModel} @ ${config.bedrockRegion})` : '[enrich] Bedrock disabled — deterministic matching only');
+  console.log(
+    enricher
+      ? `[enrich] Bedrock enabled (${config.bedrockModel} @ ${config.bedrockRegion})`
+      : '[enrich] Bedrock disabled — deterministic matching only',
+  );
   const sweeper = new Sweeper({ store, sources: defaultSources(), enricher });
   await sweeper.warm();
 
   const ui = await loadUiBundle(config.uiDist);
-  console.log(ui ? `[ui] views: ${ui.entries().map((e) => e.view).join(', ')}` : '[ui] no bundle found — tools run voice-only');
+  console.log(
+    ui
+      ? `[ui] views: ${ui
+          .entries()
+          .map((e) => e.view)
+          .join(', ')}`
+      : '[ui] no bundle found — tools run voice-only',
+  );
   const deps: ServerDeps = {
     config,
     store,
@@ -38,11 +49,16 @@ async function main(): Promise<void> {
   const app = createApp({ deps, auth });
 
   const server = app.listen(config.port, () => {
-    console.log(`custodian listening on http://localhost:${config.port}/mcp  (auth=${config.authMode}, store=${config.store})`);
+    console.log(
+      `custodian listening on http://localhost:${config.port}/mcp  (auth=${config.authMode}, store=${config.store})`,
+    );
   });
 
   if (cron.validate(config.sweepCron)) {
-    cron.schedule(config.sweepCron, () => void sweeper.runFull().catch((err) => console.error('[sweep]', err)));
+    cron.schedule(
+      config.sweepCron,
+      () => void sweeper.runFull().catch((err) => console.error('[sweep]', err)),
+    );
     console.log(`[sweep] scheduled: ${config.sweepCron}`);
   } else {
     console.warn(`[sweep] invalid SWEEP_CRON "${config.sweepCron}" — scheduler disabled`);

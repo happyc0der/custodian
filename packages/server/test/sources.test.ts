@@ -2,17 +2,43 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { RecallRecord } from '@custodian/shared';
 import { CpscSource, normalizeCpsc, type CpscRecall } from '../src/sources/cpsc.js';
-import { NhtsaVehicleSource, normalizeNhtsaVehicle, type NhtsaVehicleRecall } from '../src/sources/nhtsaVehicle.js';
-import { NhtsaChildSeatSource, normalizeChildSeatRecalls, type ChildSeatPage } from '../src/sources/nhtsaChildSeat.js';
-import { OpenFdaSource, fdaQueryTerms, normalizeFda, type FdaEnforcement } from '../src/sources/openfda.js';
+import {
+  NhtsaVehicleSource,
+  normalizeNhtsaVehicle,
+  type NhtsaVehicleRecall,
+} from '../src/sources/nhtsaVehicle.js';
+import {
+  NhtsaChildSeatSource,
+  normalizeChildSeatRecalls,
+  type ChildSeatPage,
+} from '../src/sources/nhtsaChildSeat.js';
+import {
+  OpenFdaSource,
+  fdaQueryTerms,
+  normalizeFda,
+  type FdaEnforcement,
+} from '../src/sources/openfda.js';
 import type { Item } from '@custodian/shared';
 
-const fixture = <T>(name: string): T => JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8')) as T;
-const fakeFetch = (body: unknown, status = 200): typeof fetch => (async () => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } })) as unknown as typeof fetch;
+const fixture = <T>(name: string): T =>
+  JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8')) as T;
+const fakeFetch = (body: unknown, status = 200): typeof fetch =>
+  (async () =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { 'content-type': 'application/json' },
+    })) as unknown as typeof fetch;
 
 const baseItem: Item = {
-  id: 'itm_x', household_id: 'h', name: 'x', category: 'other', quantity: 1, aliases: [], enrichment_status: 'pending',
-  created_at: '2026-09-11T00:00:00Z', updated_at: '2026-09-11T00:00:00Z',
+  id: 'itm_x',
+  household_id: 'h',
+  name: 'x',
+  category: 'other',
+  quantity: 1,
+  aliases: [],
+  enrichment_status: 'pending',
+  created_at: '2026-09-11T00:00:00Z',
+  updated_at: '2026-09-11T00:00:00Z',
 };
 
 describe('CPSC', () => {
@@ -22,7 +48,13 @@ describe('CPSC', () => {
     const joolz = rows.find((r) => r.RecallNumber === '26568')!;
     const rec = normalizeCpsc(joolz);
     expect(RecallRecord.safeParse(rec).success).toBe(true);
-    expect(rec).toMatchObject({ id: 'cpsc:26568', source: 'cpsc', published_on: '2026-06-18', severity: 'high', remedy_options: ['Refund'] });
+    expect(rec).toMatchObject({
+      id: 'cpsc:26568',
+      source: 'cpsc',
+      published_on: '2026-06-18',
+      severity: 'high',
+      remedy_options: ['Refund'],
+    });
     expect(rec.image_url).toMatch(/^https:\/\/www\.cpsc\.gov\//);
     expect(rec.products[0]?.brand).toBe('Joolz USA');
     expect(rec.categories).toContain('car_seat');
@@ -51,7 +83,12 @@ describe('CPSC', () => {
 
   it('fetchSince hits the JSON endpoint with RecallDateStart', async () => {
     let seen = '';
-    const src = new CpscSource({ fetch: (async (url: string) => { seen = url; return new Response(JSON.stringify(rows.slice(0, 2))); }) as unknown as typeof fetch });
+    const src = new CpscSource({
+      fetch: (async (url: string) => {
+        seen = url;
+        return new Response(JSON.stringify(rows.slice(0, 2)));
+      }) as unknown as typeof fetch,
+    });
     const out = await src.fetchSince('2026-08-01');
     expect(seen).toContain('format=json');
     expect(seen).toContain('RecallDateStart=2026-08-01');
@@ -80,9 +117,18 @@ describe('NHTSA vehicle', () => {
 
   it('fetchForItem only runs for vehicles and passes make/model/year', async () => {
     let seen = '';
-    const src = new NhtsaVehicleSource({ fetch: (async (url: string) => { seen = url; return new Response(JSON.stringify(page)); }) as unknown as typeof fetch });
+    const src = new NhtsaVehicleSource({
+      fetch: (async (url: string) => {
+        seen = url;
+        return new Response(JSON.stringify(page));
+      }) as unknown as typeof fetch,
+    });
     expect(await src.fetchForItem(baseItem)).toEqual([]);
-    const out = await src.fetchForItem({ ...baseItem, category: 'vehicle', vehicle: { make: 'Honda', model: 'Odyssey', year: 2019 } });
+    const out = await src.fetchForItem({
+      ...baseItem,
+      category: 'vehicle',
+      vehicle: { make: 'Honda', model: 'Odyssey', year: 2019 },
+    });
     expect(seen).toContain('make=Honda');
     expect(seen).toContain('modelYear=2019');
     expect(out).toHaveLength(page.results.length);
@@ -134,12 +180,25 @@ describe('openFDA', () => {
   });
 
   it('builds a compact search from brand + head nouns and treats 404 as no results', async () => {
-    const item: Item = { ...baseItem, name: 'Braun ThermoScan thermometer', brand: 'Braun', category: 'medical_device' };
+    const item: Item = {
+      ...baseItem,
+      name: 'Braun ThermoScan thermometer',
+      brand: 'Braun',
+      category: 'medical_device',
+    };
     expect(fdaQueryTerms(item)).toEqual(['braun', 'thermoscan', 'thermometer']);
     let seen = '';
-    const src = new OpenFdaSource({ fetch: (async (url: string) => { seen = url; return new Response(JSON.stringify(device)); }) as unknown as typeof fetch, now: () => new Date('2026-09-11T00:00:00Z') });
+    const src = new OpenFdaSource({
+      fetch: (async (url: string) => {
+        seen = url;
+        return new Response(JSON.stringify(device));
+      }) as unknown as typeof fetch,
+      now: () => new Date('2026-09-11T00:00:00Z'),
+    });
     const out = await src.fetchForItem(item);
-    expect(seen).toContain('/device/enforcement.json?search=(product_description:"braun"+AND+product_description:"thermoscan"');
+    expect(seen).toContain(
+      '/device/enforcement.json?search=(product_description:"braun"+AND+product_description:"thermoscan"',
+    );
     expect(seen).toContain('recall_initiation_date:[20240911+TO+20260911]');
     expect(out).toHaveLength(device.results.length);
     const empty = new OpenFdaSource({ fetch: fakeFetch({ error: { code: 'NOT_FOUND' } }, 404) });

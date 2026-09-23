@@ -45,21 +45,35 @@ const CATEGORY_LABEL: Record<Item['category'], [string, string]> = {
 
 export async function ensureHousehold(deps: ServerDeps, householdId: string): Promise<void> {
   if (await deps.store.getHousehold(householdId)) return;
-  await deps.store.putHousehold({ id: householdId, name: 'My home', created_at: deps.now().toISOString() });
+  await deps.store.putHousehold({
+    id: householdId,
+    name: 'My home',
+    created_at: deps.now().toISOString(),
+  });
 }
 
 /** Case/punctuation-insensitive lookup of an item by spoken name; returns all plausible candidates. */
-export async function findItemsByName(deps: ServerDeps, householdId: string, name: string): Promise<Item[]> {
+export async function findItemsByName(
+  deps: ServerDeps,
+  householdId: string,
+  name: string,
+): Promise<Item[]> {
   const wanted = normalizeName(name);
   if (!wanted) return [];
   const items = await deps.store.listItems(householdId);
-  const exact = items.filter((i) => normalizeName(i.name) === wanted || i.aliases.some((a) => normalizeName(a) === wanted));
+  const exact = items.filter(
+    (i) => normalizeName(i.name) === wanted || i.aliases.some((a) => normalizeName(a) === wanted),
+  );
   if (exact.length) return exact;
   const wantedTokens = new Set(wanted.split(' '));
   // "car seat adapter" must not pull in every car seat: when the request has a distinctive word, require it.
   const distinctive = [...wantedTokens].filter((t) => !GENERIC.has(t));
   return items.filter((i) => {
-    const tokens = new Set(normalizeName(`${i.name} ${i.brand ?? ''} ${i.model ?? ''} ${i.aliases.join(' ')}`).split(' '));
+    const tokens = new Set(
+      normalizeName(`${i.name} ${i.brand ?? ''} ${i.model ?? ''} ${i.aliases.join(' ')}`).split(
+        ' ',
+      ),
+    );
     const overlap = [...tokens].filter((t) => wantedTokens.has(t)).length;
     if (distinctive.length && !distinctive.some((t) => tokens.has(t))) return false;
     return overlap > 0 && overlap >= Math.min(wantedTokens.size, tokens.size) * 0.6;
@@ -75,18 +89,34 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
       'Call when the customer says they bought, own, received, or want to track a product (car seat, stroller, crib, appliance, vehicle, medication, food, toy…). ' +
       'Pass the product name as spoken; brand, model, category, purchase date and vehicle details are optional but improve recall matching. Returns the stored item.',
     inputSchema: z.object({
-      name: z.string().min(1).describe('The product as the customer described it, e.g. "Graco 4Ever car seat"'),
+      name: z
+        .string()
+        .min(1)
+        .describe('The product as the customer described it, e.g. "Graco 4Ever car seat"'),
       brand: z.string().optional().describe('Manufacturer or brand if known'),
       model: z.string().optional().describe('Model name or number if known'),
-      category: ItemCategory.optional().describe('Product category; inferred from the name when omitted'),
+      category: ItemCategory.optional().describe(
+        'Product category; inferred from the name when omitted',
+      ),
       quantity: z.number().int().min(1).optional().describe('How many; defaults to 1'),
-      purchased_on: z.string().optional().describe('Purchase date (YYYY-MM-DD or natural language)'),
-      manufactured_on: z.string().optional().describe('Manufacture date printed on the label, if known'),
+      purchased_on: z
+        .string()
+        .optional()
+        .describe('Purchase date (YYYY-MM-DD or natural language)'),
+      manufactured_on: z
+        .string()
+        .optional()
+        .describe('Manufacture date printed on the label, if known'),
       vehicle: Vehicle.optional().describe('For vehicles: make, model and model year'),
       notes: z.string().optional(),
     }),
     outputSchema: AddItemOutput,
-    annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: false,
+    },
     icons: ICONS.add,
     async handler(input) {
       const householdId = requireHousehold();
@@ -111,7 +141,10 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
       }
 
       const brand = inferBrand(input.name, input.brand);
-      const category = inferCategory(input.name, input.category ?? (input.vehicle ? 'vehicle' : undefined));
+      const category = inferCategory(
+        input.name,
+        input.category ?? (input.vehicle ? 'vehicle' : undefined),
+      );
       const item: Item = {
         id: newId('itm'),
         household_id: householdId,
@@ -176,30 +209,44 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
       const total = items.reduce((n, i) => n + i.quantity, 0);
 
       if (items.length === 0) {
-        const scope = input.category ? ` in ${CATEGORY_LABEL[input.category][1]}` : input.query ? ` matching ${input.query}` : '';
-        return ok(`You don't have anything on file${scope} yet. Tell me what you own and I'll start watching it.`, {
-          items: [],
-          total: 0,
-          open_recalls: openRecalls,
-          open_recalls_by_item: openByItem,
-        });
+        const scope = input.category
+          ? ` in ${CATEGORY_LABEL[input.category][1]}`
+          : input.query
+            ? ` matching ${input.query}`
+            : '';
+        return ok(
+          `You don't have anything on file${scope} yet. Tell me what you own and I'll start watching it.`,
+          {
+            items: [],
+            total: 0,
+            open_recalls: openRecalls,
+            open_recalls_by_item: openByItem,
+          },
+        );
       }
 
       const byCategory = new Map<Item['category'], number>();
-      for (const i of items) byCategory.set(i.category, (byCategory.get(i.category) ?? 0) + i.quantity);
+      for (const i of items)
+        byCategory.set(i.category, (byCategory.get(i.category) ?? 0) + i.quantity);
       const parts = [...byCategory.entries()]
         .sort((a, b) => b[1] - a[1])
         .slice(0, 4)
         .map(([c, n]) => pluralize(n, CATEGORY_LABEL[c][0], CATEGORY_LABEL[c][1]));
       const more = byCategory.size > 4 ? ', plus a few other things' : '';
       const itemsWithRecalls = new Set(openMatches.map((m) => m.item_id)).size;
-      const recallNote = itemsWithRecalls > 0 ? ` ${itemsWithRecalls === 1 ? 'One item has' : `${itemsWithRecalls} items have`} open recalls.` : '';
-      return ok(`You have ${pluralize(total, 'item')} on file: ${joinNatural(parts)}${more}.${recallNote}`, {
-        items: items.map(toItemSummary),
-        total,
-        open_recalls: openRecalls,
-        open_recalls_by_item: openByItem,
-      });
+      const recallNote =
+        itemsWithRecalls > 0
+          ? ` ${itemsWithRecalls === 1 ? 'One item has' : `${itemsWithRecalls} items have`} open recalls.`
+          : '';
+      return ok(
+        `You have ${pluralize(total, 'item')} on file: ${joinNatural(parts)}${more}.${recallNote}`,
+        {
+          items: items.map(toItemSummary),
+          total,
+          open_recalls: openRecalls,
+          open_recalls_by_item: openByItem,
+        },
+      );
     },
   });
 
@@ -215,7 +262,12 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
       name: z.string().optional().describe('Item name as spoken by the customer'),
     }),
     outputSchema: RemoveItemOutput,
-    annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: true,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
     icons: ICONS.remove,
     async handler(input) {
       const householdId = requireHousehold();
@@ -232,12 +284,16 @@ export function registerInventoryTools(server: McpServer, deps: ServerDeps): voi
         target = candidates[0];
       }
       if (!target) {
-        return fail(`I couldn't find ${input.name ?? 'that item'} in your inventory, so there's nothing to remove.`);
+        return fail(
+          `I couldn't find ${input.name ?? 'that item'} in your inventory, so there's nothing to remove.`,
+        );
       }
       await deps.store.deleteItem(householdId, target.id);
       await deps.store.deleteMatchesForItem(householdId, target.id);
       await deps.store.deleteRulesForItem(householdId, target.id);
-      void deps.hooks.onItemRemoved?.(target).catch((err) => console.error('[hooks.onItemRemoved]', err));
+      void deps.hooks
+        .onItemRemoved?.(target)
+        .catch((err) => console.error('[hooks.onItemRemoved]', err));
       return ok(`Done, I've removed ${spokenItem(target)} and stopped watching it.`, {
         removed: toItemSummary(target),
         candidates: [],

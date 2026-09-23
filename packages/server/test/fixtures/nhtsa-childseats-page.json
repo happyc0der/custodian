@@ -1,503 +1,503 @@
 {
- "meta": {
-  "pagination": {
-   "count": 6,
-   "max": 100,
-   "offset": 1200,
-   "total": 7653,
-   "nextUrl": "https://api.nhtsa.gov/childSeats?offset=1300&max=100&sort=make&order=asc&issueType=r&dataSet=all"
-  }
- },
- "results": [
-  {
-   "id": 111513,
-   "active": true,
-   "artemisId": 1991791,
-   "make": "BRITAX",
-   "manufacturerDate": null,
-   "productModel": "ADVOCATE CLICKTIGHT",
-   "modelNumber": null,
-   "seatType": null,
-   "heightRange": "Up to 0\"",
-   "weightRange": "Up to 0lbs",
-   "minHeight": 0,
-   "maxHeight": 0,
-   "minWeight": 0,
-   "maxWeight": 0,
-   "picture": null,
-   "complaintsCount": 20,
-   "recallsCount": 1,
-   "investigationsCount": 0,
-   "manufacturerCommunicationsCount": 0,
-   "safetyIssues": {
-    "recalls": [
-     {
-      "id": 17802,
-      "artemidId": 57932,
-      "manufacturer": "Britax Child Safety, Inc.",
-      "mfrCampaignNumber": null,
-      "nhtsaCampaignNumber": "15C003000",
-      "reportReceivedDate": "2015-08-11T00:00:00Z",
-      "subject": "Harness Adjuster/Release Button may Stick",
-      "summary": "Britax Child Safety, Inc. (Britax) is recalling certain Advocate ClickTight child seats, model numbers E9LT95Q, E9LT95Z, E9LT95N, and E1A025Q, Boulevard ClickTight child seats, model numbers E9LT86F, E1A135Q, E9LT86G, E9LT85Q, E9LT86A, E9LT86H, E9LT85S, E1A015Q, E1A016A, and E1A016H, and Marathon ClickTight child seats, model numbers E1A116L, E9LT76P, E9LT71Q, E9LT76N, E9LT76B, E9LT75R, E9LT76L, E1A006B, E1A005R and EXA116L, manufactured August 1, 2014, to July 29, 2015.  The affected child seats have a red harness adjuster button that may stick in the down (harness release) position allowing the shoulder harness to loosen.",
-      "consequence": "If the harness loosens, the child may not be properly restrained, increasing their risk of injury in the event of a crash.",
-      "correctiveAction": "Britax will notify registered owners and send them a remedy kit that includes a lubricant to apply to the harness adjuster button, free of charge.  The recall began on August 14, 2015.  Owners may contact Britax customer service at 1-888-427-4829, option 3 or by visiting www.BritaxClickTightConvertibleRecall.com.",
-      "potentialNumberOfUnitsAffected": 213753,
-      "notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
-      "components": [
-       {
-        "id": 358,
-        "name": "CHILD SEAT",
-        "description": "500000 CHILD SEAT"
-       }
-      ],
-      "investigations": [],
-      "associatedDocumentsCount": 10,
-      "associatedProductsCount": 3,
-      "associatedProducts": [
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "ADVOCATE CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "BOULEVARD CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "MARATHON CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       }
-      ]
-     }
-    ]
-   },
-   "modes": []
+  "meta": {
+    "pagination": {
+      "count": 6,
+      "max": 100,
+      "offset": 1200,
+      "total": 7653,
+      "nextUrl": "https://api.nhtsa.gov/childSeats?offset=1300&max=100&sort=make&order=asc&issueType=r&dataSet=all"
+    }
   },
-  {
-   "id": 111514,
-   "active": true,
-   "artemisId": 1991792,
-   "make": "BRITAX",
-   "manufacturerDate": null,
-   "productModel": "BOULEVARD CLICKTIGHT",
-   "modelNumber": null,
-   "seatType": null,
-   "heightRange": "Up to 0\"",
-   "weightRange": "Up to 0lbs",
-   "minHeight": 0,
-   "maxHeight": 0,
-   "minWeight": 0,
-   "maxWeight": 0,
-   "picture": null,
-   "complaintsCount": 19,
-   "recallsCount": 1,
-   "investigationsCount": 0,
-   "manufacturerCommunicationsCount": 0,
-   "safetyIssues": {
-    "recalls": [
-     {
-      "id": 17802,
-      "artemidId": 57932,
-      "manufacturer": "Britax Child Safety, Inc.",
-      "mfrCampaignNumber": null,
-      "nhtsaCampaignNumber": "15C003000",
-      "reportReceivedDate": "2015-08-11T00:00:00Z",
-      "subject": "Harness Adjuster/Release Button may Stick",
-      "summary": "Britax Child Safety, Inc. (Britax) is recalling certain Advocate ClickTight child seats, model numbers E9LT95Q, E9LT95Z, E9LT95N, and E1A025Q, Boulevard ClickTight child seats, model numbers E9LT86F, E1A135Q, E9LT86G, E9LT85Q, E9LT86A, E9LT86H, E9LT85S, E1A015Q, E1A016A, and E1A016H, and Marathon ClickTight child seats, model numbers E1A116L, E9LT76P, E9LT71Q, E9LT76N, E9LT76B, E9LT75R, E9LT76L, E1A006B, E1A005R and EXA116L, manufactured August 1, 2014, to July 29, 2015.  The affected child seats have a red harness adjuster button that may stick in the down (harness release) position allowing the shoulder harness to loosen.",
-      "consequence": "If the harness loosens, the child may not be properly restrained, increasing their risk of injury in the event of a crash.",
-      "correctiveAction": "Britax will notify registered owners and send them a remedy kit that includes a lubricant to apply to the harness adjuster button, free of charge.  The recall began on August 14, 2015.  Owners may contact Britax customer service at 1-888-427-4829, option 3 or by visiting www.BritaxClickTightConvertibleRecall.com.",
-      "potentialNumberOfUnitsAffected": 213753,
-      "notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
-      "components": [
-       {
-        "id": 358,
-        "name": "CHILD SEAT",
-        "description": "500000 CHILD SEAT"
-       }
-      ],
-      "investigations": [],
-      "associatedDocumentsCount": 10,
-      "associatedProductsCount": 3,
-      "associatedProducts": [
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "ADVOCATE CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "BOULEVARD CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "MARATHON CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       }
-      ]
-     }
-    ]
-   },
-   "modes": []
-  },
-  {
-   "id": 111515,
-   "active": true,
-   "artemisId": 1991793,
-   "make": "BRITAX",
-   "manufacturerDate": null,
-   "productModel": "MARATHON CLICKTIGHT",
-   "modelNumber": null,
-   "seatType": null,
-   "heightRange": "Up to 0\"",
-   "weightRange": "Up to 0lbs",
-   "minHeight": 0,
-   "maxHeight": 0,
-   "minWeight": 0,
-   "maxWeight": 0,
-   "picture": null,
-   "complaintsCount": 20,
-   "recallsCount": 1,
-   "investigationsCount": 0,
-   "manufacturerCommunicationsCount": 0,
-   "safetyIssues": {
-    "recalls": [
-     {
-      "id": 17802,
-      "artemidId": 57932,
-      "manufacturer": "Britax Child Safety, Inc.",
-      "mfrCampaignNumber": null,
-      "nhtsaCampaignNumber": "15C003000",
-      "reportReceivedDate": "2015-08-11T00:00:00Z",
-      "subject": "Harness Adjuster/Release Button may Stick",
-      "summary": "Britax Child Safety, Inc. (Britax) is recalling certain Advocate ClickTight child seats, model numbers E9LT95Q, E9LT95Z, E9LT95N, and E1A025Q, Boulevard ClickTight child seats, model numbers E9LT86F, E1A135Q, E9LT86G, E9LT85Q, E9LT86A, E9LT86H, E9LT85S, E1A015Q, E1A016A, and E1A016H, and Marathon ClickTight child seats, model numbers E1A116L, E9LT76P, E9LT71Q, E9LT76N, E9LT76B, E9LT75R, E9LT76L, E1A006B, E1A005R and EXA116L, manufactured August 1, 2014, to July 29, 2015.  The affected child seats have a red harness adjuster button that may stick in the down (harness release) position allowing the shoulder harness to loosen.",
-      "consequence": "If the harness loosens, the child may not be properly restrained, increasing their risk of injury in the event of a crash.",
-      "correctiveAction": "Britax will notify registered owners and send them a remedy kit that includes a lubricant to apply to the harness adjuster button, free of charge.  The recall began on August 14, 2015.  Owners may contact Britax customer service at 1-888-427-4829, option 3 or by visiting www.BritaxClickTightConvertibleRecall.com.",
-      "potentialNumberOfUnitsAffected": 213753,
-      "notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
-      "components": [
-       {
-        "id": 358,
-        "name": "CHILD SEAT",
-        "description": "500000 CHILD SEAT"
-       }
-      ],
-      "investigations": [],
-      "associatedDocumentsCount": 10,
-      "associatedProductsCount": 3,
-      "associatedProducts": [
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "ADVOCATE CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "BOULEVARD CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "MARATHON CLICKTIGHT",
-        "productionDates": "08/01/2014 - 07/29/2015",
-        "manufacturer": "Britax Child Safety, Inc."
-       }
-      ]
-     }
-    ]
-   },
-   "modes": []
-  },
-  {
-   "id": 44188,
-   "active": false,
-   "artemisId": 76500,
-   "make": "BRITAX",
-   "manufacturerDate": null,
-   "productModel": "101 (FREEWAY)",
-   "modelNumber": null,
-   "seatType": null,
-   "heightRange": "Up to 0\"",
-   "weightRange": "Up to 0lbs",
-   "minHeight": 0,
-   "maxHeight": 0,
-   "minWeight": 0,
-   "maxWeight": 0,
-   "picture": null,
-   "complaintsCount": 21,
-   "recallsCount": 2,
-   "investigationsCount": 0,
-   "manufacturerCommunicationsCount": 0,
-   "safetyIssues": {
-    "recalls": [
-     {
-      "id": 438,
-      "artemidId": 14640,
-      "manufacturer": "BRITAX CHILD SAFETY, INC.",
-      "mfrCampaignNumber": null,
-      "nhtsaCampaignNumber": "01C003000",
-      "reportReceivedDate": "2001-12-04T00:00:00Z",
-      "subject": "BRITAX/INADVERTENT BUCKLE RELEASE",
-      "summary": "THIS IS NOT A SAFETY RECALL IN ACCORDANCE WITH THE SAFETY ACT.  CUSTOMARY ADVISORY:  THIS ADVISORY PERTAINS TO BRITAX CHILD SEATS, MODELS FREEWAY #101, FREEWAY PLUS #E9000, ROUNDABOUT #E9002, ADVANTAGE #E9022, ROUNDABOUT W/HEAD PAD # E9033.  IN CERTAIN CIRCUMSTANCES, THE LARGE RED BUTTON MAY BE CONTACTED BY THE CHILD AND OPENED.",
-      "consequence": "IF THE BUCKLE BECOMES UNLATCHED, THE CHILD MAY NOT BE RESTRAINED IN A VEHICLE CRASH.",
-      "correctiveAction": "CUSTOMERS WILL RECEIVE A FREE BUCKLE COVER AND EASY TO INSTALL INSTRUCTIONS.\r\nOWNER NOTIFICATION IS EXPECTED TO BEGIN DURING DECEMBER 2000 OF JANUARY 2002.  OWNERS WHO DO NOT RECEIVE THE FREE REMEDY WITHIN A REASONABLE TIME SHOULD CONTACT BRITAX CUSTOMER SERVICE AT 1-704-409-1700, PROMPT 2.",
-      "potentialNumberOfUnitsAffected": 128328,
-      "notes": "ALSO, CUSTOMERS CAN CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-888-DASH-2-DOT (1-888-327-4236).",
-      "components": [
-       {
-        "id": 358,
-        "name": "CHILD SEAT",
-        "description": "500000 CHILD SEAT"
-       }
-      ],
-      "investigations": [],
-      "associatedDocumentsCount": 0,
-      "associatedProductsCount": 4,
-      "associatedProducts": [
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "101 (FREEWAY)",
-        "productionDates": "10/05/2000 - 10/05/2001",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "161 (ROUNDABOUT)",
-        "productionDates": "10/05/2000 - 10/05/2001",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "E9022 (ADVANTAGE)",
-        "productionDates": "10/05/2000 - 10/05/2001",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "E9000 (FREEWAY)",
-        "productionDates": "10/05/2000 - 10/05/2001",
-        "manufacturer": "Britax Child Safety, Inc."
-       }
-      ]
-     },
-     {
-      "id": 2783,
-      "artemidId": 8220,
-      "manufacturer": "BRITAX CHILD SAFETY, INC.",
-      "mfrCampaignNumber": null,
-      "nhtsaCampaignNumber": "97C012000",
-      "reportReceivedDate": "1997-04-14T00:00:00Z",
-      "subject": "BRITAX/FMVSS 213",
-      "summary": "THE MINIMUM FORCE REQUIRED TO RELEASE THE BELT BUCKLE COULD BE LESS THAN THE MINIMUM BUCKLE FORCE REQUIRED IN FEDERAL MOTOR VEHICLE SAFETY STANDARD NO. 213, \"CHILD RESTRAINT SYSTEMS.\"  A CHILD COULD HAVE AN EASIER TIME OPENING THE BUCKLE.",
-      "consequence": "IF A CHILD RELEASES THE BUCKLE AND THEN THE VEHICLE IS INVOLVED IN A CRASH, THE CHILD WOULD NOT BE PROTECTED BY THE RESTRAINT SYSTEM AND COULD BE INJURED.",
-      "correctiveAction": "OWNERS WILL BE PROVIDED WITH A NEW BUCKLE BUTTON AND INSTALLATION INSTRUCTIONS.",
-      "potentialNumberOfUnitsAffected": 8000,
-      "notes": "OWNER NOTIFICATION:  OWNER NOTIFICATION IS EXPECTED TO BEGIN DURING MAY 1997.    NOTE:  OWNERS WHO DO NOT RECEIVE A NEW BUCKLE BUTTON AND INSTALLATION INSTRUCTIONS FREE OF CHARGE WITHIN A REASONABLE TIME SHOULD CONTACT BRITAX AT 1-888-.  ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-800-424-9393.( PREVIOUS RECALL NUMBER 97E012000)",
-      "components": [
-       {
-        "id": 358,
-        "name": "CHILD SEAT",
-        "description": "500000 CHILD SEAT"
-       }
-      ],
-      "investigations": [],
-      "associatedDocumentsCount": 0,
-      "associatedProductsCount": 1,
-      "associatedProducts": [
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "101 (FREEWAY)",
-        "productionDates": "06/01/1996 - 04/18/1997",
-        "manufacturer": "Britax Child Safety, Inc."
-       }
-      ]
-     }
-    ]
-   },
-   "modes": []
-  },
-  {
-   "id": 64926,
-   "active": false,
-   "artemisId": 221350,
-   "make": "BRITAX",
-   "manufacturerDate": null,
-   "productModel": "E9L39 (REGENT)",
-   "modelNumber": null,
-   "seatType": null,
-   "heightRange": "Up to 0\"",
-   "weightRange": "Up to 0lbs",
-   "minHeight": 0,
-   "maxHeight": 0,
-   "minWeight": 0,
-   "maxWeight": 0,
-   "picture": null,
-   "complaintsCount": 10,
-   "recallsCount": 1,
-   "investigationsCount": 0,
-   "manufacturerCommunicationsCount": 0,
-   "safetyIssues": {
-    "recalls": [
-     {
-      "id": 8940,
-      "artemidId": 23242,
-      "manufacturer": "BRITAX CHILD SAFETY, INC.",
-      "mfrCampaignNumber": "BCS #020701",
-      "nhtsaCampaignNumber": "07C002000",
-      "reportReceivedDate": "2007-02-16T00:00:00Z",
-      "subject": "FMVSS 213/INCORRECT WARNING LABEL",
-      "summary": "CERTAIN BRITAX REGENT CLASSIC FORWARD-FACING ONLY YOUTH CHILD RESTRAINT SYSTEMS, MODEL E9L3998, MANUFACTURED BETWEEN DECEMBER 18, 2006, AND JANUARY 18, 2007.  THESE CHILD RESTRAINT SYSTEMS WERE PRODUCED WITH AN INCORRECT LABEL SEWN TO THE FABRIC COVER WHICH FAILS TO CONFORM TO FEDERAL MOTOR VEHICLE SAFETY STANDARD NO. 213, CHILD RESTRAINTS SYSTEMS.  IN PLACE OF THE \"WARNING! DEATH OR SERIOUS INJURY CAN OCCUR\" WARNING LABEL, AN AIRBAG WARNING LABEL WAS ATTACHED.  THE AIRBAG WARNING LABEL IS NOT REQUIRED FOR THE REGENT CLASSIC RESTRAINT AS IT IS A FORWARD-FACING ONLY YOUTH RESTRAINT SYSTEM.",
-      "consequence": "THE PURPOSE OF THIS STANDARD IS TO REDUCE THE NUMBER OF CHILDREN KILLED OR INJURED IN MOTOR VEHICLE CRASHES AND IN AIRCRAFT.",
-      "correctiveAction": "OWNERS THAT HAVE FILED A REGISTRATION CARD WITH BRITAX WILL AUTOMATICALLY RECEIVE A REPLACEMENT COVER.  OWNERS OR CAREGIVERS WHO HAVE NOT FILED A REGISTRATION FORM SHOULD CONTACT BRITAX CONSUMER SERVICES DEPARTMENT AT 1-888-4BRITAX (1-888-427-4829).  THE RECALL BEGAN ON MARCH 23, 2007.",
-      "potentialNumberOfUnitsAffected": 1302,
-      "notes": "BRITAX RECALL NO BCS #020701.  CUSTOMERS MAY CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S VEHICLE SAFETY HOTLINE AT 1-888-327-4236 (TTY: 1-800-424-9153); OR GO TO HTTP://WWW.SAFERCAR.GOV.",
-      "components": [
-       {
-        "id": 398,
-        "name": "EQUIPMENT",
-        "description": "355100 EQUIPMENT"
-       }
-      ],
-      "investigations": [],
-      "associatedDocumentsCount": 22,
-      "associatedProductsCount": 1,
-      "associatedProducts": [
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "E9L39 (REGENT)",
-        "productionDates": "12/18/2006 - 01/18/2007",
-        "manufacturer": "Britax Child Safety, Inc."
-       }
-      ]
-     }
-    ]
-   },
-   "modes": []
-  },
-  {
-   "id": 92836,
-   "active": false,
-   "artemisId": 1416768,
-   "make": "BRITAX",
-   "manufacturerDate": null,
-   "productModel": "CHAPERONE E9L692L COWMOOF",
-   "modelNumber": null,
-   "seatType": null,
-   "heightRange": "Up to 0\"",
-   "weightRange": "Up to 0lbs",
-   "minHeight": 0,
-   "maxHeight": 0,
-   "minWeight": 0,
-   "maxWeight": 0,
-   "picture": null,
-   "complaintsCount": 0,
-   "recallsCount": 1,
-   "investigationsCount": 0,
-   "manufacturerCommunicationsCount": 0,
-   "safetyIssues": {
-    "recalls": [
-     {
-      "id": 15262,
-      "artemidId": 45557,
-      "manufacturer": "BRITAX CHILD SAFETY, INC.",
-      "mfrCampaignNumber": null,
-      "nhtsaCampaignNumber": "12C001000",
-      "reportReceivedDate": "2012-01-26T00:00:00Z",
-      "subject": "HARNESS ADJUSTER DETACHMENT",
-      "summary": "BRITAX IS RECALLING CERTAIN CHAPERONE INFANT CHILD RESTRAINT SYSTEMS PRODUCED FROM SEPTEMBER 1, 2010, THROUGH APRIL 30, 2011.  THE HARNESS ADJUSTER CAN DETACH FROM THE SEAT SHELL.",
-      "consequence": "SHOULD THE HARNESS ADJUSTER DETACH FROM THE SEAT, THE CHILD MAY NOT BE PROPERLY RESTRAINED IN THE EVENT OF A CRASH, INCREASING THE RISK OF INJURY OR DEATH.",
-      "correctiveAction": "BRITAX WILL NOTIFY OWNERS AND PROVIDE REPAIR KITS FREE OF CHARGE.  THE SAFETY RECALL AND MAILING OF THE KITS BEGAN ON FEBRUARY 7, 2012.  ANY SEATS ON WHICH THE HARNESS ADJUSTER HAS DETACHED WILL BE REPLACED.  OWNERS MAY CONTACT BRITAX AT 1-888-427-4829 OR VISIT WWW.CHAPERONERECALL.COM.",
-      "potentialNumberOfUnitsAffected": 14220,
-      "notes": "CUSTOMERS MAY ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S VEHICLE SAFETY HOTLINE AT 1-888-327-4236 (TTY 1-800-424-9153), OR GO TO <A HREF=HTTP://WWW.SAFERCAR.GOV>HTTP://WWW.SAFERCAR.GOV</A> .",
-      "components": [
-       {
-        "id": 642,
-        "name": "CHILD SEAT",
-        "description": "555000 CHILD SEAT"
-       }
-      ],
-      "investigations": [],
-      "associatedDocumentsCount": 10,
-      "associatedProductsCount": 4,
-      "associatedProducts": [
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "CHAPERONE E9L692L COWMOOF",
-        "productionDates": "09/01/2010 - 04/30/2011",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "CHAPERONE E9L692J BLK/SIL",
-        "productionDates": "09/01/2010 - 04/30/2011",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "CHAPERONE E9L692K (RED)",
-        "productionDates": "09/01/2010 - 04/30/2011",
-        "manufacturer": "Britax Child Safety, Inc."
-       },
-       {
-        "type": "Child Seat",
-        "productYear": "9999",
-        "productMake": "BRITAX",
-        "productModel": "CHAPERONE E9L692M GREEN",
-        "productionDates": "09/01/2010 - 04/30/2011",
-        "manufacturer": "Britax Child Safety, Inc."
-       }
-      ]
-     }
-    ]
-   },
-   "modes": []
-  }
- ]
+  "results": [
+    {
+      "id": 111513,
+      "active": true,
+      "artemisId": 1991791,
+      "make": "BRITAX",
+      "manufacturerDate": null,
+      "productModel": "ADVOCATE CLICKTIGHT",
+      "modelNumber": null,
+      "seatType": null,
+      "heightRange": "Up to 0\"",
+      "weightRange": "Up to 0lbs",
+      "minHeight": 0,
+      "maxHeight": 0,
+      "minWeight": 0,
+      "maxWeight": 0,
+      "picture": null,
+      "complaintsCount": 20,
+      "recallsCount": 1,
+      "investigationsCount": 0,
+      "manufacturerCommunicationsCount": 0,
+      "safetyIssues": {
+        "recalls": [
+          {
+            "id": 17802,
+            "artemidId": 57932,
+            "manufacturer": "Britax Child Safety, Inc.",
+            "mfrCampaignNumber": null,
+            "nhtsaCampaignNumber": "15C003000",
+            "reportReceivedDate": "2015-08-11T00:00:00Z",
+            "subject": "Harness Adjuster/Release Button may Stick",
+            "summary": "Britax Child Safety, Inc. (Britax) is recalling certain Advocate ClickTight child seats, model numbers E9LT95Q, E9LT95Z, E9LT95N, and E1A025Q, Boulevard ClickTight child seats, model numbers E9LT86F, E1A135Q, E9LT86G, E9LT85Q, E9LT86A, E9LT86H, E9LT85S, E1A015Q, E1A016A, and E1A016H, and Marathon ClickTight child seats, model numbers E1A116L, E9LT76P, E9LT71Q, E9LT76N, E9LT76B, E9LT75R, E9LT76L, E1A006B, E1A005R and EXA116L, manufactured August 1, 2014, to July 29, 2015.  The affected child seats have a red harness adjuster button that may stick in the down (harness release) position allowing the shoulder harness to loosen.",
+            "consequence": "If the harness loosens, the child may not be properly restrained, increasing their risk of injury in the event of a crash.",
+            "correctiveAction": "Britax will notify registered owners and send them a remedy kit that includes a lubricant to apply to the harness adjuster button, free of charge.  The recall began on August 14, 2015.  Owners may contact Britax customer service at 1-888-427-4829, option 3 or by visiting www.BritaxClickTightConvertibleRecall.com.",
+            "potentialNumberOfUnitsAffected": 213753,
+            "notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "components": [
+              {
+                "id": 358,
+                "name": "CHILD SEAT",
+                "description": "500000 CHILD SEAT"
+              }
+            ],
+            "investigations": [],
+            "associatedDocumentsCount": 10,
+            "associatedProductsCount": 3,
+            "associatedProducts": [
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "ADVOCATE CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "BOULEVARD CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "MARATHON CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              }
+            ]
+          }
+        ]
+      },
+      "modes": []
+    },
+    {
+      "id": 111514,
+      "active": true,
+      "artemisId": 1991792,
+      "make": "BRITAX",
+      "manufacturerDate": null,
+      "productModel": "BOULEVARD CLICKTIGHT",
+      "modelNumber": null,
+      "seatType": null,
+      "heightRange": "Up to 0\"",
+      "weightRange": "Up to 0lbs",
+      "minHeight": 0,
+      "maxHeight": 0,
+      "minWeight": 0,
+      "maxWeight": 0,
+      "picture": null,
+      "complaintsCount": 19,
+      "recallsCount": 1,
+      "investigationsCount": 0,
+      "manufacturerCommunicationsCount": 0,
+      "safetyIssues": {
+        "recalls": [
+          {
+            "id": 17802,
+            "artemidId": 57932,
+            "manufacturer": "Britax Child Safety, Inc.",
+            "mfrCampaignNumber": null,
+            "nhtsaCampaignNumber": "15C003000",
+            "reportReceivedDate": "2015-08-11T00:00:00Z",
+            "subject": "Harness Adjuster/Release Button may Stick",
+            "summary": "Britax Child Safety, Inc. (Britax) is recalling certain Advocate ClickTight child seats, model numbers E9LT95Q, E9LT95Z, E9LT95N, and E1A025Q, Boulevard ClickTight child seats, model numbers E9LT86F, E1A135Q, E9LT86G, E9LT85Q, E9LT86A, E9LT86H, E9LT85S, E1A015Q, E1A016A, and E1A016H, and Marathon ClickTight child seats, model numbers E1A116L, E9LT76P, E9LT71Q, E9LT76N, E9LT76B, E9LT75R, E9LT76L, E1A006B, E1A005R and EXA116L, manufactured August 1, 2014, to July 29, 2015.  The affected child seats have a red harness adjuster button that may stick in the down (harness release) position allowing the shoulder harness to loosen.",
+            "consequence": "If the harness loosens, the child may not be properly restrained, increasing their risk of injury in the event of a crash.",
+            "correctiveAction": "Britax will notify registered owners and send them a remedy kit that includes a lubricant to apply to the harness adjuster button, free of charge.  The recall began on August 14, 2015.  Owners may contact Britax customer service at 1-888-427-4829, option 3 or by visiting www.BritaxClickTightConvertibleRecall.com.",
+            "potentialNumberOfUnitsAffected": 213753,
+            "notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "components": [
+              {
+                "id": 358,
+                "name": "CHILD SEAT",
+                "description": "500000 CHILD SEAT"
+              }
+            ],
+            "investigations": [],
+            "associatedDocumentsCount": 10,
+            "associatedProductsCount": 3,
+            "associatedProducts": [
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "ADVOCATE CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "BOULEVARD CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "MARATHON CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              }
+            ]
+          }
+        ]
+      },
+      "modes": []
+    },
+    {
+      "id": 111515,
+      "active": true,
+      "artemisId": 1991793,
+      "make": "BRITAX",
+      "manufacturerDate": null,
+      "productModel": "MARATHON CLICKTIGHT",
+      "modelNumber": null,
+      "seatType": null,
+      "heightRange": "Up to 0\"",
+      "weightRange": "Up to 0lbs",
+      "minHeight": 0,
+      "maxHeight": 0,
+      "minWeight": 0,
+      "maxWeight": 0,
+      "picture": null,
+      "complaintsCount": 20,
+      "recallsCount": 1,
+      "investigationsCount": 0,
+      "manufacturerCommunicationsCount": 0,
+      "safetyIssues": {
+        "recalls": [
+          {
+            "id": 17802,
+            "artemidId": 57932,
+            "manufacturer": "Britax Child Safety, Inc.",
+            "mfrCampaignNumber": null,
+            "nhtsaCampaignNumber": "15C003000",
+            "reportReceivedDate": "2015-08-11T00:00:00Z",
+            "subject": "Harness Adjuster/Release Button may Stick",
+            "summary": "Britax Child Safety, Inc. (Britax) is recalling certain Advocate ClickTight child seats, model numbers E9LT95Q, E9LT95Z, E9LT95N, and E1A025Q, Boulevard ClickTight child seats, model numbers E9LT86F, E1A135Q, E9LT86G, E9LT85Q, E9LT86A, E9LT86H, E9LT85S, E1A015Q, E1A016A, and E1A016H, and Marathon ClickTight child seats, model numbers E1A116L, E9LT76P, E9LT71Q, E9LT76N, E9LT76B, E9LT75R, E9LT76L, E1A006B, E1A005R and EXA116L, manufactured August 1, 2014, to July 29, 2015.  The affected child seats have a red harness adjuster button that may stick in the down (harness release) position allowing the shoulder harness to loosen.",
+            "consequence": "If the harness loosens, the child may not be properly restrained, increasing their risk of injury in the event of a crash.",
+            "correctiveAction": "Britax will notify registered owners and send them a remedy kit that includes a lubricant to apply to the harness adjuster button, free of charge.  The recall began on August 14, 2015.  Owners may contact Britax customer service at 1-888-427-4829, option 3 or by visiting www.BritaxClickTightConvertibleRecall.com.",
+            "potentialNumberOfUnitsAffected": 213753,
+            "notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "components": [
+              {
+                "id": 358,
+                "name": "CHILD SEAT",
+                "description": "500000 CHILD SEAT"
+              }
+            ],
+            "investigations": [],
+            "associatedDocumentsCount": 10,
+            "associatedProductsCount": 3,
+            "associatedProducts": [
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "ADVOCATE CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "BOULEVARD CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "MARATHON CLICKTIGHT",
+                "productionDates": "08/01/2014 - 07/29/2015",
+                "manufacturer": "Britax Child Safety, Inc."
+              }
+            ]
+          }
+        ]
+      },
+      "modes": []
+    },
+    {
+      "id": 44188,
+      "active": false,
+      "artemisId": 76500,
+      "make": "BRITAX",
+      "manufacturerDate": null,
+      "productModel": "101 (FREEWAY)",
+      "modelNumber": null,
+      "seatType": null,
+      "heightRange": "Up to 0\"",
+      "weightRange": "Up to 0lbs",
+      "minHeight": 0,
+      "maxHeight": 0,
+      "minWeight": 0,
+      "maxWeight": 0,
+      "picture": null,
+      "complaintsCount": 21,
+      "recallsCount": 2,
+      "investigationsCount": 0,
+      "manufacturerCommunicationsCount": 0,
+      "safetyIssues": {
+        "recalls": [
+          {
+            "id": 438,
+            "artemidId": 14640,
+            "manufacturer": "BRITAX CHILD SAFETY, INC.",
+            "mfrCampaignNumber": null,
+            "nhtsaCampaignNumber": "01C003000",
+            "reportReceivedDate": "2001-12-04T00:00:00Z",
+            "subject": "BRITAX/INADVERTENT BUCKLE RELEASE",
+            "summary": "THIS IS NOT A SAFETY RECALL IN ACCORDANCE WITH THE SAFETY ACT.  CUSTOMARY ADVISORY:  THIS ADVISORY PERTAINS TO BRITAX CHILD SEATS, MODELS FREEWAY #101, FREEWAY PLUS #E9000, ROUNDABOUT #E9002, ADVANTAGE #E9022, ROUNDABOUT W/HEAD PAD # E9033.  IN CERTAIN CIRCUMSTANCES, THE LARGE RED BUTTON MAY BE CONTACTED BY THE CHILD AND OPENED.",
+            "consequence": "IF THE BUCKLE BECOMES UNLATCHED, THE CHILD MAY NOT BE RESTRAINED IN A VEHICLE CRASH.",
+            "correctiveAction": "CUSTOMERS WILL RECEIVE A FREE BUCKLE COVER AND EASY TO INSTALL INSTRUCTIONS.\r\nOWNER NOTIFICATION IS EXPECTED TO BEGIN DURING DECEMBER 2000 OF JANUARY 2002.  OWNERS WHO DO NOT RECEIVE THE FREE REMEDY WITHIN A REASONABLE TIME SHOULD CONTACT BRITAX CUSTOMER SERVICE AT 1-704-409-1700, PROMPT 2.",
+            "potentialNumberOfUnitsAffected": 128328,
+            "notes": "ALSO, CUSTOMERS CAN CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-888-DASH-2-DOT (1-888-327-4236).",
+            "components": [
+              {
+                "id": 358,
+                "name": "CHILD SEAT",
+                "description": "500000 CHILD SEAT"
+              }
+            ],
+            "investigations": [],
+            "associatedDocumentsCount": 0,
+            "associatedProductsCount": 4,
+            "associatedProducts": [
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "101 (FREEWAY)",
+                "productionDates": "10/05/2000 - 10/05/2001",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "161 (ROUNDABOUT)",
+                "productionDates": "10/05/2000 - 10/05/2001",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "E9022 (ADVANTAGE)",
+                "productionDates": "10/05/2000 - 10/05/2001",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "E9000 (FREEWAY)",
+                "productionDates": "10/05/2000 - 10/05/2001",
+                "manufacturer": "Britax Child Safety, Inc."
+              }
+            ]
+          },
+          {
+            "id": 2783,
+            "artemidId": 8220,
+            "manufacturer": "BRITAX CHILD SAFETY, INC.",
+            "mfrCampaignNumber": null,
+            "nhtsaCampaignNumber": "97C012000",
+            "reportReceivedDate": "1997-04-14T00:00:00Z",
+            "subject": "BRITAX/FMVSS 213",
+            "summary": "THE MINIMUM FORCE REQUIRED TO RELEASE THE BELT BUCKLE COULD BE LESS THAN THE MINIMUM BUCKLE FORCE REQUIRED IN FEDERAL MOTOR VEHICLE SAFETY STANDARD NO. 213, \"CHILD RESTRAINT SYSTEMS.\"  A CHILD COULD HAVE AN EASIER TIME OPENING THE BUCKLE.",
+            "consequence": "IF A CHILD RELEASES THE BUCKLE AND THEN THE VEHICLE IS INVOLVED IN A CRASH, THE CHILD WOULD NOT BE PROTECTED BY THE RESTRAINT SYSTEM AND COULD BE INJURED.",
+            "correctiveAction": "OWNERS WILL BE PROVIDED WITH A NEW BUCKLE BUTTON AND INSTALLATION INSTRUCTIONS.",
+            "potentialNumberOfUnitsAffected": 8000,
+            "notes": "OWNER NOTIFICATION:  OWNER NOTIFICATION IS EXPECTED TO BEGIN DURING MAY 1997.    NOTE:  OWNERS WHO DO NOT RECEIVE A NEW BUCKLE BUTTON AND INSTALLATION INSTRUCTIONS FREE OF CHARGE WITHIN A REASONABLE TIME SHOULD CONTACT BRITAX AT 1-888-.  ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-800-424-9393.( PREVIOUS RECALL NUMBER 97E012000)",
+            "components": [
+              {
+                "id": 358,
+                "name": "CHILD SEAT",
+                "description": "500000 CHILD SEAT"
+              }
+            ],
+            "investigations": [],
+            "associatedDocumentsCount": 0,
+            "associatedProductsCount": 1,
+            "associatedProducts": [
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "101 (FREEWAY)",
+                "productionDates": "06/01/1996 - 04/18/1997",
+                "manufacturer": "Britax Child Safety, Inc."
+              }
+            ]
+          }
+        ]
+      },
+      "modes": []
+    },
+    {
+      "id": 64926,
+      "active": false,
+      "artemisId": 221350,
+      "make": "BRITAX",
+      "manufacturerDate": null,
+      "productModel": "E9L39 (REGENT)",
+      "modelNumber": null,
+      "seatType": null,
+      "heightRange": "Up to 0\"",
+      "weightRange": "Up to 0lbs",
+      "minHeight": 0,
+      "maxHeight": 0,
+      "minWeight": 0,
+      "maxWeight": 0,
+      "picture": null,
+      "complaintsCount": 10,
+      "recallsCount": 1,
+      "investigationsCount": 0,
+      "manufacturerCommunicationsCount": 0,
+      "safetyIssues": {
+        "recalls": [
+          {
+            "id": 8940,
+            "artemidId": 23242,
+            "manufacturer": "BRITAX CHILD SAFETY, INC.",
+            "mfrCampaignNumber": "BCS #020701",
+            "nhtsaCampaignNumber": "07C002000",
+            "reportReceivedDate": "2007-02-16T00:00:00Z",
+            "subject": "FMVSS 213/INCORRECT WARNING LABEL",
+            "summary": "CERTAIN BRITAX REGENT CLASSIC FORWARD-FACING ONLY YOUTH CHILD RESTRAINT SYSTEMS, MODEL E9L3998, MANUFACTURED BETWEEN DECEMBER 18, 2006, AND JANUARY 18, 2007.  THESE CHILD RESTRAINT SYSTEMS WERE PRODUCED WITH AN INCORRECT LABEL SEWN TO THE FABRIC COVER WHICH FAILS TO CONFORM TO FEDERAL MOTOR VEHICLE SAFETY STANDARD NO. 213, CHILD RESTRAINTS SYSTEMS.  IN PLACE OF THE \"WARNING! DEATH OR SERIOUS INJURY CAN OCCUR\" WARNING LABEL, AN AIRBAG WARNING LABEL WAS ATTACHED.  THE AIRBAG WARNING LABEL IS NOT REQUIRED FOR THE REGENT CLASSIC RESTRAINT AS IT IS A FORWARD-FACING ONLY YOUTH RESTRAINT SYSTEM.",
+            "consequence": "THE PURPOSE OF THIS STANDARD IS TO REDUCE THE NUMBER OF CHILDREN KILLED OR INJURED IN MOTOR VEHICLE CRASHES AND IN AIRCRAFT.",
+            "correctiveAction": "OWNERS THAT HAVE FILED A REGISTRATION CARD WITH BRITAX WILL AUTOMATICALLY RECEIVE A REPLACEMENT COVER.  OWNERS OR CAREGIVERS WHO HAVE NOT FILED A REGISTRATION FORM SHOULD CONTACT BRITAX CONSUMER SERVICES DEPARTMENT AT 1-888-4BRITAX (1-888-427-4829).  THE RECALL BEGAN ON MARCH 23, 2007.",
+            "potentialNumberOfUnitsAffected": 1302,
+            "notes": "BRITAX RECALL NO BCS #020701.  CUSTOMERS MAY CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S VEHICLE SAFETY HOTLINE AT 1-888-327-4236 (TTY: 1-800-424-9153); OR GO TO HTTP://WWW.SAFERCAR.GOV.",
+            "components": [
+              {
+                "id": 398,
+                "name": "EQUIPMENT",
+                "description": "355100 EQUIPMENT"
+              }
+            ],
+            "investigations": [],
+            "associatedDocumentsCount": 22,
+            "associatedProductsCount": 1,
+            "associatedProducts": [
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "E9L39 (REGENT)",
+                "productionDates": "12/18/2006 - 01/18/2007",
+                "manufacturer": "Britax Child Safety, Inc."
+              }
+            ]
+          }
+        ]
+      },
+      "modes": []
+    },
+    {
+      "id": 92836,
+      "active": false,
+      "artemisId": 1416768,
+      "make": "BRITAX",
+      "manufacturerDate": null,
+      "productModel": "CHAPERONE E9L692L COWMOOF",
+      "modelNumber": null,
+      "seatType": null,
+      "heightRange": "Up to 0\"",
+      "weightRange": "Up to 0lbs",
+      "minHeight": 0,
+      "maxHeight": 0,
+      "minWeight": 0,
+      "maxWeight": 0,
+      "picture": null,
+      "complaintsCount": 0,
+      "recallsCount": 1,
+      "investigationsCount": 0,
+      "manufacturerCommunicationsCount": 0,
+      "safetyIssues": {
+        "recalls": [
+          {
+            "id": 15262,
+            "artemidId": 45557,
+            "manufacturer": "BRITAX CHILD SAFETY, INC.",
+            "mfrCampaignNumber": null,
+            "nhtsaCampaignNumber": "12C001000",
+            "reportReceivedDate": "2012-01-26T00:00:00Z",
+            "subject": "HARNESS ADJUSTER DETACHMENT",
+            "summary": "BRITAX IS RECALLING CERTAIN CHAPERONE INFANT CHILD RESTRAINT SYSTEMS PRODUCED FROM SEPTEMBER 1, 2010, THROUGH APRIL 30, 2011.  THE HARNESS ADJUSTER CAN DETACH FROM THE SEAT SHELL.",
+            "consequence": "SHOULD THE HARNESS ADJUSTER DETACH FROM THE SEAT, THE CHILD MAY NOT BE PROPERLY RESTRAINED IN THE EVENT OF A CRASH, INCREASING THE RISK OF INJURY OR DEATH.",
+            "correctiveAction": "BRITAX WILL NOTIFY OWNERS AND PROVIDE REPAIR KITS FREE OF CHARGE.  THE SAFETY RECALL AND MAILING OF THE KITS BEGAN ON FEBRUARY 7, 2012.  ANY SEATS ON WHICH THE HARNESS ADJUSTER HAS DETACHED WILL BE REPLACED.  OWNERS MAY CONTACT BRITAX AT 1-888-427-4829 OR VISIT WWW.CHAPERONERECALL.COM.",
+            "potentialNumberOfUnitsAffected": 14220,
+            "notes": "CUSTOMERS MAY ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S VEHICLE SAFETY HOTLINE AT 1-888-327-4236 (TTY 1-800-424-9153), OR GO TO <A HREF=HTTP://WWW.SAFERCAR.GOV>HTTP://WWW.SAFERCAR.GOV</A> .",
+            "components": [
+              {
+                "id": 642,
+                "name": "CHILD SEAT",
+                "description": "555000 CHILD SEAT"
+              }
+            ],
+            "investigations": [],
+            "associatedDocumentsCount": 10,
+            "associatedProductsCount": 4,
+            "associatedProducts": [
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "CHAPERONE E9L692L COWMOOF",
+                "productionDates": "09/01/2010 - 04/30/2011",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "CHAPERONE E9L692J BLK/SIL",
+                "productionDates": "09/01/2010 - 04/30/2011",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "CHAPERONE E9L692K (RED)",
+                "productionDates": "09/01/2010 - 04/30/2011",
+                "manufacturer": "Britax Child Safety, Inc."
+              },
+              {
+                "type": "Child Seat",
+                "productYear": "9999",
+                "productMake": "BRITAX",
+                "productModel": "CHAPERONE E9L692M GREEN",
+                "productionDates": "09/01/2010 - 04/30/2011",
+                "manufacturer": "Britax Child Safety, Inc."
+              }
+            ]
+          }
+        ]
+      },
+      "modes": []
+    }
+  ]
 }

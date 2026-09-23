@@ -1,7 +1,18 @@
-import type { CallToolResult, Icon, McpServer, ServerContext, ToolAnnotations } from '@modelcontextprotocol/server';
+import type {
+  CallToolResult,
+  Icon,
+  McpServer,
+  ServerContext,
+  ToolAnnotations,
+} from '@modelcontextprotocol/server';
 import { registerAppTool } from '@modelcontextprotocol/ext-apps/server';
 import type { z } from 'zod';
-import { NotLinkedError, runWithCaller, type CallerContext, currentCaller } from '../auth/context.js';
+import {
+  NotLinkedError,
+  runWithCaller,
+  type CallerContext,
+  currentCaller,
+} from '../auth/context.js';
 import { timed } from '../telemetry.js';
 import type { ServerDeps } from './deps.js';
 import { fail } from './result.js';
@@ -37,7 +48,11 @@ function callerFromCtx(ctx: ServerContext): CallerContext | undefined {
  *  - every thrown error converted into a spoken tool-execution error so Alexa
  *    never receives an empty result.
  */
-export function defineTool<I extends z.ZodObject, O extends z.ZodObject>(server: McpServer, deps: ServerDeps, spec: ToolSpec<I, O>): void {
+export function defineTool<I extends z.ZodObject, O extends z.ZodObject>(
+  server: McpServer,
+  deps: ServerDeps,
+  spec: ToolSpec<I, O>,
+): void {
   const cb = async (input: z.infer<I>, ctx: ServerContext): Promise<CallToolResult> =>
     timed(
       spec.name,
@@ -49,7 +64,7 @@ export function defineTool<I extends z.ZodObject, O extends z.ZodObject>(server:
         } catch (err) {
           if (err instanceof NotLinkedError) return fail(err.message);
           console.error(`[tool:${spec.name}]`, err);
-          return fail("Sorry, something went wrong on my end. Please try that again in a moment.");
+          return fail('Sorry, something went wrong on my end. Please try that again in a moment.');
         }
       },
       (r) => r.isError === true,
